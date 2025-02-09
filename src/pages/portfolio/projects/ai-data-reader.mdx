@@ -1,0 +1,154 @@
+---
+slug: "ai-data-reader"
+title: "KI-basierte Produktdatenpflege aus PDF-Dateien"
+description: "Entwicklung eines automatisierten Systems zur Extraktion und Strukturierung von Produktdaten aus PDF-Dokumenten"
+excerpt: "Integration von Claude AI für die intelligente Verarbeitung von Produktinformationen und nahtlose JTL-ERP-Integration."
+date: "2024-02-09"
+category: "Data Processing"
+coverImage: "/images/projects/ai-data-reader/cover.jpg"
+client: "Amazon Seller"
+duration: "2 Monate"
+url: "https://www.damjan-savic.com"
+repository: ""
+documentation: ""
+published: true
+featured: true
+technologies: ["Python", "FastAPI", "Claude AI", "PyPDF", "Pydantic", "JTL-Wawi"]
+tags: ["Data Extraction", "ERP", "Process Automation", "PDF Processing"]
+---
+
+<div style={{ margin: "20px 0", padding: "20px", backgroundColor: "#3d3d3d", borderRadius: "8px" }}>
+  <p style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>
+    Ein KI-gestütztes System zur automatisierten Extraktion von Produktdaten aus PDF-Dokumenten mit direkter Integration in JTL-Warenwirtschaftssysteme, entwickelt für maximale Effizienz in der Produktdatenpflege.
+  </p>
+</div>
+
+<hr style={{ margin: "40px 0", border: "none", height: "1px", backgroundColor: "#ddd" }} />
+
+<h2 style={{ marginBottom: "20px" }}>Systemarchitektur</h2>
+<div style={{ marginBottom: "30px" }}>
+  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+    Die Lösung basiert auf einer modularen Python-Architektur:
+  </p>
+  <ul style={{ marginLeft: "20px", fontSize: "1rem", lineHeight: "1.6" }}>
+    <li>Robuste PDF-Textextraktion mit PyPDF</li>
+    <li>KI-gestützte Datenextraktion mit Claude AI</li>
+    <li>Validierung durch Pydantic Models</li>
+    <li>JTL-ERP Integration über CSV-Export</li>
+  </ul>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>Datenmodelle</h2>
+<div style={{ marginBottom: "30px" }}>
+  <pre style={{ backgroundColor: "#3d3d3d", padding: "20px", borderRadius: "8px", overflow: "auto" }}>
+    <code className="language-python" style={{ color: "#f8f8f2" }}>
+{`class ProductData(BaseModel):
+    artikel_nummer: str
+    name: str
+    hersteller: str
+    inhaltsstoffe: List[str]
+    allergene: List[str]
+    naehrwerte: NaehrwertData
+    nettogewicht: str
+    vegan: bool
+    vegetarisch: bool`}
+    </code>
+  </pre>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>Extraktionsprozess</h2>
+<div style={{ marginBottom: "30px" }}>
+  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+    Der automatisierte Workflow umfasst:
+  </p>
+  <ul style={{ marginLeft: "20px", fontSize: "1rem", lineHeight: "1.6" }}>
+    <li>PDF-Batch-Verarbeitung aus Input-Verzeichnis</li>
+    <li>Intelligente Texterkennung und -strukturierung</li>
+    <li>KI-basierte Datenzuordnung</li>
+    <li>Automatische Datenvalidierung</li>
+    <li>JTL-konformer CSV-Export</li>
+  </ul>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>Datenvalidierung</h2>
+<div style={{ marginBottom: "30px" }}>
+  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+    Mehrschichtige Validierungslogik:
+  </p>
+  <ul style={{ marginLeft: "20px", fontSize: "1rem", lineHeight: "1.6" }}>
+    <li>Strukturvalidierung durch Pydantic</li>
+    <li>Geschäftsregelvalidierung</li>
+    <li>Format- und Typprüfungen</li>
+    <li>JTL-Kompatibilitätsprüfung</li>
+  </ul>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>KI-Implementierung</h2>
+<div style={{ marginBottom: "30px" }}>
+  <pre style={{ backgroundColor: "#3d3d3d", padding: "20px", borderRadius: "8px", overflow: "auto" }}>
+    <code className="language-python" style={{ color: "#f8f8f2" }}>
+{`def _extract_with_claude(self, prompt: str) -> Dict[str, Any]:
+    """Extrahiert strukturierte Daten mit Claude AI."""
+    response = self.client.messages.create(
+        model="claude-3-sonnet-20240229",
+        messages=[{
+            "role": "user",
+            "content": prompt
+        }]
+    )
+    return self._clean_json_string(response.content)`}
+    </code>
+  </pre>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>Fehlerbehandlung</h2>
+<div style={{ marginBottom: "30px" }}>
+  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+    Robuste Fehlerbehandlung auf mehreren Ebenen:
+  </p>
+  <ul style={{ marginLeft: "20px", fontSize: "1rem", lineHeight: "1.6" }}>
+    <li>PDF-Lesefehler-Management</li>
+    <li>KI-Extraktionsfehlerbehandlung</li>
+    <li>Datenvalidierungsfehler-Reporting</li>
+    <li>Automatische Wiederholungsversuche</li>
+  </ul>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>JTL-Integration</h2>
+<div style={{ marginBottom: "30px" }}>
+  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+    Nahtlose Integration in JTL-Systeme:
+  </p>
+  <ul style={{ marginLeft: "20px", fontSize: "1rem", lineHeight: "1.6" }}>
+    <li>Standardisierte CSV-Exportformate</li>
+    <li>Automatische Feldmappings</li>
+    <li>Datentyp-Konvertierung</li>
+    <li>Validierung der JTL-Kompatibilität</li>
+  </ul>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>Logging & Monitoring</h2>
+<div style={{ marginBottom: "30px" }}>
+  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+    Umfassende Überwachung:
+  </p>
+  <ul style={{ marginLeft: "20px", fontSize: "1rem", lineHeight: "1.6" }}>
+    <li>Detaillierte Verarbeitungslogs</li>
+    <li>Fehlerprotokolle</li>
+    <li>Performance-Metriken</li>
+    <li>Erfolgsraten-Tracking</li>
+  </ul>
+</div>
+
+<h2 style={{ marginBottom: "20px" }}>Ergebnisse</h2>
+<div style={{ marginBottom: "30px" }}>
+  <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
+    Die Implementierung führte zu signifikanten Verbesserungen:
+  </p>
+  <ul style={{ marginLeft: "20px", fontSize: "1rem", lineHeight: "1.6" }}>
+    <li>90% Zeitersparnis bei der Produktdatenpflege</li>
+    <li>99% Genauigkeit bei der Datenextraktion</li>
+    <li>Eliminierung manueller Dateneingaben</li>
+    <li>Standardisierte Produktdatenqualität</li>
+  </ul>
+</div>
