@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 export function ContactInfo() {
     return (
         <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             className="pb-6 px-6 pt-4 bg-zinc-800/30 border border-zinc-800 rounded-lg mx-4 mt-2"
