@@ -181,14 +181,13 @@ const Layout = ({ children }: LayoutProps) => {
         <AnimatePresence>
           {isMenuOpen && (
               <>
-                {/* Backdrop mit Click Handler */}
+                {/* Backdrop */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed inset-0 bg-black/50 md:hidden z-20"
-                    onClick={() => setIsMenuOpen(false)}
+                    className="fixed inset-0 bg-black/50 md:hidden z-20 pointer-events-none"
                 />
 
                 {/* Sidebar */}
@@ -199,16 +198,8 @@ const Layout = ({ children }: LayoutProps) => {
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     className="fixed right-0 top-0 h-full w-80 bg-zinc-900 shadow-xl md:hidden z-50 border-l border-zinc-800"
                 >
-                  {/* Header mit Close Button */}
-                  <div className="h-16 flex items-center justify-between px-4 border-b border-zinc-800">
-                    <motion.button
-                        onClick={() => setIsMenuOpen(false)}
-                        className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors"
-                        whileTap={{ scale: 0.95 }}
-                    >
-                      <X className="h-6 w-6" />
-                    </motion.button>
-                  </div>
+                  {/* Header-Spacer */}
+                  <div className="h-16" />
 
                   {/* Scrollbarer Sidebar-Inhalt */}
                   <div className="h-[calc(100vh_-_4rem)] overflow-y-auto">
