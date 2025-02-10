@@ -1,3 +1,4 @@
+// C:\Development\Damjan Savic\Portfolio\src\components\LanguageSwitcher.tsx
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
@@ -36,13 +37,13 @@ const LanguageSwitcher: React.FC = () => {
   }, []);
 
   return (
-      <div className="relative" ref={dropdownRef}>
+      <div className="relative inline-block" ref={dropdownRef}>
         <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center space-x-2 text-zinc-400 hover:text-white
-                   px-4 py-2 rounded-full transition-colors duration-200
-                   hover:bg-zinc-800/50 border border-transparent hover:border-zinc-800"
+                 px-4 py-2 rounded-full transition-colors duration-200
+                 hover:bg-zinc-800/50 border border-transparent hover:border-zinc-800"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-haspopup="listbox"
@@ -55,11 +56,11 @@ const LanguageSwitcher: React.FC = () => {
         <AnimatePresence>
           {isOpen && (
               <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-2 w-48 rounded-lg overflow-hidden
+                  className="absolute bottom-full right-0 mb-2 w-48 rounded-lg overflow-hidden
                      border border-zinc-800 bg-zinc-900/95 backdrop-blur-sm
                      shadow-lg"
                   role="listbox"

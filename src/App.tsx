@@ -1,3 +1,4 @@
+// App.tsx
 import { useEffect, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -12,8 +13,6 @@ import './styles/scrollbar.css';
 function App() {
   useEffect(() => {
     logPageView();
-
-    // Stellt sicher, dass die Scrollbar von Anfang an konsistent ist
     document.documentElement.classList.add('custom-scrollbar');
   }, []);
 

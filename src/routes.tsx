@@ -2,6 +2,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import RouteErrorBoundary from './components/RouteErrorBoundary';
+import PageContainer from './components/PageContainer';
 
 // Lazy load components
 const HomePage = React.lazy(() => import('./pages/home'));
@@ -19,17 +20,17 @@ const TermsPage = React.lazy(() => import('./pages/TermsPage'));
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/about" element={<AboutPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/portfolio" element={<PortfolioPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/portfolio/:slug" element={<ProjectPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/blog" element={<BlogPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/contact" element={<ContactPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/login" element={<LoginPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/dashboard" element={<DashboardPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/privacy" element={<PrivacyPolicyPage />} errorElement={<RouteErrorBoundary />} />
-            <Route path="/terms" element={<TermsPage />} errorElement={<RouteErrorBoundary />} />
+            <Route path="/" element={<PageContainer><HomePage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/about" element={<PageContainer><AboutPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/portfolio" element={<PageContainer><PortfolioPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/portfolio/:slug" element={<PageContainer><ProjectPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/blog" element={<PageContainer><BlogPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/blog/:slug" element={<PageContainer><BlogPostPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/contact" element={<PageContainer><ContactPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/login" element={<PageContainer><LoginPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/dashboard" element={<PageContainer><DashboardPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/privacy" element={<PageContainer><PrivacyPolicyPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route path="/terms" element={<PageContainer><TermsPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
         </Routes>
     );
 };

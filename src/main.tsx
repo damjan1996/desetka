@@ -1,5 +1,4 @@
-// Umbenennen zu main.tsx
-import { StrictMode } from 'react';
+// main.tsx
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
@@ -14,11 +13,9 @@ if (!rootElement) {
 }
 
 createRoot(rootElement).render(
-    <StrictMode>
-        <HelmetProvider>
-            <App />
-        </HelmetProvider>
-    </StrictMode>
+    <HelmetProvider>
+        <App />
+    </HelmetProvider>
 );
 
 // Register service worker
