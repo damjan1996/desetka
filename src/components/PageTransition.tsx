@@ -1,7 +1,8 @@
 "use client"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 import { motion, AnimatePresence, cubicBezier } from "framer-motion"
 import { useLocation } from "react-router-dom"
+import { useScrollContext } from './ScrollContext'
 
 interface PageTransitionProps {
     children: React.ReactNode
@@ -34,55 +35,81 @@ const Logo = () => (
 
 const PageTransition = ({ children }: PageTransitionProps) => {
     const location = useLocation()
-    const [isAnimating, setIsAnimating] = useState(false)
+    const [showLogo, setShowLogo] = useState(false)
     const [showContent, setShowContent] = useState(true)
+    const { setIsTransitioning, lockScroll, unlockScroll } = useScrollContext()
+
+    const resetScroll = useCallback(() => {
+        requestAnimationFrame(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
+            });
+        });
+    }, []);
+
+    const handleTransitionStart = useCallback(() => {
+        setIsTransitioning(true);
+        lockScroll();
+        setShowContent(false);
+        setShowLogo(true);
+    }, [setIsTransitioning, lockScroll]);
+
+    const handleTransitionEnd = useCallback(() => {
+        setShowContent(true);
+        setShowLogo(false);
+        setIsTransitioning(false);
+        unlockScroll();
+        resetScroll();
+    }, [setIsTransitioning, unlockScroll, resetScroll]);
 
     useEffect(() => {
-        setIsAnimating(true)
-        setShowContent(false)
+        const logoTimer = setTimeout(() => {
+            setShowLogo(false);
+        }, 800);
 
-        const contentTimer = setTimeout(() => {
-            setShowContent(true)
-        }, 800)
+        const transitionTimer = setTimeout(() => {
+            handleTransitionEnd();
+        }, 1000);
 
-        const animationTimer = setTimeout(() => {
-            setIsAnimating(false)
-        }, 1000)
+        handleTransitionStart();
 
         return () => {
-            clearTimeout(contentTimer)
-            clearTimeout(animationTimer)
-        }
-    }, [location.pathname])
+            clearTimeout(logoTimer);
+            clearTimeout(transitionTimer);
+            unlockScroll();
+        };
+    }, [location.pathname, handleTransitionStart, handleTransitionEnd, unlockScroll]);
 
     return (
         <div className="relative min-h-screen bg-zinc-900">
-            {/* Overlay mit Logo */}
-            <AnimatePresence>
-                {isAnimating && (
+            <AnimatePresence mode="wait">
+                {showLogo && (
                     <motion.div
-                        key="overlay"
-                        className="fixed inset-0 z-[60] bg-zinc-900 flex items-center justify-center"
+                        className="fixed inset-0 z-[60] bg-zinc-900 pointer-events-none"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.3, ease: customEase }}
                     >
-                        <Logo />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <Logo />
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Content */}
             <AnimatePresence mode="wait">
                 {showContent && (
                     <motion.div
-                        key={location.pathname}
-                        className="relative z-0"
+                        className="relative z-0 min-h-screen"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{
+                            duration: 0.3,
+                            ease: customEase,
+                        }}
                     >
                         {children}
                     </motion.div>

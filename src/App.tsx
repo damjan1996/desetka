@@ -7,6 +7,8 @@ import AppRoutes from './routes';
 import ErrorBoundary from './components/ErrorBoundary';
 import CookieBanner from './components/CookieBanner';
 import PageTransition from './components/PageTransition';
+import { ScrollProvider } from './components/ScrollContext';
+import DebugOverlay from './components/DebugOverlay';
 import { logPageView } from './utils/analytics';
 import './styles/scrollbar.css';
 
@@ -20,18 +22,21 @@ function App() {
       <HelmetProvider>
         <ErrorBoundary>
           <BrowserRouter>
-            <div className="flex flex-col min-h-screen bg-background text-foreground">
-              <Layout>
-                <ErrorBoundary>
-                  <Suspense fallback={null}>
-                    <PageTransition>
-                      <AppRoutes />
-                    </PageTransition>
-                  </Suspense>
-                </ErrorBoundary>
-              </Layout>
-              <CookieBanner />
-            </div>
+            <ScrollProvider>
+              <div className="flex flex-col min-h-screen bg-background text-foreground relative">
+                <Layout>
+                  <ErrorBoundary>
+                    <Suspense fallback={null}>
+                      <PageTransition>
+                        <AppRoutes />
+                      </PageTransition>
+                    </Suspense>
+                  </ErrorBoundary>
+                </Layout>
+                <CookieBanner />
+                <DebugOverlay />
+              </div>
+            </ScrollProvider>
           </BrowserRouter>
         </ErrorBoundary>
       </HelmetProvider>

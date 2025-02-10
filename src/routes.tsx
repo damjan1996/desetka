@@ -1,5 +1,5 @@
 // routes.tsx
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import RouteErrorBoundary from './components/RouteErrorBoundary';
 import PageContainer from './components/PageContainer';
@@ -20,17 +20,128 @@ const TermsPage = React.lazy(() => import('./pages/TermsPage'));
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<PageContainer><HomePage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/about" element={<PageContainer><AboutPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/portfolio" element={<PageContainer><PortfolioPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/portfolio/:slug" element={<PageContainer><ProjectPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/blog" element={<PageContainer><BlogPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/blog/:slug" element={<PageContainer><BlogPostPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/contact" element={<PageContainer><ContactPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/login" element={<PageContainer><LoginPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/dashboard" element={<PageContainer><DashboardPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/privacy" element={<PageContainer><PrivacyPolicyPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
-            <Route path="/terms" element={<PageContainer><TermsPage /></PageContainer>} errorElement={<RouteErrorBoundary />} />
+            <Route
+                path="/"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <HomePage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/about"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <AboutPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            {/* Rest of the routes follow the same pattern */}
+            <Route
+                path="/portfolio"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <PortfolioPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/portfolio/:slug"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <ProjectPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/blog"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <BlogPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/blog/:slug"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <BlogPostPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/contact"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <ContactPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/login"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <LoginPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/dashboard"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <DashboardPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/privacy"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <PrivacyPolicyPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/terms"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <TermsPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
         </Routes>
     );
 };

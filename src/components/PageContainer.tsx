@@ -1,6 +1,5 @@
 // components/PageContainer.tsx
-import React from 'react';
-import Footer from './Footer';
+import React, { Suspense } from 'react';
 
 interface PageContainerProps {
     children: React.ReactNode;
@@ -9,10 +8,11 @@ interface PageContainerProps {
 const PageContainer = ({ children }: PageContainerProps) => {
     return (
         <div className="flex flex-col min-h-screen">
-            <main className="flex-1 pt-16">
-                {children}
-            </main>
-            <Footer />
+            <Suspense fallback={null}>
+                <main className="flex-1 pt-16">
+                    {children}
+                </main>
+            </Suspense>
         </div>
     );
 };
