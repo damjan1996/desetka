@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO';
-import PageTransition from '../../components/PageTransition';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Workflow from './components/Workflow';
@@ -17,20 +16,14 @@ const AboutPage = () => {
     };
 
     return (
-        <PageTransition>
+        <>
             <SEO
                 title={t('pages.about.seo.title')}
                 description={t('pages.about.seo.description')}
                 schema={generateSchema(t)}
             />
 
-            <div className="relative min-h-screen bg-zinc-900">
-                {/* Decorative Elements */}
-                <div className="fixed inset-0 -z-10 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-zinc-900" />
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-zinc-800/20 to-transparent blur-3xl" />
-                </div>
-
+            <div className="relative min-h-screen">
                 {/* Hero Section */}
                 <section className="min-h-screen relative">
                     <Hero />
@@ -43,7 +36,7 @@ const AboutPage = () => {
                     viewport={{ once: true }}
                     variants={sectionVariants}
                     transition={{ duration: 0.5 }}
-                    className="py-24 bg-zinc-900/50"
+                    className="py-24 relative"
                 >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
@@ -70,7 +63,7 @@ const AboutPage = () => {
                     viewport={{ once: true }}
                     variants={sectionVariants}
                     transition={{ duration: 0.5 }}
-                    className="py-24 bg-zinc-900"
+                    className="py-24 relative"
                 >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
@@ -93,7 +86,7 @@ const AboutPage = () => {
                 {/* Journey Section */}
                 <Journey />
             </div>
-        </PageTransition>
+        </>
     );
 };
 

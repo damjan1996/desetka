@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import SEO from '../../components/SEO';
-import PageTransition from '../../components/PageTransition';
 import PortfolioGrid from './components/PortfolioGrid';
 
 const PortfolioPage = () => {
@@ -17,19 +16,13 @@ const PortfolioPage = () => {
     const sortOptions = Object.entries(t('portfolio.sort', { returnObjects: true }));
 
     return (
-        <PageTransition>
+        <>
             <SEO
                 title={t('portfolio.seo.title')}
                 description={t('portfolio.seo.description')}
             />
 
-            <div className="relative min-h-screen bg-zinc-900">
-                {/* Decorative Elements */}
-                <div className="fixed inset-0 -z-10 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-zinc-900" />
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-zinc-800/20 to-transparent blur-3xl" />
-                </div>
-
+            <div className="relative min-h-screen">
                 {/* Main Content */}
                 <motion.section
                     initial="hidden"
@@ -111,7 +104,7 @@ const PortfolioPage = () => {
                     </div>
                 </motion.section>
             </div>
-        </PageTransition>
+        </>
     );
 };
 

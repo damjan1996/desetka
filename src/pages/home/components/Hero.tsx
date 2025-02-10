@@ -37,7 +37,7 @@ const Hero = () => {
             </div>
 
             {/* Top Navigation */}
-            <div className="absolute top-8 w-full px-8 flex justify-between items-center z-20">
+            <div className="absolute top-4 w-full px-8 flex justify-between items-center z-20">
                 <div className="flex gap-4">
                     <a
                         href="https://www.linkedin.com/in/damjan-savi%C4%87-720288127/"
@@ -68,13 +68,13 @@ const Hero = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
+            <div className="flex flex-col items-center justify-start min-h-screen px-4 pt-16 relative z-10">
                 {/* Profile Image */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="w-72 h-72 sm:w-96 sm:h-96 mb-8 rounded-full overflow-hidden border-2 border-zinc-800"
+                    className="w-48 h-48 sm:w-64 sm:h-64 mb-6 rounded-full overflow-hidden border-2 border-zinc-800"
                 >
                     <img
                         src="/portrait.jpg"
@@ -96,7 +96,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-4xl font-bold mb-12 flex items-center"
+                    className="text-4xl font-bold mb-8 flex items-center"
                 >
                     {t('pages.home.hero.name')}<span className="animate-pulse ml-1">|</span>
                 </motion.h1>
@@ -106,7 +106,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-white text-sm z-20"
+                    className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-white text-sm z-20"
                 >
                     <button
                         onClick={() => scrollToSection('experience')}
@@ -136,7 +136,7 @@ const Hero = () => {
             </div>
 
             {/* Contact Button Bottom */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
                 <a
                     href="mailto:info@damjan-savic.com"
                     className="text-white hover:text-zinc-300 transition-colors"

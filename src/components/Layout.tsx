@@ -120,7 +120,6 @@ const Layout = ({ children }: LayoutProps) => {
   }
 
   return (
-      // Relativer Container, um z-index-Steuerung zu ermöglichen
       <div className="min-h-screen bg-zinc-900 flex flex-col relative">
         {/* Navigation – oberste Ebene */}
         <nav
@@ -182,16 +181,17 @@ const Layout = ({ children }: LayoutProps) => {
         <AnimatePresence>
           {isMenuOpen && (
               <>
-                {/* Backdrop: Sichtbar, aber mit pointer-events-none blockiert er keine Interaktionen */}
+                {/* Backdrop mit Click Handler */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed inset-0 bg-black/50 md:hidden z-20 pointer-events-none"
+                    className="fixed inset-0 bg-black/50 md:hidden z-20"
+                    onClick={() => setIsMenuOpen(false)}
                 />
 
-                {/* Sidebar – oberhalb des Hauptinhalts */}
+                {/* Sidebar */}
                 <motion.div
                     initial={{ x: "100%" }}
                     animate={{ x: 0 }}
@@ -199,33 +199,43 @@ const Layout = ({ children }: LayoutProps) => {
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     className="fixed right-0 top-0 h-full w-80 bg-zinc-900 shadow-xl md:hidden z-50 border-l border-zinc-800"
                 >
-                  {/* Header-Spacer für die Navigation */}
-                  <div className="h-16" />
+                  {/* Header mit Close Button */}
+                  <div className="h-16 flex items-center justify-between px-4 border-b border-zinc-800">
+                    <motion.button
+                        onClick={() => setIsMenuOpen(false)}
+                        className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors"
+                        whileTap={{ scale: 0.95 }}
+                    >
+                      <X className="h-6 w-6" />
+                    </motion.button>
+                  </div>
 
                   {/* Scrollbarer Sidebar-Inhalt */}
                   <div className="h-[calc(100vh_-_4rem)] overflow-y-auto">
                     <div className="flex flex-col h-full">
-                      <div className="flex-1">
-                        <ContactInfo />
-                        <div className="py-4 px-4">
-                          {navigationLinks.map(({ path, label, icon }) => (
-                              <NavLink
-                                  key={path}
-                                  to={path}
-                                  icon={icon}
-                                  label={label}
-                                  // Alternativ: Hier könnte ein Klick auch das Menü schließen
-                                  onClick={() => setIsMenuOpen(false)}
-                                  className="flex items-center w-full mb-1"
-                              />
-                          ))}
-                        </div>
+                      {/* Contact Info */}
+                      <ContactInfo />
+
+                      {/* Navigation Links */}
+                      <div className="py-4 px-4">
+                        {navigationLinks.map(({ path, label, icon }) => (
+                            <NavLink
+                                key={path}
+                                to={path}
+                                icon={icon}
+                                label={label}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="flex items-center w-full mb-1"
+                            />
+                        ))}
                       </div>
-                      <div className="border-t border-zinc-800 p-6 mt-auto">
+
+                      {/* Language Switcher */}
+                      <div className="px-4 py-3 border-t border-zinc-800">
                         <div className="flex items-center justify-between">
-                      <span className="text-sm text-zinc-500">
-                        Sprache ändern
-                      </span>
+                          <span className="text-sm text-zinc-500">
+                            Sprache ändern
+                          </span>
                           <LanguageSwitcher />
                         </div>
                       </div>
@@ -236,7 +246,7 @@ const Layout = ({ children }: LayoutProps) => {
           )}
         </AnimatePresence>
 
-        {/* Hauptinhalt – hier kann normal gescrollt werden */}
+        {/* Hauptinhalt */}
         <main className="flex-1 pt-16 relative z-30">{children}</main>
 
         {/* Footer */}

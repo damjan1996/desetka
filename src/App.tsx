@@ -23,19 +23,17 @@ function App() {
         <ErrorBoundary>
           <BrowserRouter>
             <ScrollProvider>
-              <div className="flex flex-col min-h-screen bg-background text-foreground relative">
-                <Layout>
-                  <ErrorBoundary>
-                    <Suspense fallback={null}>
-                      <PageTransition>
-                        <AppRoutes />
-                      </PageTransition>
-                    </Suspense>
-                  </ErrorBoundary>
-                </Layout>
-                <CookieBanner />
-                <DebugOverlay />
-              </div>
+              <Suspense fallback={null}>
+                <PageTransition>
+                  <Layout>
+                    <ErrorBoundary>
+                      <AppRoutes />
+                    </ErrorBoundary>
+                    <CookieBanner />
+                    <DebugOverlay />
+                  </Layout>
+                </PageTransition>
+              </Suspense>
             </ScrollProvider>
           </BrowserRouter>
         </ErrorBoundary>

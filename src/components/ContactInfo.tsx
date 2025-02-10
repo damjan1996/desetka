@@ -8,7 +8,7 @@ export function ContactInfo() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="p-6 bg-zinc-800/30 border border-zinc-800 rounded-lg mx-4 mb-4"
+            className="pb-6 px-6 pt-4 bg-zinc-800/30 border border-zinc-800 rounded-lg mx-4 mt-2"
         >
             <div className="space-y-4">
                 <h3 className="text-sm font-medium text-white tracking-wider uppercase">
