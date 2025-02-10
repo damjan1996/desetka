@@ -238,7 +238,7 @@ const Layout = ({ children }: LayoutProps) => {
         </AnimatePresence>
 
         {/* Hauptinhalt */}
-        <main className="flex-1 pt-16 relative z-30">{children}</main>
+        <main className="flex-1 pt-2 relative z-30">{children}</main>
 
         {/* Footer */}
         <Footer />
