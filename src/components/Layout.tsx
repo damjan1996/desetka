@@ -37,7 +37,7 @@ const Layout = ({ children }: LayoutProps) => {
     setIsMounted(true);
   }, []);
 
-  // Schließe das Menü nur beim Routenwechsel
+  // Schließe das Menü beim Routenwechsel
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname, setIsMenuOpen]);
@@ -198,8 +198,18 @@ const Layout = ({ children }: LayoutProps) => {
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     className="fixed right-0 top-0 h-full w-80 bg-zinc-900 shadow-xl md:hidden z-50 border-l border-zinc-800"
                 >
-                  {/* Header-Spacer */}
-                  <div className="h-16" />
+                  {/* Sidebar Header mit Close-Button */}
+                  <div className="flex items-center justify-between px-4 h-16 border-b border-zinc-800">
+                    <span className="text-white font-semibold">Menu</span>
+                    <motion.button
+                        onClick={() => setIsMenuOpen(false)}
+                        aria-label="Close sidebar"
+                        className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors"
+                        whileTap={{ scale: 0.95 }}
+                    >
+                      <X className="h-6 w-6" />
+                    </motion.button>
+                  </div>
 
                   {/* Scrollbarer Sidebar-Inhalt */}
                   <div className="h-[calc(100vh_-_4rem)] overflow-y-auto">
@@ -224,9 +234,9 @@ const Layout = ({ children }: LayoutProps) => {
                       {/* Language Switcher */}
                       <div className="px-4 py-3 border-t border-zinc-800">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-zinc-500">
-                            Sprache ändern
-                          </span>
+                      <span className="text-sm text-zinc-500">
+                        Sprache ändern
+                      </span>
                           <LanguageSwitcher />
                         </div>
                       </div>
