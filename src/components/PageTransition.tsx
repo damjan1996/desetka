@@ -37,52 +37,62 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     const location = useLocation()
     const [showLogo, setShowLogo] = useState(false)
     const [showContent, setShowContent] = useState(true)
-    const { setIsTransitioning, lockScroll, unlockScroll } = useScrollContext()
+    const { setIsTransitioning } = useScrollContext()
+    const [isAnimating, setIsAnimating] = useState(false)
 
     const resetScroll = useCallback(() => {
-        requestAnimationFrame(() => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'instant'
-            });
-        });
-    }, []);
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant'
+        })
+    }, [])
 
-    const handleTransitionStart = useCallback(() => {
-        setIsTransitioning(true);
-        lockScroll();
-        setShowContent(false);
-        setShowLogo(true);
-    }, [setIsTransitioning, lockScroll]);
+    const startTransition = useCallback(() => {
+        setIsAnimating(true)
+        setIsTransitioning(true)
+        setShowContent(false)
+        setShowLogo(true)
+    }, [setIsTransitioning])
 
-    const handleTransitionEnd = useCallback(() => {
-        setShowContent(true);
-        setShowLogo(false);
-        setIsTransitioning(false);
-        unlockScroll();
-        resetScroll();
-    }, [setIsTransitioning, unlockScroll, resetScroll]);
+    const finishTransition = useCallback(() => {
+        setShowContent(true)
+        setShowLogo(false)
+        setIsAnimating(false)
+        setIsTransitioning(false)
+        resetScroll()
+    }, [setIsTransitioning, resetScroll])
 
     useEffect(() => {
-        const logoTimer = setTimeout(() => {
-            setShowLogo(false);
-        }, 800);
+        const cleanup = () => {
+            setShowLogo(false)
+            setShowContent(true)
+            setIsAnimating(false)
+            setIsTransitioning(false)
+        }
 
-        const transitionTimer = setTimeout(() => {
-            handleTransitionEnd();
-        }, 1000);
+        if (location.pathname) {
+            startTransition()
 
-        handleTransitionStart();
+            const logoTimer = setTimeout(() => {
+                setShowLogo(false)
+            }, 800)
 
-        return () => {
-            clearTimeout(logoTimer);
-            clearTimeout(transitionTimer);
-            unlockScroll();
-        };
-    }, [location.pathname, handleTransitionStart, handleTransitionEnd, unlockScroll]);
+            const contentTimer = setTimeout(() => {
+                finishTransition()
+            }, 1000)
+
+            return () => {
+                clearTimeout(logoTimer)
+                clearTimeout(contentTimer)
+                cleanup()
+            }
+        }
+
+        return cleanup
+    }, [location.pathname, startTransition, finishTransition])
 
     return (
-        <div className="relative min-h-screen bg-zinc-900">
+        <div className={`relative min-h-screen bg-zinc-900 ${isAnimating ? 'pointer-events-none' : ''}`}>
             <AnimatePresence mode="wait">
                 {showLogo && (
                     <motion.div
@@ -111,7 +121,9 @@ const PageTransition = ({ children }: PageTransitionProps) => {
                             ease: customEase,
                         }}
                     >
-                        {children}
+                        <div className={isAnimating ? 'pointer-events-none' : ''}>
+                            {children}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
