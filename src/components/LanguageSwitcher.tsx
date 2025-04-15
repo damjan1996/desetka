@@ -56,11 +56,11 @@ const LanguageSwitcher: React.FC = () => {
         <AnimatePresence>
           {isOpen && (
               <motion.div
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
+                  exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute bottom-full right-0 mb-2 w-48 rounded-lg overflow-hidden
+                  className="absolute top-full right-0 mt-2 w-48 rounded-lg overflow-hidden
                      border border-zinc-800 bg-zinc-900/95 backdrop-blur-sm
                      shadow-lg"
                   role="listbox"

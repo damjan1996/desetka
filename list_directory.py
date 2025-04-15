@@ -2,6 +2,8 @@ import os
 
 def should_ignore(path):
     ignore_paths = [
+        'dist',
+        'git',
         '.idea',
         'dev-dist',
         'node_modules',
