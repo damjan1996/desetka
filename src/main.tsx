@@ -6,6 +6,15 @@ import './index.css';
 import './i18n';
 import { register as registerServiceWorker } from './utils/serviceWorkerRegistration';
 
+// Typdefinition für Google Analytics
+declare global {
+    interface Window {
+        dataLayer: unknown[];
+        gtag: (command: string, ...args: unknown[]) => void;
+        initializeAnalytics: () => void;
+    }
+}
+
 const rootElement = document.getElementById('root');
 
 if (!rootElement) {

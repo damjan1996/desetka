@@ -3,14 +3,35 @@ import ReactGA from 'react-ga4';
 const TRACKING_ID = 'G-N0PZBL7X18';
 
 export const initGA = () => {
-  ReactGA.initialize(TRACKING_ID);
+  if (localStorage.getItem('cookieConsent') !== 'true') {
+    return; // Keine Analytics-Initialisierung ohne Zustimmung
+  }
+
+  ReactGA.initialize(TRACKING_ID, {
+    gaOptions: {
+      anonymizeIp: true, // DSGVO-konform
+      cookieFlags: 'SameSite=None;Secure'
+    }
+  });
 };
 
 export const logPageView = () => {
-  ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+  if (localStorage.getItem('cookieConsent') !== 'true') {
+    return; // Kein Tracking ohne Zustimmung
+  }
+
+  ReactGA.send({
+    hitType: "pageview",
+    page: window.location.pathname,
+    anonymizeIp: true
+  });
 };
 
 export const trackEvent = (category: string, action: string, label?: string) => {
+  if (localStorage.getItem('cookieConsent') !== 'true') {
+    return; // Kein Tracking ohne Zustimmung
+  }
+
   ReactGA.event({
     category,
     action,
@@ -19,6 +40,10 @@ export const trackEvent = (category: string, action: string, label?: string) => 
 };
 
 export const trackConversion = (value?: number) => {
+  if (localStorage.getItem('cookieConsent') !== 'true') {
+    return; // Kein Tracking ohne Zustimmung
+  }
+
   ReactGA.event({
     category: 'Conversion',
     action: 'Complete',
@@ -27,6 +52,10 @@ export const trackConversion = (value?: number) => {
 };
 
 export const trackTiming = (category: string, variable: string, value: number) => {
+  if (localStorage.getItem('cookieConsent') !== 'true') {
+    return; // Kein Tracking ohne Zustimmung
+  }
+
   ReactGA.event({
     category,
     action: 'timing',
@@ -43,6 +72,7 @@ declare global {
 
 // Make analytics initialization available globally for the cookie consent
 window.initializeAnalytics = () => {
+  localStorage.setItem('cookieConsent', 'true');
   initGA();
   logPageView();
 };

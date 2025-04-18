@@ -67,7 +67,12 @@ const translations = {
         cookies: {
             message: "Ovaj sajt koristi kolačiće kako bi poboljšao vaše iskustvo pretraživanja i pružio personalizovan sadržaj. Prikupljeni podaci neće biti deljeni sa trećim licima.",
             accept: "Prihvati kolačiće",
-            decline: "Odbij"
+            decline: "Odbij",
+            necessary: "Neophodni kolačići",
+            necessaryDesc: "Za osnovne funkcije sajta",
+            analytics: "Analitički kolačići",
+            analyticsDesc: "Za analizu korišćenja sajta",
+            learnMore: "Saznajte više"
         }
     },
     meta,

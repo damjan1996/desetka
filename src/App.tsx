@@ -1,6 +1,6 @@
 // App.tsx
 import { useEffect, Suspense } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/Layout';
 import AppRoutes from './routes';
@@ -12,9 +12,19 @@ import DebugOverlay from './components/DebugOverlay';
 import { logPageView } from './utils/analytics';
 import './styles/scrollbar.css';
 
-function App() {
+// RouteTracker Component für präzises Seiten-Tracking
+const RouteTracker = () => {
+  const location = useLocation();
+
   useEffect(() => {
     logPageView();
+  }, [location]);
+
+  return null;
+};
+
+function App() {
+  useEffect(() => {
     document.documentElement.classList.add('custom-scrollbar');
   }, []);
 
@@ -27,6 +37,7 @@ function App() {
                 <PageTransition>
                   <Layout>
                     <ErrorBoundary>
+                      <RouteTracker /> {/* Tracking bei Routenwechsel */}
                       <AppRoutes />
                     </ErrorBoundary>
                     <CookieBanner />
