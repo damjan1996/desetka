@@ -1,12 +1,10 @@
 import ReactGA from 'react-ga4';
 
 const TRACKING_ID = 'G-N0PZBL7X18';
-
-// Facebook Pixel ID - ersetze dies durch deine echte Pixel-ID
-const FB_PIXEL_ID = 'XXXXXXXXXXXXXXXXX';
+const FB_PIXEL_ID = 'XXXXXXXXXXXXXXXXX'; // Ersetze mit deiner Facebook Pixel ID
 
 // Prüft, ob eine bestimmte Cookie-Kategorie aktiviert ist
-const isCookieCategoryEnabled = (category: string): boolean => {
+export const isCookieCategoryEnabled = (category: string): boolean => {
   try {
     const cookieSettings = localStorage.getItem('cookieSettings');
     if (!cookieSettings) return false;
@@ -19,10 +17,28 @@ const isCookieCategoryEnabled = (category: string): boolean => {
   }
 };
 
-// Google Analytics Initialisierung
-export const initGA = () => {
+// Entfernt alle Google Analytics Cookies
+const removeGACookies = (): void => {
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    const cookieName = cookie.split('=')[0];
+
+    // Entferne alle GA-Cookies
+    if (cookieName.startsWith('_ga') ||
+        cookieName.startsWith('_gid') ||
+        cookieName.startsWith('_gat')) {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+  }
+};
+
+// Google Analytics Initialisierung - mit strikter Zustimmungsprüfung
+export const initGA = (): void => {
   if (!isCookieCategoryEnabled('analytics')) {
-    return; // Keine Analytics-Initialisierung ohne Zustimmung
+    // Entferne bestehende GA-Cookies, falls keine Zustimmung
+    removeGACookies();
+    return;
   }
 
   ReactGA.initialize(TRACKING_ID, {
@@ -33,9 +49,9 @@ export const initGA = () => {
   });
 };
 
-export const logPageView = () => {
+export const logPageView = (): void => {
   if (!isCookieCategoryEnabled('analytics')) {
-    return; // Kein Tracking ohne Zustimmung
+    return;
   }
 
   ReactGA.send({
@@ -45,9 +61,9 @@ export const logPageView = () => {
   });
 };
 
-export const trackEvent = (category: string, action: string, label?: string) => {
+export const trackEvent = (category: string, action: string, label?: string): void => {
   if (!isCookieCategoryEnabled('analytics')) {
-    return; // Kein Tracking ohne Zustimmung
+    return;
   }
 
   ReactGA.event({
@@ -57,9 +73,9 @@ export const trackEvent = (category: string, action: string, label?: string) => 
   });
 };
 
-export const trackConversion = (value?: number) => {
+export const trackConversion = (value?: number): void => {
   if (!isCookieCategoryEnabled('analytics')) {
-    return; // Kein Tracking ohne Zustimmung
+    return;
   }
 
   ReactGA.event({
@@ -69,9 +85,9 @@ export const trackConversion = (value?: number) => {
   });
 };
 
-export const trackTiming = (category: string, variable: string, value: number) => {
+export const trackTiming = (category: string, variable: string, value: number): void => {
   if (!isCookieCategoryEnabled('analytics')) {
-    return; // Kein Tracking ohne Zustimmung
+    return;
   }
 
   ReactGA.event({
@@ -82,19 +98,17 @@ export const trackTiming = (category: string, variable: string, value: number) =
   });
 };
 
-// Facebook Pixel Initialisierung
-export const initFBPixel = () => {
+// Facebook Pixel Initialisierung - nur mit Zustimmung
+export const initFBPixel = (): void => {
   if (!isCookieCategoryEnabled('marketing')) {
-    return; // Keine Marketing-Cookie-Initialisierung ohne Zustimmung
+    return;
   }
 
   if (typeof window !== 'undefined' && !window.fbq) {
-    // @ts-ignore - fbq wird dynamisch hinzugefügt
-    window.fbq = function() {
-      // @ts-ignore
+    // fbq ist nicht Teil des Window-Interfaces und wird zur Laufzeit hinzugefügt
+    window.fbq = function(...args: unknown[]): void {
       window._fbq = window._fbq || [];
-      // @ts-ignore
-      window._fbq.push(arguments);
+      window._fbq.push(args);
     };
 
     // Facebook Pixel Script laden
@@ -109,7 +123,7 @@ export const initFBPixel = () => {
 };
 
 // Facebook Event tracking
-export const trackFBEvent = (event: string, params?: any) => {
+export const trackFBEvent = (event: string, params?: Record<string, unknown>): void => {
   if (!isCookieCategoryEnabled('marketing') || typeof window === 'undefined' || !window.fbq) {
     return;
   }
@@ -117,40 +131,67 @@ export const trackFBEvent = (event: string, params?: any) => {
   window.fbq('track', event, params);
 };
 
-// Funktionale Cookies initialisieren (Beispiel)
-export const initFunctionalCookies = () => {
+// Google Fonts Handling - nur mit funktionaler Cookie-Zustimmung
+export const initGoogleFonts = (): void => {
+  if (!isCookieCategoryEnabled('functional')) {
+    // Entferne bestehende Google Fonts
+    const linkElements = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
+    linkElements.forEach(link => {
+      link.parentNode?.removeChild(link);
+    });
+    return;
+  }
+
+  // Vermeide Duplikate beim Laden
+  if (document.querySelector('link[href*="fonts.googleapis.com"]')) {
+    return;
+  }
+
+  // Lokales Laden von Google Fonts als Alternative
+  // Code hier zur lokalen Einbindung der Schriftarten
+};
+
+// Funktionale Cookies initialisieren
+export const initFunctionalCookies = (): void => {
   if (!isCookieCategoryEnabled('functional')) {
     return;
   }
 
-  // Hier könnten Funktionen für funktionale Cookies implementiert werden
-  console.log('Funktionale Cookies initialisiert');
+  // Initialisiere Google Fonts wenn zugestimmt wurde
+  initGoogleFonts();
+
+  // Weitere funktionale Dienste könnten hier initialisiert werden
 };
 
 // Typdefinitionen für globale Objekte
 declare global {
   interface Window {
     initializeAnalytics: () => void;
-    fbq: (...args: any[]) => void;
-    _fbq: any[];
+    fbq: (...args: unknown[]) => void;
+    _fbq: unknown[];
   }
 }
 
 // Analytics-Funktionen global verfügbar machen (für den Cookie-Banner)
-window.initializeAnalytics = () => {
-  initGA();
-  logPageView();
+if (typeof window !== 'undefined') {
+  window.initializeAnalytics = (): void => {
+    // Prüfe die einzelnen Cookie-Kategorien und initialisiere entsprechend
+    if (isCookieCategoryEnabled('analytics')) {
+      initGA();
+      logPageView();
+    } else {
+      removeGACookies();
+    }
 
-  // Wenn die entsprechenden Cookie-Kategorien aktiviert sind,
-  // initialisiere auch andere Dienste
-  if (isCookieCategoryEnabled('marketing')) {
-    initFBPixel();
-  }
+    if (isCookieCategoryEnabled('marketing')) {
+      initFBPixel();
+    }
 
-  if (isCookieCategoryEnabled('functional')) {
-    initFunctionalCookies();
-  }
-};
+    if (isCookieCategoryEnabled('functional')) {
+      initFunctionalCookies();
+    }
+  };
+}
 
-// Export der Namespace-Erweiterung
+// Export für TypeScript
 export {};

@@ -9,23 +9,41 @@ import CookieBanner from './components/CookieBanner';
 import PageTransition from './components/PageTransition';
 import { ScrollProvider } from './components/ScrollContext';
 import DebugOverlay from './components/DebugOverlay';
-import { logPageView } from './utils/analytics';
+import { logPageView, isCookieCategoryEnabled } from './utils/analytics';
 import './styles/scrollbar.css';
 
-// RouteTracker Component für präzises Seiten-Tracking
+// RouteTracker Component für präzises Seiten-Tracking - aber nur mit Zustimmung
 const RouteTracker = () => {
   const location = useLocation();
 
   useEffect(() => {
-    logPageView();
+    // Nur tracken, wenn die Analytics-Cookies akzeptiert wurden
+    if (isCookieCategoryEnabled('analytics')) {
+      logPageView();
+    }
   }, [location]);
 
   return null;
 };
 
+// Funktion zum Blockieren von externen Google Fonts
+const blockExternalGoogleFonts = () => {
+  // Suche nach allen Google Fonts Link-Elementen und entferne sie
+  const linkElements = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
+  linkElements.forEach(link => {
+    link.parentNode?.removeChild(link);
+  });
+};
+
 function App() {
   useEffect(() => {
+    // Benutzerdefiniertes Scrollbar-Styling aktivieren
     document.documentElement.classList.add('custom-scrollbar');
+
+    // Blockiere Google Fonts beim ersten Laden, sofern nicht explizit zugestimmt wurde
+    if (!isCookieCategoryEnabled('functional')) {
+      blockExternalGoogleFonts();
+    }
   }, []);
 
   return (
@@ -37,7 +55,7 @@ function App() {
                 <PageTransition>
                   <Layout>
                     <ErrorBoundary>
-                      <RouteTracker /> {/* Tracking bei Routenwechsel */}
+                      <RouteTracker /> {/* Tracking nur mit Zustimmung */}
                       <AppRoutes />
                     </ErrorBoundary>
                     <CookieBanner />

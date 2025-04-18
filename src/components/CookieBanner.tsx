@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { initGA, logPageView } from '../utils/analytics';
+import { initGA, logPageView, initFBPixel, initFunctionalCookies } from '../utils/analytics';
 
 // Feste Übersetzungen direkt in der Komponente
 const translations = {
     de: {
         title: "Cookie-Einstellungen",
-        message: "Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern. Daten werden nicht an Dritte weitergegeben.",
+        message: "Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern. Daten werden ohne Ihre Zustimmung nicht an Dritte weitergegeben.",
         acceptAll: "Alle akzeptieren",
         save: "Einstellungen speichern",
         decline: "Ablehnen",
@@ -23,7 +23,7 @@ const translations = {
     },
     en: {
         title: "Cookie Settings",
-        message: "This website uses cookies to enhance your browsing experience. The data will not be shared with third parties.",
+        message: "This website uses cookies to enhance your browsing experience. Data will not be shared with third parties without your consent.",
         acceptAll: "Accept All",
         save: "Save Settings",
         decline: "Decline All",
@@ -40,7 +40,7 @@ const translations = {
     },
     sr: {
         title: "Podešavanja kolačića",
-        message: "Ovaj sajt koristi kolačiće za bolje iskustvo pretraživanja. Podaci neće biti deljeni sa trećim licima.",
+        message: "Ovaj sajt koristi kolačiće za bolje iskustvo pretraživanja. Podaci neće biti deljeni sa trećim licima bez vaše saglasnosti.",
         acceptAll: "Prihvati sve",
         save: "Sačuvaj podešavanja",
         decline: "Odbij sve",
@@ -76,6 +76,11 @@ const cookieServices = {
                 name: 'Spracheinstellungen',
                 provider: 'Eigentümer der Website',
                 purpose: 'Speichert Ihre bevorzugte Sprache'
+            },
+            {
+                name: 'Google Fonts',
+                provider: 'Google LLC',
+                purpose: 'Anzeige von Webschriften'
             }
         ]
     },
@@ -113,6 +118,31 @@ interface CookieSettings {
     functional: boolean;
 }
 
+// Entfernt externe Google Fonts, falls keine Zustimmung vorliegt
+const removeExternalGoogleFonts = () => {
+    // Suche nach allen Google Fonts Link-Elementen und entferne sie
+    const linkElements = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
+    linkElements.forEach(link => {
+        link.parentNode?.removeChild(link);
+    });
+
+    // Suche nach allen Google Fonts Script-Elementen und entferne sie
+    const scriptElements = document.querySelectorAll('script[src*="fonts.googleapis.com"]');
+    scriptElements.forEach(script => {
+        script.parentNode?.removeChild(script);
+    });
+};
+
+// Funktion zum Blockieren von Google Analytics falls noch keine Zustimmung vorliegt
+const blockGoogleAnalytics = () => {
+    // Entferne alle bestehenden GA Cookies
+    document.cookie.split(';').forEach(function(c) {
+        if (c.trim().indexOf('_ga') === 0) {
+            document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
+        }
+    });
+};
+
 const CookieBanner = () => {
     const { i18n } = useTranslation();
     const [currentLang, setCurrentLang] = useState<'de' | 'en' | 'sr'>('de');
@@ -123,6 +153,32 @@ const CookieBanner = () => {
         marketing: false,
         functional: false
     });
+
+    // Initialisiere Dienste basierend auf den Cookie-Einstellungen
+    const initializeServices = useCallback((settings: CookieSettings) => {
+        // Blockieren von Diensten, wenn nicht zugestimmt wurde
+        if (!settings.functional) {
+            removeExternalGoogleFonts();
+        }
+
+        if (!settings.analytics) {
+            blockGoogleAnalytics();
+        } else {
+            // Initialisiere Google Analytics nur wenn ausdrücklich zugestimmt wurde
+            initGA();
+            logPageView();
+        }
+
+        // Marketing-Dienste nur mit Zustimmung
+        if (settings.marketing) {
+            initFBPixel();
+        }
+
+        // Funktionale Dienste nur mit Zustimmung
+        if (settings.functional) {
+            initFunctionalCookies();
+        }
+    }, []);
 
     // Aktuelle Sprache erkennen
     useEffect(() => {
@@ -139,6 +195,13 @@ const CookieBanner = () => {
         return translations[currentLang][key];
     };
 
+    // DSGVO: Unmittelbar beim ersten Laden blockiere alle nicht-essentiellen Dienste
+    useEffect(() => {
+        // Blockiere externe Dienste bis Zustimmung vorliegt
+        removeExternalGoogleFonts();
+        blockGoogleAnalytics();
+    }, []);
+
     // Prüfe beim Laden, ob bereits Zustimmung vorhanden ist
     useEffect(() => {
         try {
@@ -153,50 +216,11 @@ const CookieBanner = () => {
         } catch (error) {
             console.error('Error loading cookie settings:', error);
         }
-    }, []);
-
-    // Initialisiere Dienste basierend auf den Cookie-Einstellungen
-    const initializeServices = (settings: CookieSettings) => {
-        // Initialisiere Google Analytics, wenn Analytics-Cookies akzeptiert wurden
-        if (settings.analytics) {
-            initGA();
-            logPageView();
-        }
-
-        // Hier könnten weitere Dienste initialisiert werden
-        if (settings.marketing) {
-            // Marketing-Dienste initialisieren (z.B. Facebook Pixel)
-            initializeMarketingServices();
-        }
-
-        if (settings.functional) {
-            // Funktionale Dienste initialisieren
-            initializeFunctionalServices();
-        }
-    };
-
-    // Initialisiere Marketing-Dienste
-    const initializeMarketingServices = () => {
-        // Facebook Pixel (Beispiel)
-        try {
-            if (typeof window !== 'undefined' && !window.fbq) {
-                // Facebook Pixel Code hier einfügen
-                console.log('Facebook Pixel würde jetzt initialisiert');
-            }
-        } catch (e) {
-            console.error('Error initializing marketing services:', e);
-        }
-    };
-
-    // Initialisiere funktionale Dienste
-    const initializeFunctionalServices = () => {
-        // Beispiel für funktionale Dienste
-        console.log('Funktionale Dienste würden jetzt initialisiert');
-    };
+    }, [initializeServices]);
 
     const handleSaveSettings = () => {
         localStorage.setItem('cookieSettings', JSON.stringify(cookieSettings));
-        localStorage.setItem('cookieConsent', 'true');
+        localStorage.setItem('cookieConsent', cookieSettings.analytics || cookieSettings.marketing || cookieSettings.functional ? 'true' : 'false');
 
         // Initialisiere Dienste basierend auf den ausgewählten Einstellungen
         initializeServices(cookieSettings);
@@ -233,6 +257,9 @@ const CookieBanner = () => {
         localStorage.setItem('cookieSettings', JSON.stringify(minimalSettings));
         localStorage.setItem('cookieConsent', 'false');
         setCookieSettings(minimalSettings);
+
+        // Block all non-essential services
+        initializeServices(minimalSettings);
 
         setShowSettings(false);
     };
