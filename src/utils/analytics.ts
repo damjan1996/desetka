@@ -2,8 +2,26 @@ import ReactGA from 'react-ga4';
 
 const TRACKING_ID = 'G-N0PZBL7X18';
 
+// Facebook Pixel ID - ersetze dies durch deine echte Pixel-ID
+const FB_PIXEL_ID = 'XXXXXXXXXXXXXXXXX';
+
+// Prüft, ob eine bestimmte Cookie-Kategorie aktiviert ist
+const isCookieCategoryEnabled = (category: string): boolean => {
+  try {
+    const cookieSettings = localStorage.getItem('cookieSettings');
+    if (!cookieSettings) return false;
+
+    const settings = JSON.parse(cookieSettings);
+    return settings[category] === true;
+  } catch (error) {
+    console.error('Error checking cookie settings:', error);
+    return false;
+  }
+};
+
+// Google Analytics Initialisierung
 export const initGA = () => {
-  if (localStorage.getItem('cookieConsent') !== 'true') {
+  if (!isCookieCategoryEnabled('analytics')) {
     return; // Keine Analytics-Initialisierung ohne Zustimmung
   }
 
@@ -16,7 +34,7 @@ export const initGA = () => {
 };
 
 export const logPageView = () => {
-  if (localStorage.getItem('cookieConsent') !== 'true') {
+  if (!isCookieCategoryEnabled('analytics')) {
     return; // Kein Tracking ohne Zustimmung
   }
 
@@ -28,7 +46,7 @@ export const logPageView = () => {
 };
 
 export const trackEvent = (category: string, action: string, label?: string) => {
-  if (localStorage.getItem('cookieConsent') !== 'true') {
+  if (!isCookieCategoryEnabled('analytics')) {
     return; // Kein Tracking ohne Zustimmung
   }
 
@@ -40,7 +58,7 @@ export const trackEvent = (category: string, action: string, label?: string) => 
 };
 
 export const trackConversion = (value?: number) => {
-  if (localStorage.getItem('cookieConsent') !== 'true') {
+  if (!isCookieCategoryEnabled('analytics')) {
     return; // Kein Tracking ohne Zustimmung
   }
 
@@ -52,7 +70,7 @@ export const trackConversion = (value?: number) => {
 };
 
 export const trackTiming = (category: string, variable: string, value: number) => {
-  if (localStorage.getItem('cookieConsent') !== 'true') {
+  if (!isCookieCategoryEnabled('analytics')) {
     return; // Kein Tracking ohne Zustimmung
   }
 
@@ -64,15 +82,75 @@ export const trackTiming = (category: string, variable: string, value: number) =
   });
 };
 
+// Facebook Pixel Initialisierung
+export const initFBPixel = () => {
+  if (!isCookieCategoryEnabled('marketing')) {
+    return; // Keine Marketing-Cookie-Initialisierung ohne Zustimmung
+  }
+
+  if (typeof window !== 'undefined' && !window.fbq) {
+    // @ts-ignore - fbq wird dynamisch hinzugefügt
+    window.fbq = function() {
+      // @ts-ignore
+      window._fbq = window._fbq || [];
+      // @ts-ignore
+      window._fbq.push(arguments);
+    };
+
+    // Facebook Pixel Script laden
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(script);
+
+    window.fbq('init', FB_PIXEL_ID);
+    window.fbq('track', 'PageView');
+  }
+};
+
+// Facebook Event tracking
+export const trackFBEvent = (event: string, params?: any) => {
+  if (!isCookieCategoryEnabled('marketing') || typeof window === 'undefined' || !window.fbq) {
+    return;
+  }
+
+  window.fbq('track', event, params);
+};
+
+// Funktionale Cookies initialisieren (Beispiel)
+export const initFunctionalCookies = () => {
+  if (!isCookieCategoryEnabled('functional')) {
+    return;
+  }
+
+  // Hier könnten Funktionen für funktionale Cookies implementiert werden
+  console.log('Funktionale Cookies initialisiert');
+};
+
+// Typdefinitionen für globale Objekte
 declare global {
   interface Window {
     initializeAnalytics: () => void;
+    fbq: (...args: any[]) => void;
+    _fbq: any[];
   }
 }
 
-// Make analytics initialization available globally for the cookie consent
+// Analytics-Funktionen global verfügbar machen (für den Cookie-Banner)
 window.initializeAnalytics = () => {
-  localStorage.setItem('cookieConsent', 'true');
   initGA();
   logPageView();
+
+  // Wenn die entsprechenden Cookie-Kategorien aktiviert sind,
+  // initialisiere auch andere Dienste
+  if (isCookieCategoryEnabled('marketing')) {
+    initFBPixel();
+  }
+
+  if (isCookieCategoryEnabled('functional')) {
+    initFunctionalCookies();
+  }
 };
+
+// Export der Namespace-Erweiterung
+export {};

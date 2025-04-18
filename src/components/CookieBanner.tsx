@@ -57,6 +57,55 @@ const translations = {
     }
 };
 
+// Definition der verschiedenen Services
+const cookieServices = {
+    essentiell: {
+        category: 'necessary',
+        services: [
+            {
+                name: 'Session Cookies',
+                provider: 'Eigentümer der Website',
+                purpose: 'Speichert Ihre Sitzungsinformationen'
+            }
+        ]
+    },
+    funktional: {
+        category: 'functional',
+        services: [
+            {
+                name: 'Spracheinstellungen',
+                provider: 'Eigentümer der Website',
+                purpose: 'Speichert Ihre bevorzugte Sprache'
+            }
+        ]
+    },
+    analyse: {
+        category: 'analytics',
+        services: [
+            {
+                name: 'Google Analytics',
+                provider: 'Google LLC',
+                purpose: 'Analysiert Webseitennutzung und Nutzerverhalten'
+            }
+        ]
+    },
+    marketing: {
+        category: 'marketing',
+        services: [
+            {
+                name: 'Google Ads',
+                provider: 'Google LLC',
+                purpose: 'Personalisierte Werbung'
+            },
+            {
+                name: 'Facebook Pixel',
+                provider: 'Meta Platforms Inc.',
+                purpose: 'Tracking von Werbekonversionen'
+            }
+        ]
+    }
+};
+
 interface CookieSettings {
     necessary: boolean;
     analytics: boolean;
@@ -98,25 +147,59 @@ const CookieBanner = () => {
                 const parsedSettings = JSON.parse(storedSettings) as CookieSettings;
                 setCookieSettings(parsedSettings);
 
-                // Nur Google Analytics laden, wenn zugestimmt wurde
-                if (parsedSettings.analytics) {
-                    initGA();
-                    logPageView();
-                }
+                // Lade die entsprechenden Dienste basierend auf den Einstellungen
+                initializeServices(parsedSettings);
             }
         } catch (error) {
             console.error('Error loading cookie settings:', error);
         }
     }, []);
 
+    // Initialisiere Dienste basierend auf den Cookie-Einstellungen
+    const initializeServices = (settings: CookieSettings) => {
+        // Initialisiere Google Analytics, wenn Analytics-Cookies akzeptiert wurden
+        if (settings.analytics) {
+            initGA();
+            logPageView();
+        }
+
+        // Hier könnten weitere Dienste initialisiert werden
+        if (settings.marketing) {
+            // Marketing-Dienste initialisieren (z.B. Facebook Pixel)
+            initializeMarketingServices();
+        }
+
+        if (settings.functional) {
+            // Funktionale Dienste initialisieren
+            initializeFunctionalServices();
+        }
+    };
+
+    // Initialisiere Marketing-Dienste
+    const initializeMarketingServices = () => {
+        // Facebook Pixel (Beispiel)
+        try {
+            if (typeof window !== 'undefined' && !window.fbq) {
+                // Facebook Pixel Code hier einfügen
+                console.log('Facebook Pixel würde jetzt initialisiert');
+            }
+        } catch (e) {
+            console.error('Error initializing marketing services:', e);
+        }
+    };
+
+    // Initialisiere funktionale Dienste
+    const initializeFunctionalServices = () => {
+        // Beispiel für funktionale Dienste
+        console.log('Funktionale Dienste würden jetzt initialisiert');
+    };
+
     const handleSaveSettings = () => {
         localStorage.setItem('cookieSettings', JSON.stringify(cookieSettings));
         localStorage.setItem('cookieConsent', 'true');
 
-        if (cookieSettings.analytics) {
-            initGA();
-            logPageView();
-        }
+        // Initialisiere Dienste basierend auf den ausgewählten Einstellungen
+        initializeServices(cookieSettings);
 
         setShowSettings(false);
     };
@@ -133,8 +216,8 @@ const CookieBanner = () => {
         localStorage.setItem('cookieConsent', 'true');
         setCookieSettings(allSettings);
 
-        initGA();
-        logPageView();
+        // Initialisiere alle Dienste
+        initializeServices(allSettings);
 
         setShowSettings(false);
     };
@@ -225,6 +308,17 @@ const CookieBanner = () => {
                                             <div className="text-xs text-white/60">{getText('alwaysActive')}</div>
                                         </div>
                                         <p className="text-xs text-white/70">{getText('necessaryDesc')}</p>
+
+                                        {/* Services List */}
+                                        <div className="mt-2 border-t border-white/10 pt-2">
+                                            {cookieServices.essentiell.services.map((service, index) => (
+                                                <div key={index} className="mt-2">
+                                                    <div className="text-xs font-medium text-white/80">{service.name}</div>
+                                                    <div className="text-xs text-white/60">Anbieter: {service.provider}</div>
+                                                    <div className="text-xs text-white/60">Zweck: {service.purpose}</div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Analytics cookies */}
@@ -242,6 +336,17 @@ const CookieBanner = () => {
                                             </label>
                                         </div>
                                         <p className="text-xs text-white/70">{getText('analyticsDesc')}</p>
+
+                                        {/* Services List */}
+                                        <div className="mt-2 border-t border-white/10 pt-2">
+                                            {cookieServices.analyse.services.map((service, index) => (
+                                                <div key={index} className="mt-2">
+                                                    <div className="text-xs font-medium text-white/80">{service.name}</div>
+                                                    <div className="text-xs text-white/60">Anbieter: {service.provider}</div>
+                                                    <div className="text-xs text-white/60">Zweck: {service.purpose}</div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Marketing cookies */}
@@ -259,6 +364,17 @@ const CookieBanner = () => {
                                             </label>
                                         </div>
                                         <p className="text-xs text-white/70">{getText('marketingDesc')}</p>
+
+                                        {/* Services List */}
+                                        <div className="mt-2 border-t border-white/10 pt-2">
+                                            {cookieServices.marketing.services.map((service, index) => (
+                                                <div key={index} className="mt-2">
+                                                    <div className="text-xs font-medium text-white/80">{service.name}</div>
+                                                    <div className="text-xs text-white/60">Anbieter: {service.provider}</div>
+                                                    <div className="text-xs text-white/60">Zweck: {service.purpose}</div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Functional cookies */}
@@ -276,6 +392,17 @@ const CookieBanner = () => {
                                             </label>
                                         </div>
                                         <p className="text-xs text-white/70">{getText('functionalDesc')}</p>
+
+                                        {/* Services List */}
+                                        <div className="mt-2 border-t border-white/10 pt-2">
+                                            {cookieServices.funktional.services.map((service, index) => (
+                                                <div key={index} className="mt-2">
+                                                    <div className="text-xs font-medium text-white/80">{service.name}</div>
+                                                    <div className="text-xs text-white/60">Anbieter: {service.provider}</div>
+                                                    <div className="text-xs text-white/60">Zweck: {service.purpose}</div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
