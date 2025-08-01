@@ -14,48 +14,48 @@ const Hero = () => {
     };
 
     return (
-        <section id="home" className="relative min-h-screen bg-zinc-900 text-white">
-            {/* Floating Paths Background */}
-            <div className="absolute inset-0 pointer-events-none">
+        <section id="home" className="relative min-h-screen bg-zinc-900 text-white overflow-hidden">
+            {/* Floating Paths Background - nur eine Instanz für bessere Performance */}
+            <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
                 <FloatingPaths position={1} />
-                <FloatingPaths position={-1} />
             </div>
 
-            {/* Concentric Circles Background */}
-            <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                {[1, 2, 3, 4, 5].map((index) => (
+            {/* Concentric Circles Background - mit GPU-Beschleunigung */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 2 }}>
+                {[1, 2, 3].map((index) => (
                     <div
                         key={index}
-                        className="absolute rounded-full border border-zinc-800"
+                        className="absolute rounded-full border border-zinc-800/30"
                         style={{
-                            width: `${index * 20}%`,
-                            height: `${index * 20}%`,
-                            opacity: 0.1
+                            width: `${index * 30}%`,
+                            height: `${index * 30}%`,
+                            opacity: 0.1,
+                            transform: 'translateZ(0)'
                         }}
                     />
                 ))}
             </div>
 
             {/* Top Navigation */}
-            <div className="absolute top-4 w-full px-8 flex justify-between items-center z-20">
+            <div className="absolute top-4 w-full px-8 flex justify-between items-center" style={{ zIndex: 40 }}>
                 <div className="flex gap-4">
                     <a
                         href="https://www.linkedin.com/in/damjan-savi%C4%87-720288127/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white hover:text-zinc-300 transition-colors"
+                        className="inline-flex items-center justify-center w-9 h-9 text-white hover:text-zinc-300 transition-colors"
                         aria-label={t('pages.home.hero.social.linkedin.title')}
                     >
-                        <Linkedin className="h-5 w-5" />
+                        <Linkedin className="h-5 w-5 pointer-events-none" />
                     </a>
                     <a
                         href="https://github.com/damjan1996"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white hover:text-zinc-300 transition-colors"
+                        className="inline-flex items-center justify-center w-9 h-9 text-white hover:text-zinc-300 transition-colors"
                         aria-label={t('pages.home.hero.social.github.title')}
                     >
-                        <Github className="h-5 w-5" />
+                        <Github className="h-5 w-5 pointer-events-none" />
                     </a>
                 </div>
                 <a
@@ -68,18 +68,21 @@ const Hero = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col items-center justify-start min-h-screen px-4 pt-16 relative z-10">
+            <div className="flex flex-col items-center justify-start min-h-screen px-4 pt-16 relative" style={{ zIndex: 30 }}>
                 {/* Profile Image */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                     className="w-48 h-48 sm:w-64 sm:h-64 mb-6 rounded-full overflow-hidden border-2 border-zinc-800"
+                    style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                 >
                     <img
                         src="/portrait.jpg"
                         alt={t('pages.home.hero.image.alt')}
                         className="w-full h-full object-cover"
+                        loading="eager"
+                        style={{ transform: 'scale(1.01)' }}
                     />
                 </motion.div>
 
@@ -110,39 +113,43 @@ const Hero = () => {
                 >
                     <button
                         onClick={() => scrollToSection('experience')}
-                        className="w-full sm:w-auto px-6 py-2 hover:bg-zinc-800 rounded-full transition-all duration-300 uppercase cursor-pointer"
+                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
-                        {t('pages.home.hero.navigation.experience')}
+                        <span className="relative z-10">{t('pages.home.hero.navigation.experience')}</span>
+                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                     <button
                         onClick={() => scrollToSection('skills')}
-                        className="w-full sm:w-auto px-6 py-2 hover:bg-zinc-800 rounded-full transition-all duration-300 uppercase cursor-pointer"
+                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
-                        {t('pages.home.hero.navigation.skills')}
+                        <span className="relative z-10">{t('pages.home.hero.navigation.skills')}</span>
+                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                     <button
                         onClick={() => scrollToSection('projects')}
-                        className="w-full sm:w-auto px-6 py-2 hover:bg-zinc-800 rounded-full transition-all duration-300 uppercase cursor-pointer"
+                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
-                        {t('pages.home.hero.navigation.projects')}
+                        <span className="relative z-10">{t('pages.home.hero.navigation.projects')}</span>
+                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                     <button
                         onClick={() => scrollToSection('about')}
-                        className="w-full sm:w-auto px-6 py-2 hover:bg-zinc-800 rounded-full transition-all duration-300 uppercase cursor-pointer"
+                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
-                        {t('pages.home.hero.navigation.about')}
+                        <span className="relative z-10">{t('pages.home.hero.navigation.about')}</span>
+                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                 </motion.div>
             </div>
 
             {/* Contact Button Bottom */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2" style={{ zIndex: 40 }}>
                 <a
                     href="mailto:info@damjan-savic.com"
-                    className="text-white hover:text-zinc-300 transition-colors"
+                    className="inline-flex items-center justify-center w-10 h-10 text-white hover:text-zinc-300 transition-colors"
                     aria-label={t('pages.home.hero.social.getInTouch')}
                 >
-                    <Mail className="h-6 w-6" />
+                    <Mail className="h-6 w-6 pointer-events-none" />
                 </a>
             </div>
         </section>

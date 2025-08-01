@@ -1,8 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import './colors.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Font loading states */
+html.fonts-loading body {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+html.fonts-loaded body,
+html.fonts-fallback body {
+  opacity: 1;
+}
 
 @layer base {
   :root {
@@ -40,6 +50,14 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
   }
+  
+  /* GPU acceleration utilities - simplified */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
 }
 
 @keyframes float {
@@ -58,6 +76,17 @@
   50% {
     opacity: 0.3;
   }
+}
+
+/* Prevent hover flickering */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, button {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Scrollbar Styling */

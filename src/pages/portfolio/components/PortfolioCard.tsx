@@ -45,6 +45,10 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ project }) => {
                 variants={itemVariants}
                 transition={{ duration: 0.5 }}
                 className="relative"
+                style={{
+                    transform: 'translateZ(0)',
+                    willChange: 'opacity, transform'
+                }}
             >
                 {/* Image Container */}
                 <div className="aspect-[16/9] w-full relative overflow-hidden">

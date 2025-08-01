@@ -31,7 +31,7 @@ export function NavLink({ to, icon, label, onClick, className }: NavLinkProps) {
             {isActive && (
                 <motion.div
                     layoutId="activeIndicator"
-                    className="absolute inset-0 rounded-full bg-zinc-800/50 -z-10"
+                    className="absolute inset-0 rounded-full bg-zinc-700/60 -z-10"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

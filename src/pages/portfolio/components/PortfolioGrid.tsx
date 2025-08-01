@@ -27,7 +27,7 @@ const PortfolioGrid = () => {
 
                 try {
                     const localeModule = await import(
-                        `../../../i18n/locales/${i18n.language}/portfolio`
+                        `../../../i18n/locales/${i18n.language}/portfolio/index.ts`
                         );
 
                     // Mische die Projekte mit lokalisierten Inhalten, sofern verfügbar

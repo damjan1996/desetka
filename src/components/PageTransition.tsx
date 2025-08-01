@@ -1,6 +1,6 @@
 "use client"
-import React, { useEffect, useState, useCallback } from "react"
-import { motion, AnimatePresence, cubicBezier } from "framer-motion"
+import React, { useEffect, useState, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { useLocation } from "react-router-dom"
 import { useScrollContext } from './ScrollContext'
 
@@ -8,126 +8,145 @@ interface PageTransitionProps {
     children: React.ReactNode
 }
 
-const customEase = cubicBezier(0.25, 0.1, 0.25, 1)
-
-const Logo = () => (
-    <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{
-            opacity: 1,
-            scale: 1,
-            transition: { duration: 0.4, ease: customEase },
-        }}
-        exit={{
-            opacity: 0,
-            scale: 1.2,
-            transition: { duration: 0.3, ease: customEase },
-        }}
-        className="w-16 h-16"
-    >
-        <img
-            src="/logo.png"
-            alt="Logo"
-            className="w-full h-full object-contain filter brightness-200"
-        />
-    </motion.div>
-)
+const Logo = () => {
+    const [imageError, setImageError] = useState(false);
+    
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{
+                opacity: 1,
+                scale: 1,
+                transition: { duration: 0.4 },
+            }}
+            exit={{
+                opacity: 0,
+                scale: 1.2,
+                transition: { duration: 0.3 },
+            }}
+            className="w-16 h-16 relative"
+        >
+            {!imageError ? (
+                <img
+                    src="/logo.png"
+                    alt="Logo"
+                    className="w-full h-full object-contain filter brightness-200"
+                    onError={() => setImageError(true)}
+                />
+            ) : (
+                <div className="w-full h-full flex items-center justify-center text-white font-bold text-2xl bg-zinc-800 rounded-full">
+                    DS
+                </div>
+            )}
+        </motion.div>
+    );
+}
 
 const PageTransition = ({ children }: PageTransitionProps) => {
     const location = useLocation()
-    const [showLogo, setShowLogo] = useState(false)
-    const [showContent, setShowContent] = useState(true)
-    const { setIsTransitioning } = useScrollContext()
-    const [isAnimating, setIsAnimating] = useState(false)
+    const [isTransitioning, setIsTransitioning] = useState(true) // Start with transition on initial load
+    const [showContent, setShowContent] = useState(false)
+    const { setIsTransitioning: setGlobalTransitioning } = useScrollContext()
+    const previousPathRef = useRef<string | null>(null)
+    const isFirstMount = useRef(true)
 
-    const resetScroll = useCallback(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'instant'
-        })
-    }, [])
-
-    const startTransition = useCallback(() => {
-        setIsAnimating(true)
-        setIsTransitioning(true)
-        setShowContent(false)
-        setShowLogo(true)
-    }, [setIsTransitioning])
-
-    const finishTransition = useCallback(() => {
-        setShowContent(true)
-        setShowLogo(false)
-        setIsAnimating(false)
-        setIsTransitioning(false)
-        resetScroll()
-    }, [setIsTransitioning, resetScroll])
+    // Handle initial page load transition
+    useEffect(() => {
+        if (isFirstMount.current) {
+            setIsTransitioning(true);
+            setGlobalTransitioning(true);
+            
+            // Show content after transition animation
+            const timer = setTimeout(() => {
+                setIsTransitioning(false);
+                setGlobalTransitioning(false);
+                setShowContent(true);
+                isFirstMount.current = false;
+            }, 1200);
+            
+            return () => clearTimeout(timer);
+        }
+    }, [setGlobalTransitioning]);
 
     useEffect(() => {
-        const cleanup = () => {
-            setShowLogo(false)
-            setShowContent(true)
-            setIsAnimating(false)
-            setIsTransitioning(false)
+        // Skip on first mount
+        if (isFirstMount.current) {
+            previousPathRef.current = location.pathname;
+            return;
         }
 
-        if (location.pathname) {
-            startTransition()
+        // Only animate if path actually changed
+        if (location.pathname === previousPathRef.current) {
+            return;
+        }
 
-            const logoTimer = setTimeout(() => {
-                setShowLogo(false)
-            }, 800)
+        // Hide content immediately
+        setShowContent(false);
+        
+        // Small delay to ensure React has finished updating
+        const startTimer = setTimeout(() => {
+            // Update previous path
+            previousPathRef.current = location.pathname;
 
-            const contentTimer = setTimeout(() => {
-                finishTransition()
-            }, 1000)
+            // Reset scroll position
+            window.scrollTo(0, 0);
 
-            return () => {
-                clearTimeout(logoTimer)
-                clearTimeout(contentTimer)
-                cleanup()
+            // Start transition
+            setIsTransitioning(true);
+            setGlobalTransitioning(true);
+
+            // End transition after animation and show new content
+            const endTimer = setTimeout(() => {
+                setIsTransitioning(false);
+                setGlobalTransitioning(false);
+                setShowContent(true);
+            }, 1200);
+
+            // Store the end timer for cleanup
+            (window as any).__pageTransitionEndTimer = endTimer;
+        }, 10);
+
+        return () => {
+            clearTimeout(startTimer);
+            if ((window as any).__pageTransitionEndTimer) {
+                clearTimeout((window as any).__pageTransitionEndTimer);
             }
-        }
-
-        return cleanup
-    }, [location.pathname, startTransition, finishTransition])
+            setIsTransitioning(false);
+            setGlobalTransitioning(false);
+        };
+    }, [location.pathname, setGlobalTransitioning]);
 
     return (
-        <div className={`relative min-h-screen bg-zinc-900 ${isAnimating ? 'pointer-events-none' : ''}`}>
-            <AnimatePresence mode="wait">
-                {showLogo && (
+        <>
+            {/* Page transition overlay - always on top */}
+            <AnimatePresence>
+                {isTransitioning && (
                     <motion.div
-                        className="fixed inset-0 z-[60] bg-zinc-900 pointer-events-none"
+                        key="transition-overlay"
+                        className="fixed inset-0 bg-zinc-900 flex items-center justify-center page-transition-active"
+                        style={{ zIndex: 9999 }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3, ease: customEase }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
                     >
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <Logo />
-                        </div>
+                        <Logo />
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            <AnimatePresence mode="wait">
-                {showContent && (
-                    <motion.div
-                        className="relative z-0 min-h-screen"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{
-                            duration: 0.3,
-                            ease: customEase,
-                        }}
-                    >
-                        <div className={isAnimating ? 'pointer-events-none' : ''}>
-                            {children}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
+            
+            {/* Content - only show when transition is complete */}
+            <div style={{ opacity: showContent ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
+                <motion.div
+                    key={location.pathname}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: showContent ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    {children}
+                </motion.div>
+            </div>
+        </>
     )
 }
 

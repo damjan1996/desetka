@@ -59,6 +59,10 @@ const Experience = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
+                    style={{
+                        transform: 'translateZ(0)',
+                        willChange: 'opacity, transform'
+                    }}
                 >
                     <h2 className="text-3xl font-bold text-white text-center mb-12">
                         {t('pages.home.experience.title')}
@@ -78,6 +82,10 @@ const Experience = () => {
                                 exit={{ opacity: 0, x: -50 }}
                                 transition={{ duration: 0.3 }}
                                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                                style={{
+                                    transform: 'translateZ(0)',
+                                    willChange: 'opacity, transform'
+                                }}
                             >
                                 {getCurrentPageItems().map((exp, index) => (
                                     <motion.div
@@ -86,6 +94,10 @@ const Experience = () => {
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.5, delay: index * 0.1 }}
                                         className="p-6 md:p-8 rounded-3xl bg-zinc-800/40 hover:bg-zinc-800/60 transition-colors"
+                                        style={{
+                                            transform: 'translateZ(0)',
+                                            willChange: 'opacity'
+                                        }}
                                     >
                                         <h3 className="text-lg md:text-xl font-semibold text-white mb-1">
                                             {exp.role}

@@ -19,7 +19,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { Link, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import { useScrollContext } from "./ScrollContext";
-import PerformanceMonitor from "./PerformanceMonitor";
+import { PerformanceMonitor } from "./PerformanceMonitor";
 
 interface LayoutProps {
   children: ReactNode;
@@ -33,9 +33,12 @@ const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const { isMenuOpen, setIsMenuOpen } = useScrollContext();
 
-  // Initial mount
+  // Initial mount with immediate execution
   useEffect(() => {
-    setIsMounted(true);
+    // Use requestAnimationFrame to ensure smooth initial render
+    requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
   }, []);
 
   // Schließe das Menü beim Routenwechsel
@@ -116,8 +119,13 @@ const Layout = ({ children }: LayoutProps) => {
         : []),
   ];
 
+  // Render with opacity 0 on initial mount to prevent flicker
   if (!isMounted) {
-    return null;
+    return (
+      <div className="min-h-screen bg-zinc-900">
+        {children}
+      </div>
+    );
   }
 
   return (
@@ -126,9 +134,10 @@ const Layout = ({ children }: LayoutProps) => {
         <nav
             className={`
           fixed w-full z-40 transition-all duration-300
+          bg-zinc-800/50 backdrop-blur-sm border-b border-zinc-700/30
           ${scrolled
-                ? "bg-zinc-900/80 backdrop-blur supports-[backdrop-filter]:bg-zinc-900/80"
-                : "bg-transparent"
+                ? "bg-zinc-900/80 backdrop-blur-md shadow-lg shadow-zinc-900/50"
+                : ""
             }
         `}
             role="navigation"

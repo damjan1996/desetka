@@ -12,6 +12,10 @@ const About = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+                    style={{
+                        transform: 'translateZ(0)',
+                        willChange: 'opacity, transform'
+                    }}
                 >
                     {/* Image Section */}
                     <div className="relative">
@@ -20,6 +24,10 @@ const About = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5 }}
                             className="rounded-3xl overflow-hidden aspect-square"
+                            style={{
+                                transform: 'translateZ(0)',
+                                willChange: 'opacity, transform'
+                            }}
                         >
                             <img
                                 src="/portrait.jpg"
@@ -36,6 +44,10 @@ const About = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-3xl font-bold text-white"
+                            style={{
+                                transform: 'translateZ(0)',
+                                willChange: 'opacity, transform'
+                            }}
                         >
                             {t('pages.home.about.title')}
                         </motion.h2>
@@ -45,6 +57,10 @@ const About = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="text-zinc-400 leading-relaxed"
+                            style={{
+                                transform: 'translateZ(0)',
+                                willChange: 'opacity, transform'
+                            }}
                         >
                             <div className="text-zinc-400 leading-relaxed text-justify">
                                 {t('pages.home.about.content')}

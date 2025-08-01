@@ -1,0 +1,31 @@
+/* Minimal fixes for animation issues */
+
+/* 1. Stabilize page transitions */
+.page-transition-active {
+  z-index: 9999 !important;
+  background-color: rgb(24, 24, 27) !important; /* zinc-900 */
+}
+
+/* 2. Prevent floating paths from interfering */
+.floating-paths {
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+/* 3. Ensure smooth font loading */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. Fix for Safari/iOS */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-transform: translateZ(0);
+  }
+}
+
+/* 5. Prevent animation conflicts during route changes */
+.page-transition-active * {
+  animation-play-state: paused !important;
+}

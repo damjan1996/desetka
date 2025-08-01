@@ -15,8 +15,8 @@ export function FloatingPaths({ position }: { position: number }) {
     }))
 
     return (
-        <div className="absolute inset-0 pointer-events-none">
-            <svg className="w-full h-full text-accent" viewBox="0 0 696 316" fill="none">
+        <div className="absolute inset-0 pointer-events-none floating-paths" style={{ isolation: 'isolate', zIndex: 0 }}>
+            <svg className="w-full h-full text-accent" viewBox="0 0 696 316" fill="none" style={{ transform: 'translateZ(0)' }}>
                 <title>Background Paths</title>
                 {paths.map((path) => (
                     <motion.path
@@ -36,6 +36,7 @@ export function FloatingPaths({ position }: { position: number }) {
                             repeat: Number.POSITIVE_INFINITY,
                             ease: "linear",
                         }}
+                        style={{ willChange: 'auto' }}
                     />
                 ))}
             </svg>

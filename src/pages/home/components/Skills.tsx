@@ -71,6 +71,10 @@ const Skills = () => {
                                     animate={{ opacity: 1 }}
                                     onHoverStart={() => setSelectedSkill(skill.name)}
                                     onHoverEnd={() => setSelectedSkill(null)}
+                                    style={{
+                                        transform: 'translateZ(0)',
+                                        willChange: 'opacity'
+                                    }}
                                 >
                                     <div className="flex justify-between items-center">
                                         <div className="flex flex-col">
@@ -102,6 +106,10 @@ const Skills = () => {
                                             initial={{ width: 0 }}
                                             animate={{ width: `${skill.level}%` }}
                                             transition={{ duration: 0.5 }}
+                                            style={{
+                                                transform: 'translateZ(0)',
+                                                willChange: 'width'
+                                            }}
                                         />
                                     </div>
                                 </motion.div>
@@ -123,6 +131,10 @@ const Skills = () => {
                                     role="button"
                                     aria-pressed={selectedSkill === skill.name}
                                     aria-label={t('pages.home.skills.aria.selectSkill')}
+                                    style={{
+                                        transform: 'translateZ(0)',
+                                        willChange: 'transform'
+                                    }}
                                 >
                                     <div className={selectedSkill === skill.name ? 'text-zinc-500' : 'text-white'}>
                                         {iconMap[skill.name]}

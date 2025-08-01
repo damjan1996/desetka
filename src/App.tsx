@@ -26,30 +26,17 @@ const RouteTracker = () => {
   return null;
 };
 
-// Funktion zum Blockieren von externen Google Fonts
-const blockExternalGoogleFonts = () => {
-  // Suche nach allen Google Fonts Link-Elementen und entferne sie
-  const linkElements = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
-  linkElements.forEach(link => {
-    link.parentNode?.removeChild(link);
-  });
-};
 
 function App() {
   useEffect(() => {
     // Benutzerdefiniertes Scrollbar-Styling aktivieren
     document.documentElement.classList.add('custom-scrollbar');
-
-    // Blockiere Google Fonts beim ersten Laden, sofern nicht explizit zugestimmt wurde
-    if (!isCookieCategoryEnabled('functional')) {
-      blockExternalGoogleFonts();
-    }
   }, []);
 
   return (
       <HelmetProvider>
         <ErrorBoundary>
-          <BrowserRouter>
+          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <ScrollProvider>
               <Suspense fallback={null}>
                 <PageTransition>

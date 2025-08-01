@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 

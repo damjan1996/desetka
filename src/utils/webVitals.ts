@@ -39,10 +39,10 @@ function sendToAnalytics(metric: Metric) {
     }
   }));
   
-  // Also send to your analytics endpoint if needed
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon('/api/analytics', body);
-  }
+  // Comment out analytics endpoint for now - not implemented
+  // if (navigator.sendBeacon) {
+  //   navigator.sendBeacon('/api/analytics', body);
+  // }
 }
 
 export function reportWebVitals() {

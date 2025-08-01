@@ -4,9 +4,11 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import './index.css';
 import './styles/mobile-optimizations.css';
+import './styles/minimal-fixes.css';
 import './i18n';
 import { register as registerServiceWorker } from './utils/serviceWorkerRegistration';
 import { reportWebVitals } from './utils/webVitals';
+import { initializeFonts } from './utils/fontLoader';
 
 // Typdefinition für Google Analytics
 declare global {
@@ -16,6 +18,9 @@ declare global {
         initializeAnalytics: () => void;
     }
 }
+
+// Initialize fonts as early as possible
+initializeFonts();
 
 const rootElement = document.getElementById('root');
 
@@ -28,6 +33,11 @@ createRoot(rootElement).render(
         <App />
     </HelmetProvider>
 );
+
+// Mark app as mounted to prevent flicker
+requestAnimationFrame(() => {
+    document.body.classList.add('app-mounted');
+});
 
 // Register service worker
 registerServiceWorker();
