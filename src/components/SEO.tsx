@@ -1,6 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { HreflangTags } from './HreflangTags';
+import { seoContent as seoContentDe } from '../i18n/locales/de/seo-content';
+import { seoContent as seoContentEn } from '../i18n/locales/en/seo-content';
+import { AutoBreadcrumbs } from './schemas/BreadcrumbSchema';
 
 interface SEOProps {
     title?: string;
@@ -8,14 +12,22 @@ interface SEOProps {
     image?: string;
     article?: boolean;
     schema?: object;
+    keywords?: string;
+    author?: string;
+    datePublished?: string;
+    dateModified?: string;
 }
 
 const SEO: React.FC<SEOProps> = ({
                                      title,
-                                     description = 'JTL Integration Expert and Digital Commerce Specialist with extensive experience in e-commerce solutions and warehouse management systems.',
-                                     image = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+                                     description,
+                                     image = '/portrait.jpg',
                                      article = false,
                                      schema,
+                                     keywords,
+                                     author = 'Damjan Savić',
+                                     datePublished,
+                                     dateModified,
                                  }) => {
     // Nur i18n wird benötigt – t wurde entfernt, da es nicht genutzt wird.
     const { i18n } = useTranslation();
@@ -24,31 +36,72 @@ const SEO: React.FC<SEOProps> = ({
     const siteUrl = 'https://damjan-savic.com';
     const currentUrl = typeof window !== 'undefined' ? window.location.href : siteUrl;
     const currentLanguage = i18n.language;
+    
+    // SEO-Content basierend auf Sprache auswählen
+    const seoContent = currentLanguage === 'de' ? seoContentDe : seoContentEn;
+    const defaultDescription = description || seoContent.hero.description;
 
     // Default schema für die Website
     const defaultSchema = {
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: 'Damjan Savić',
+        alternateName: 'Damjan Savic',
         url: siteUrl,
-        image: image,
-        description: description,
+        image: `${siteUrl}${image}`,
+        description: defaultDescription,
         sameAs: [
             'https://linkedin.com/in/damjansavic',
             'https://github.com/damjansavic'
         ],
-        jobTitle: 'JTL Integration Expert',
+        jobTitle: ['Fullstack Developer', 'Software Engineer', 'KI Spezialist'],
         worksFor: {
             '@type': 'Organization',
-            name: 'Independent Consultant'
+            name: 'CoderConda'
         },
         knowsAbout: [
-            'JTL-Wawi',
-            'E-commerce',
-            'Warehouse Management Systems',
-            'Digital Commerce',
-            'System Integration'
-        ]
+            'Python Development',
+            'JavaScript Development',
+            'React.js',
+            'Next.js',
+            'TypeScript',
+            'Electron Desktop Applications',
+            'Künstliche Intelligenz (KI/AI)',
+            'OLLAMA AI/ML',
+            'ERP Systems Integration',
+            'E-Commerce Development',
+            'Process Automation',
+            'Backend Development',
+            'Frontend Development',
+            'Full Stack Development'
+        ],
+        hasSkill: [
+            {
+                '@type': 'DefinedTerm',
+                name: 'Python Development',
+                description: 'Expert-level Python programming for automation, backend development, and AI/ML applications'
+            },
+            {
+                '@type': 'DefinedTerm',
+                name: 'JavaScript/TypeScript Development',
+                description: 'Full-stack JavaScript development with React, Next.js, Node.js, and TypeScript'
+            },
+            {
+                '@type': 'DefinedTerm',
+                name: 'AI/ML with OLLAMA',
+                description: 'Implementation of AI solutions using OLLAMA for local language models'
+            },
+            {
+                '@type': 'DefinedTerm',
+                name: 'ERP & E-Commerce Integration',
+                description: 'Custom ERP system development and e-commerce platform integration'
+            }
+        ],
+        address: {
+            '@type': 'PostalAddress',
+            addressCountry: 'DE',
+            addressLocality: 'Köln'
+        }
     };
 
     // Sicherstellen, dass supportedLngs ein Array ist, bevor .filter verwendet wird
@@ -62,26 +115,21 @@ const SEO: React.FC<SEOProps> = ({
         : [];
 
     return (
-        <Helmet>
-            {/* Basic meta tags */}
-            <html lang={currentLanguage} />
-            <title>{fullTitle}</title>
-            <meta name="description" content={description} />
-            <meta name="image" content={image} />
-            <link rel="canonical" href={currentUrl} />
-
-            {/* Language alternates */}
-            {alternateUrls?.map(
-                ({ hrefLang, href }: { hrefLang: string; href: string }) => (
-                    <link key={hrefLang} rel="alternate" hrefLang={hrefLang} href={href} />
-                )
-            )}
-            <link rel="alternate" hrefLang="x-default" href={siteUrl} />
+        <>
+            <HreflangTags />
+            <AutoBreadcrumbs />
+            <Helmet>
+                {/* Basic meta tags */}
+                <html lang={currentLanguage} />
+                <title>{fullTitle}</title>
+                <meta name="description" content={defaultDescription} />
+                <meta name="image" content={image} />
+                <link rel="canonical" href={currentUrl} />
 
             {/* Open Graph meta tags */}
             <meta property="og:url" content={currentUrl} />
             <meta property="og:title" content={fullTitle} />
-            <meta property="og:description" content={description} />
+            <meta property="og:description" content={defaultDescription} />
             <meta property="og:image" content={image} />
             <meta property="og:type" content={article ? 'article' : 'website'} />
             <meta property="og:site_name" content={siteTitle} />
@@ -95,7 +143,7 @@ const SEO: React.FC<SEOProps> = ({
             {/* Twitter Card meta tags */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={fullTitle} />
-            <meta name="twitter:description" content={description} />
+            <meta name="twitter:description" content={defaultDescription} />
             <meta name="twitter:image" content={image} />
 
             {/* Additional meta tags */}
@@ -103,7 +151,7 @@ const SEO: React.FC<SEOProps> = ({
             <meta name="theme-color" content="#000000" />
             <meta
                 name="keywords"
-                content="JTL, E-commerce, Warehouse Management, Digital Commerce, System Integration, JTL-Wawi, WMS"
+                content={keywords || "Damjan Savić, Fullstack Developer, Python, JavaScript, React, Next.js, TypeScript, Electron, KI, AI, OLLAMA, ERP, E-Commerce, Prozessautomatisierung, Backend, Frontend, Web Development"}
             />
             <meta name="author" content="Damjan Savić" />
 
@@ -112,6 +160,7 @@ const SEO: React.FC<SEOProps> = ({
                 {JSON.stringify(schema || defaultSchema)}
             </script>
         </Helmet>
+        </>
     );
 };
 

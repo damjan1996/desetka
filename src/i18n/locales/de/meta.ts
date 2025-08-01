@@ -1,24 +1,33 @@
 export const meta = {
     site: {
         name: 'Damjan Savić',
-        title: 'Damjan Savić - Digital Solutions & JTL Integration',
-        subtitle: 'Entwickler individueller Lösungen zur Automatisierung von Prozessen',
-        description: 'Mit einem Hintergrund in der Softwareentwicklung und Expertise in der digitalen Transformation unterstütze ich Unternehmen bei der Optimierung und Automatisierung ihrer Geschäftsprozesse.',
+        title: 'Damjan Savić - Fullstack Entwickler | Python, JavaScript, KI',
+        subtitle: 'Python, JavaScript & KI Spezialist für moderne Webanwendungen und Automatisierung',
+        description: 'Erfahrener Fullstack Entwickler spezialisiert auf Python, JavaScript, React, Next.js, TypeScript, Electron Desktop Apps, KI/AI mit OLLAMA, ERP-Systeme, E-Commerce und Prozessautomatisierung.',
         keywords: [
-            'JTL Integration',
-            'E-Commerce Lösungen',
-            'Prozessautomatisierung',
-            'Digitale Beratung',
-            'ERP Systeme',
+            'Damjan Savić',
+            'Fullstack Entwickler',
             'Python Entwicklung',
-            'Systemintegration',
-            'Digitales Marketing'
+            'JavaScript Entwicklung',
+            'React.js',
+            'Next.js',
+            'TypeScript',
+            'Electron Desktop Apps',
+            'Künstliche Intelligenz KI AI',
+            'OLLAMA AI ML',
+            'ERP Integration',
+            'E-Commerce Entwicklung',
+            'Prozessautomatisierung',
+            'Backend Entwicklung',
+            'Frontend Entwicklung',
+            'Web Development',
+            'Software Engineering'
         ].join(', ')
     },
     company: {
         name: 'CoderConda',
         shortName: 'CoderConda',
-        description: 'Ihr JTL-Servicepartner für schnelle, verbindliche und kosteneffiziente Lösungen.',
+        description: 'Ihr Partner für moderne Softwareentwicklung, KI-Integration und Prozessautomatisierung.',
         address: 'Rotdornallee',
         city: 'Köln',
         postalCode: '50999',
@@ -29,7 +38,7 @@ export const meta = {
     },
     author: {
         name: 'Damjan Savić',
-        role: 'Consultant Digital Solutions',
+        role: 'Fullstack Developer & KI Spezialist',
         company: 'CoderConda',
         location: 'Köln, Deutschland',
         email: 'info@damjan-savic.com',
@@ -50,21 +59,31 @@ export const meta = {
     },
     expertise: {
         areas: [
-            'JTL Integration & Beratung',
+            'Python Backend Entwicklung',
+            'JavaScript/TypeScript Frontend',
+            'KI/ML Integration mit OLLAMA',
             'Prozessautomatisierung',
             'E-Commerce Entwicklung',
-            'Systemintegration',
-            'ERP-Systeme',
-            'Digitale Transformation'
+            'ERP System Integration',
+            'Electron Desktop Apps',
+            'React & Next.js Anwendungen'
         ],
         technologies: [
             'Python',
-            'React/Next.js',
-            'MariaDB',
+            'JavaScript',
+            'TypeScript',
+            'React',
+            'Next.js',
+            'Node.js',
+            'OLLAMA',
+            'Electron',
+            'FastAPI',
+            'Django',
+            'PostgreSQL',
+            'MongoDB',
             'Docker',
-            'JTL-WaWi',
-            'Shopify',
-            'Shopware'
+            'Kubernetes',
+            'AWS'
         ]
     },
     seo: {
@@ -75,12 +94,12 @@ export const meta = {
         og: {
             type: 'website',
             locale: 'de_DE',
-            siteName: 'Damjan Savić - Digital Solutions',
+            siteName: 'Damjan Savić - Fullstack Developer Portfolio',
             images: {
                 url: '/images/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Damjan Savić - Digital Solutions & JTL Integration'
+                alt: 'Damjan Savić - Fullstack Developer | Python, JavaScript, KI/OLLAMA'
             }
         },
         twitter: {

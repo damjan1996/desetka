@@ -5,6 +5,7 @@ import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import About from './components/About';
+import { FAQSection } from '../../components/FAQSection';
 
 const HomePage = () => {
     const schema = {
@@ -87,6 +88,11 @@ const HomePage = () => {
                 {/* About Section */}
                 <div id="about">
                     <About />
+                </div>
+                
+                {/* FAQ Section */}
+                <div id="faq" className="py-16">
+                    <FAQSection />
                 </div>
             </main>
         </PageTransition>

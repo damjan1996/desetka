@@ -6,6 +6,7 @@ import Skills from './components/Skills';
 import Workflow from './components/Workflow';
 import Journey from './components/Journey';
 import { generateSchema } from './components/Schema';
+import { PersonSchema } from '../../components/schemas/PersonSchema';
 
 const AboutPage = () => {
     const { t } = useTranslation();
@@ -22,6 +23,8 @@ const AboutPage = () => {
                 description={t('pages.about.seo.description')}
                 schema={generateSchema(t)}
             />
+            
+            <PersonSchema />
 
             <div className="relative min-h-screen">
                 {/* Hero Section */}

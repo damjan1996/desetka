@@ -1,24 +1,33 @@
 export const meta = {
     site: {
         name: 'Damjan Savić',
-        title: 'Damjan Savić - Digital Solutions & JTL Integration',
-        subtitle: 'Developer of custom solutions for process automation',
-        description: 'With a background in software development and expertise in digital transformation, I help companies optimize and automate their business processes.',
+        title: 'Damjan Savić - Fullstack Developer | Python, JavaScript, AI',
+        subtitle: 'Python, JavaScript & AI Specialist for Modern Web Applications',
+        description: 'Experienced Fullstack Developer specializing in Python, JavaScript, React, Next.js, TypeScript, Electron Desktop Apps, AI/ML with OLLAMA, ERP systems, e-commerce, and process automation.',
         keywords: [
-            'JTL Integration',
-            'E-Commerce Solutions',
-            'Process Automation',
-            'Digital Consulting',
-            'ERP Systems',
+            'Damjan Savić',
+            'Fullstack Developer',
             'Python Development',
-            'System Integration',
-            'Digital Marketing'
+            'JavaScript Development',
+            'React.js',
+            'Next.js',
+            'TypeScript',
+            'Electron Desktop Applications',
+            'Artificial Intelligence AI',
+            'OLLAMA AI ML',
+            'ERP Integration',
+            'E-Commerce Development',
+            'Process Automation',
+            'Backend Development',
+            'Frontend Development',
+            'Web Development',
+            'Software Engineering'
         ].join(', ')
     },
     company: {
         name: 'Damjan Savić',
         shortName: 'Damjan Savić',
-        description: 'Your software development partner for fast, reliable, and cost-efficient solutions.',
+        description: 'Your partner for modern software development, AI integration, and process automation.',
         address: 'Rotdornallee',
         city: 'Köln',
         postalCode: '50999',
@@ -29,9 +38,9 @@ export const meta = {
     },
     author: {
         name: 'Damjan Savić',
-        role: 'Consultant Digital Solutions',
-        company: 'Ritter Digital GmbH',
-        location: 'Oberhausen, Germany',
+        role: 'Fullstack Developer & AI Specialist',
+        company: 'CoderConda',
+        location: 'Cologne, Germany',
         email: 'info@damjan-savic.com',
         website: 'www.damjan-savic.com',
         languages: [
@@ -50,21 +59,31 @@ export const meta = {
     },
     expertise: {
         areas: [
-            'JTL Integration & Consulting',
+            'Python Backend Development',
+            'JavaScript/TypeScript Frontend',
+            'AI/ML Integration with OLLAMA',
             'Process Automation',
             'E-Commerce Development',
-            'System Integration',
-            'ERP Systems',
-            'Digital Transformation'
+            'ERP System Integration',
+            'Electron Desktop Apps',
+            'React & Next.js Applications'
         ],
         technologies: [
             'Python',
-            'React/Next.js',
-            'MariaDB',
+            'JavaScript',
+            'TypeScript',
+            'React',
+            'Next.js',
+            'Node.js',
+            'OLLAMA',
+            'Electron',
+            'FastAPI',
+            'Django',
+            'PostgreSQL',
+            'MongoDB',
             'Docker',
-            'JTL-WaWi',
-            'Shopify',
-            'Shopware'
+            'Kubernetes',
+            'AWS'
         ]
     },
     seo: {
@@ -75,12 +94,12 @@ export const meta = {
         og: {
             type: 'website',
             locale: 'en_US',
-            siteName: 'Damjan Savić - Digital Solutions',
+            siteName: 'Damjan Savić - Fullstack Developer Portfolio',
             images: {
                 url: '/images/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Damjan Savić - Digital Solutions & JTL Integration'
+                alt: 'Damjan Savić - Fullstack Developer | Python, JavaScript, AI/OLLAMA'
             }
         },
         twitter: {

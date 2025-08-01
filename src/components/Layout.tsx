@@ -19,6 +19,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { Link, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import { useScrollContext } from "./ScrollContext";
+import PerformanceMonitor from "./PerformanceMonitor";
 
 interface LayoutProps {
   children: ReactNode;
@@ -252,6 +253,9 @@ const Layout = ({ children }: LayoutProps) => {
 
         {/* Footer */}
         <Footer />
+        
+        {/* Performance Monitor */}
+        <PerformanceMonitor />
       </div>
   );
 };

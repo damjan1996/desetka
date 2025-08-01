@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>OG Image Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .og-container {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #18181B 0%, #27272A 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.05;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 60px;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: #3B82F6;
+            border-radius: 30px;
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            color: white;
+        }
+        h1 {
+            color: white;
+            font-size: 72px;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .subtitle {
+            color: #A1A1AA;
+            font-size: 36px;
+            margin: 0 0 40px 0;
+            font-weight: 400;
+        }
+        .skills {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .skill {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid #3B82F6;
+            color: #93BBFC;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .bottom-line {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #71717A;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-container" id="og-image">
+        <div class="pattern"></div>
+        <div class="content">
+            <div class="logo">DS</div>
+            <h1>Damjan Savić</h1>
+            <p class="subtitle">Fullstack Developer & KI Spezialist</p>
+            <div class="skills">
+                <span class="skill">Python</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">React</span>
+                <span class="skill">TypeScript</span>
+                <span class="skill">OLLAMA</span>
+                <span class="skill">AI/ML</span>
+            </div>
+        </div>
+        <div class="bottom-line">damjan-savic.com</div>
+    </div>
+    
+    <script>
+        // This HTML can be used with a headless browser to generate the OG image
+        // Example: Use Puppeteer or Playwright to screenshot this page
+    </script>
+</body>
+</html>
