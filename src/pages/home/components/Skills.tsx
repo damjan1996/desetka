@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Database, Server, Store, Code2, CodepenIcon, Box } from 'lucide-react';
 
 interface Skill {
@@ -50,7 +50,7 @@ const Skills = () => {
     }
 
     return (
-        <section className="py-24 bg-zinc-900">
+        <section className="py-24 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -67,32 +67,20 @@ const Skills = () => {
                                 <motion.div
                                     key={skill.name}
                                     className="space-y-2"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    onHoverStart={() => setSelectedSkill(skill.name)}
-                                    onHoverEnd={() => setSelectedSkill(null)}
-                                    style={{
-                                        transform: 'translateZ(0)',
-                                        willChange: 'opacity'
-                                    }}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 0.5, delay: skills.indexOf(skill) * 0.1 }}
                                 >
                                     <div className="flex justify-between items-center">
-                                        <div className="flex flex-col">
-                      <span className="text-white text-sm font-medium">
-                        {skill.name}
-                      </span>
-                                            {selectedSkill === skill.name && (
-                                                <span className="text-zinc-400 text-xs">
-                          {skill.description}
-                        </span>
-                                            )}
-                                        </div>
+                                        <span className="text-white text-sm font-medium">
+                                            {skill.name}
+                                        </span>
                                         <span className="text-white text-sm">
-                      {skill.level}%
-                    </span>
+                                            {skill.level}%
+                                        </span>
                                     </div>
                                     <div
-                                        className="h-2 bg-zinc-800 rounded-full overflow-hidden"
+                                        className="h-2 bg-zinc-800/50 rounded-full overflow-hidden"
                                         role="progressbar"
                                         aria-valuenow={skill.level}
                                         aria-valuemin={0}
@@ -100,12 +88,14 @@ const Skills = () => {
                                         aria-label={t('pages.home.skills.aria.skillLevel')}
                                     >
                                         <motion.div
-                                            className={`h-full rounded-full ${
-                                                selectedSkill === skill.name ? 'bg-zinc-500' : 'bg-zinc-600'
-                                            }`}
+                                            className="h-full rounded-full bg-gradient-to-r from-zinc-600 to-zinc-500"
                                             initial={{ width: 0 }}
-                                            animate={{ width: `${skill.level}%` }}
-                                            transition={{ duration: 0.5 }}
+                                            animate={{ 
+                                                width: `${skill.level}%`
+                                            }}
+                                            transition={{ 
+                                                width: { duration: 1, delay: skills.indexOf(skill) * 0.1 }
+                                            }}
                                             style={{
                                                 transform: 'translateZ(0)',
                                                 willChange: 'width'
@@ -121,32 +111,63 @@ const Skills = () => {
                             {skills.map((skill) => (
                                 <motion.div
                                     key={skill.name}
-                                    className={`p-6 rounded-xl bg-zinc-800 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-300 hover:bg-zinc-700 ${
-                                        selectedSkill === skill.name ? 'ring-2 ring-zinc-500' : ''
-                                    }`}
-                                    whileHover={{ scale: 1.05 }}
-                                    onClick={() =>
-                                        setSelectedSkill(skill.name === selectedSkill ? null : skill.name)
-                                    }
-                                    role="button"
-                                    aria-pressed={selectedSkill === skill.name}
-                                    aria-label={t('pages.home.skills.aria.selectSkill')}
-                                    style={{
-                                        transform: 'translateZ(0)',
-                                        willChange: 'transform'
-                                    }}
+                                    className="relative"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.5, delay: skills.indexOf(skill) * 0.1 }}
                                 >
-                                    <div className={selectedSkill === skill.name ? 'text-zinc-500' : 'text-white'}>
-                                        {iconMap[skill.name]}
-                                    </div>
-                                    <span className="text-white text-sm text-center">
-                    {skill.name}
-                  </span>
-                                    {selectedSkill === skill.name && (
-                                        <span className="text-zinc-400 text-xs text-center mt-1">
-                      {skill.description}
-                    </span>
-                                    )}
+                                    <motion.div
+                                        className={`relative p-6 rounded-xl bg-zinc-800/30 backdrop-blur-sm flex flex-col items-center justify-center gap-3 cursor-pointer transition-colors duration-300 hover:bg-zinc-700/50 ${
+                                            selectedSkill === skill.name ? 'ring-2 ring-zinc-500 z-20' : ''
+                                        }`}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onHoverStart={() => setSelectedSkill(skill.name)}
+                                        onHoverEnd={() => setSelectedSkill(null)}
+                                        role="button"
+                                        aria-pressed={selectedSkill === skill.name}
+                                        aria-label={t('pages.home.skills.aria.selectSkill')}
+                                        style={{
+                                            transform: 'translateZ(0)',
+                                            willChange: 'transform',
+                                            position: 'relative',
+                                            zIndex: selectedSkill === skill.name ? 20 : 1
+                                        }}
+                                    >
+                                        <motion.div 
+                                            className={selectedSkill === skill.name ? 'text-zinc-500' : 'text-white'}
+                                            animate={{ 
+                                                rotate: selectedSkill === skill.name ? [0, -10, 10, 0] : 0,
+                                                scale: selectedSkill === skill.name ? 1.1 : 1
+                                            }}
+                                            transition={{ duration: 0.4 }}
+                                        >
+                                            {iconMap[skill.name]}
+                                        </motion.div>
+                                        <span className="text-white text-sm text-center">
+                                            {skill.name}
+                                        </span>
+                                        
+                                        <AnimatePresence>
+                                            {selectedSkill === skill.name && (
+                                                <motion.div
+                                                    className="absolute left-1/2 top-0 -translate-x-1/2 bg-zinc-800/80 backdrop-blur-sm rounded-lg px-4 py-2 text-zinc-300 text-xs text-center shadow-xl pointer-events-none"
+                                                    initial={{ opacity: 0, y: 5 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 5 }}
+                                                    transition={{ duration: 0.15 }}
+                                                    style={{
+                                                        whiteSpace: 'nowrap',
+                                                        transform: 'translate(-50%, calc(-100% - 12px))',
+                                                        zIndex: 999
+                                                    }}
+                                                >
+                                                    {skill.description}
+                                                    <div className="absolute left-1/2 bottom-0 translate-y-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-zinc-800"></div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
                                 </motion.div>
                             ))}
                         </div>

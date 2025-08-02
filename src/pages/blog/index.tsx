@@ -72,7 +72,7 @@ const BlogPage: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -87,7 +87,7 @@ const BlogPage: React.FC = () => {
 
     if (error) {
         return (
-            <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ const BlogPage: React.FC = () => {
                 description={metaDescription}
                 schema={schema}
             />
-            <main className="min-h-screen bg-zinc-900">
+            <main className="min-h-screen">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
                     {/* Header Section */}
                     <motion.div

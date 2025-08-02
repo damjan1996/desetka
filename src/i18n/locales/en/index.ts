@@ -29,6 +29,9 @@ import { navigation } from './navigation';
 // Footer translations
 import footer from './footer';
 
+// FAQ translations
+import { faq } from './faq';
+
 // Merging all translation objects
 const translations = {
     // Pages
@@ -77,6 +80,7 @@ const translations = {
     },
     meta,
     navigation,
+    faq,
 } as const;
 
 // Default export: complete translations object
@@ -111,4 +115,5 @@ export {
     common,
     meta,
     navigation,
+    faq,
 };

@@ -8,7 +8,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="relative bg-zinc-900 pt-8 pb-4 px-4">
+        <footer className="relative bg-zinc-800/50 backdrop-blur-sm border-t border-zinc-700/30 pt-8 pb-4 px-4">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col space-y-8">
                     {/* Contact Section */}
@@ -93,7 +93,7 @@ const Footer = () => {
                     </div>
 
                     {/* Legal Section */}
-                    <div className="border-t border-zinc-800 pt-4">
+                    <div className="border-t border-zinc-700/30 pt-4">
                         <div className="flex flex-col space-y-4">
                             <p className="text-zinc-400 text-xs text-center">
                                 &copy; {currentYear} Damjan Savić. {t('footer.legal.copyright')}

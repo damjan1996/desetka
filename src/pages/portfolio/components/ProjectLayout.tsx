@@ -29,7 +29,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({ children }) => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="min-h-screen bg-zinc-900 relative overflow-x-hidden"
+            className="min-h-screen relative overflow-x-hidden"
         >
             {/* Header */}
             <motion.div

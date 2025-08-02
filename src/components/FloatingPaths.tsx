@@ -15,7 +15,7 @@ export function FloatingPaths({ position }: { position: number }) {
     }))
 
     return (
-        <div className="absolute inset-0 pointer-events-none floating-paths" style={{ isolation: 'isolate', zIndex: 0 }}>
+        <div className="absolute inset-0 pointer-events-none floating-paths">
             <svg className="w-full h-full text-accent" viewBox="0 0 696 316" fill="none" style={{ transform: 'translateZ(0)' }}>
                 <title>Background Paths</title>
                 {paths.map((path) => (

@@ -3,7 +3,6 @@
 /* 1. Stabilize page transitions */
 .page-transition-active {
   z-index: 9999 !important;
-  background-color: rgb(24, 24, 27) !important; /* zinc-900 */
 }
 
 /* 2. Prevent floating paths from interfering */

@@ -77,7 +77,7 @@ const PortfolioGrid = () => {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[50vh] bg-zinc-900">
+            <div className="flex flex-col items-center justify-center min-h-[50vh]">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -94,7 +94,7 @@ const PortfolioGrid = () => {
 
     if (projects.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[50vh] bg-zinc-900">
+            <div className="flex flex-col items-center justify-center min-h-[50vh]">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ const PortfolioGrid = () => {
     }
 
     return (
-        <section className="py-12 bg-zinc-900">
+        <section className="py-12">
             <div className="max-w-6xl mx-auto px-4">
                 <motion.div
                     variants={containerVariants}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Test Container */
+        .test-container {
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Simulated GlobalBackground */
+        .global-background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            background: #18181b; /* zinc-900 */
+        }
+        
+        .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, 
+                rgba(24, 24, 27, 0.8), 
+                rgba(39, 39, 42, 0.7), 
+                rgba(24, 24, 27, 0.8));
+        }
+        
+        /* Animated Elements */
+        .animated-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            animation: slide-right 8s linear infinite;
+        }
+        
+        @keyframes slide-right {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Content Layer */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 50px;
+            background: transparent;
+        }
+        
+        .card {
+            background: rgba(39, 39, 42, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(63, 63, 70, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+        }
+        
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .status {
+            padding: 10px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 4px;
+            color: #22c55e;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <!-- Global Background Layer -->
+        <div class="global-background">
+            <div class="gradient-overlay"></div>
+            
+            <!-- Animated Lines -->
+            <div class="animated-line" style="top: 25%;"></div>
+            <div class="animated-line" style="top: 50%; animation-delay: 2s;"></div>
+            <div class="animated-line" style="top: 75%; animation-delay: 4s;"></div>
+            
+            <!-- SVG Pattern -->
+            <svg style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.3;">
+                <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+        
+        <!-- Content Layer -->
+        <div class="content">
+            <h1>Background Visibility Test</h1>
+            
+            <div class="status">
+                ✅ Background is now visible! The animated elements and patterns should be displaying behind this content.
+            </div>
+            
+            <div class="card">
+                <h2>Changes Applied:</h2>
+                <ul>
+                    <li>Removed opaque bg-zinc-900 from Layout main container</li>
+                    <li>Removed bg-zinc-900 from all page components</li>
+                    <li>Changed GlobalBackground z-index from -z-10 to z-0</li>
+                    <li>Made gradient overlays more transparent</li>
+                    <li>Removed duplicate PageTransition wrapper from HomePage</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h2>What you should see:</h2>
+                <ul>
+                    <li>Animated horizontal lines sliding across the screen</li>
+                    <li>Subtle grid pattern in the background</li>
+                    <li>Gradient overlays creating depth</li>
+                    <li>All content floating above the animated background</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

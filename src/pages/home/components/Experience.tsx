@@ -53,12 +53,15 @@ const Experience = () => {
     };
 
     return (
-        <section className="py-12 md:py-24 bg-zinc-900 overflow-hidden">
+        <section className="py-12 md:py-24 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ 
+                        duration: 0.8,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
                     style={{
                         transform: 'translateZ(0)',
                         willChange: 'opacity, transform'
@@ -77,10 +80,13 @@ const Experience = () => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentPage}
-                                initial={{ opacity: 0, x: 50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 0.3 }}
+                                initial={{ opacity: 0, x: 100, scale: 0.95 }}
+                                animate={{ opacity: 1, x: 0, scale: 1 }}
+                                exit={{ opacity: 0, x: -100, scale: 0.95 }}
+                                transition={{ 
+                                    duration: 0.5,
+                                    ease: [0.43, 0.13, 0.23, 0.96]
+                                }}
                                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
                                 style={{
                                     transform: 'translateZ(0)',
@@ -90,13 +96,22 @@ const Experience = () => {
                                 {getCurrentPageItems().map((exp, index) => (
                                     <motion.div
                                         key={index}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                                        className="p-6 md:p-8 rounded-3xl bg-zinc-800/40 hover:bg-zinc-800/60 transition-colors"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ 
+                                            duration: 0.6,
+                                            delay: index * 0.15,
+                                            ease: [0.25, 0.46, 0.45, 0.94]
+                                        }}
+                                        whileHover={{ 
+                                            scale: 1.02,
+                                            y: -5,
+                                            transition: { duration: 0.3 }
+                                        }}
+                                        className="p-6 md:p-8 rounded-3xl bg-zinc-800/40 hover:bg-zinc-800/60 transition-all duration-300 hover:shadow-xl hover:shadow-zinc-900/50"
                                         style={{
                                             transform: 'translateZ(0)',
-                                            willChange: 'opacity'
+                                            willChange: 'opacity, transform'
                                         }}
                                     >
                                         <h3 className="text-lg md:text-xl font-semibold text-white mb-1">
@@ -110,12 +125,20 @@ const Experience = () => {
                                         </p>
                                         <ul className="space-y-3 md:space-y-4">
                                             {exp.highlights?.map((highlight: string, hIndex: number) => (
-                                                <li
+                                                <motion.li
                                                     key={hIndex}
-                                                    className="text-zinc-400 text-sm leading-relaxed"
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{
+                                                        duration: 0.4,
+                                                        delay: 0.3 + (hIndex * 0.1),
+                                                        ease: "easeOut"
+                                                    }}
+                                                    className="text-zinc-400 text-sm leading-relaxed flex items-start"
                                                 >
-                                                    • {highlight}
-                                                </li>
+                                                    <span className="text-white/40 mr-2 mt-0.5">→</span>
+                                                    <span>{highlight}</span>
+                                                </motion.li>
                                             ))}
                                         </ul>
                                     </motion.div>
@@ -129,29 +152,40 @@ const Experience = () => {
                         <div className="flex justify-center items-center gap-4 mt-8">
                             <button
                                 onClick={() => currentPage > 0 && setCurrentPage(prev => prev - 1)}
-                                className="text-zinc-400 hover:text-white transition-colors p-2"
+                                className="text-zinc-400 hover:text-white transition-all duration-300 p-2 text-2xl font-light disabled:opacity-30"
                                 disabled={currentPage === 0}
                                 aria-label={t('pages.home.experience.navigation.prev')}
                             >
-                                {t('pages.home.experience.navigation.prev')}
+                                ‹
                             </button>
-                            {[...Array(totalPages)].map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentPage(index)}
-                                    className={`w-2 h-2 rounded-full transition-colors ${
-                                        index === currentPage ? 'bg-white' : 'bg-zinc-600 hover:bg-zinc-400'
-                                    }`}
-                                    aria-label={t('pages.home.experience.navigation.page', { page: index + 1 })}
-                                />
-                            ))}
+                            <div className="flex items-center gap-2">
+                                {[...Array(totalPages)].map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentPage(index)}
+                                        className={`rounded-full transition-all duration-300 ${
+                                            index === currentPage 
+                                                ? 'bg-white' 
+                                                : 'bg-zinc-600 hover:bg-zinc-400'
+                                        }`}
+                                        style={{
+                                            width: '5px',
+                                            height: '5px',
+                                            minWidth: '5px',
+                                            minHeight: '5px',
+                                            padding: '0'
+                                        }}
+                                        aria-label={t('pages.home.experience.navigation.page', { page: index + 1 })}
+                                    />
+                                ))}
+                            </div>
                             <button
                                 onClick={() => currentPage < totalPages - 1 && setCurrentPage(prev => prev + 1)}
-                                className="text-zinc-400 hover:text-white transition-colors p-2"
+                                className="text-zinc-400 hover:text-white transition-all duration-300 p-2 text-2xl font-light disabled:opacity-30"
                                 disabled={currentPage === totalPages - 1}
                                 aria-label={t('pages.home.experience.navigation.next')}
                             >
-                                {t('pages.home.experience.navigation.next')}
+                                ›
                             </button>
                         </div>
                     )}

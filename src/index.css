@@ -19,8 +19,17 @@ html.fonts-fallback body {
     font-family: Inter, system-ui, sans-serif;
   }
 
+  html {
+    background-color: transparent !important;
+  }
+
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
+    background-color: transparent !important;
+  }
+  
+  #root {
+    background-color: transparent !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -76,6 +85,32 @@ html.fonts-fallback body {
   50% {
     opacity: 0.3;
   }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-slide-right {
+  animation: slide-right 8s linear infinite;
+}
+
+.animate-slide-down {
+  animation: slide-down 8s linear infinite;
 }
 
 /* Prevent hover flickering */

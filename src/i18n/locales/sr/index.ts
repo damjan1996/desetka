@@ -29,6 +29,9 @@ import { navigation } from './navigation';
 // Footer prevodi
 import footer from './footer';
 
+// FAQ prevodi
+import { faq } from './faq';
+
 // Objedinjavanje svih prevoda
 const translations = {
     // Stranice
@@ -77,6 +80,7 @@ const translations = {
     },
     meta,
     navigation,
+    faq,
 } as const;
 
 // Default izvoz: kompletan objekat prevoda
@@ -111,4 +115,5 @@ export {
     common,
     meta,
     navigation,
+    faq,
 };

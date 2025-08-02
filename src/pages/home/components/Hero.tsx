@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { FloatingPaths } from '../../../components/FloatingPaths';
 
 const Hero = () => {
     const { t } = useTranslation();
@@ -14,12 +13,7 @@ const Hero = () => {
     };
 
     return (
-        <section id="home" className="relative min-h-screen bg-zinc-900 text-white overflow-hidden">
-            {/* Floating Paths Background - nur eine Instanz für bessere Performance */}
-            <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-                <FloatingPaths position={1} />
-            </div>
-
+        <section id="home" className="relative min-h-screen text-white overflow-hidden">
             {/* Concentric Circles Background - mit GPU-Beschleunigung */}
             <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 2 }}>
                 {[1, 2, 3].map((index) => (
@@ -68,13 +62,13 @@ const Hero = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col items-center justify-start min-h-screen px-4 pt-16 relative" style={{ zIndex: 30 }}>
+            <div className="flex flex-col items-center justify-start min-h-screen px-4 pt-20 relative" style={{ zIndex: 30 }}>
                 {/* Profile Image */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="w-48 h-48 sm:w-64 sm:h-64 mb-6 rounded-full overflow-hidden border-2 border-zinc-800"
+                    className="w-56 h-56 sm:w-72 sm:h-72 mb-8 rounded-full overflow-hidden border-2 border-zinc-800"
                     style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                 >
                     <img
@@ -91,7 +85,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-white text-sm tracking-wider mb-2"
+                    className="text-white text-base sm:text-lg tracking-wider mb-3"
                 >
                     {t('pages.home.hero.title')}
                 </motion.p>
@@ -99,7 +93,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-4xl font-bold mb-8 flex items-center"
+                    className="text-5xl sm:text-6xl font-bold mb-10 flex items-center"
                 >
                     {t('pages.home.hero.name')}<span className="animate-pulse ml-1">|</span>
                 </motion.h1>
@@ -109,35 +103,35 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-white text-sm z-20"
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-white text-base sm:text-lg z-20"
                 >
                     <button
                         onClick={() => scrollToSection('experience')}
-                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
+                        className="relative w-full sm:w-auto px-8 py-3 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
                         <span className="relative z-10">{t('pages.home.hero.navigation.experience')}</span>
-                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                        <div className="absolute inset-0 bg-zinc-700/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                     <button
                         onClick={() => scrollToSection('skills')}
-                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
+                        className="relative w-full sm:w-auto px-8 py-3 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
                         <span className="relative z-10">{t('pages.home.hero.navigation.skills')}</span>
-                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                        <div className="absolute inset-0 bg-zinc-700/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                     <button
                         onClick={() => scrollToSection('projects')}
-                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
+                        className="relative w-full sm:w-auto px-8 py-3 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
                         <span className="relative z-10">{t('pages.home.hero.navigation.projects')}</span>
-                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                        <div className="absolute inset-0 bg-zinc-700/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                     <button
                         onClick={() => scrollToSection('about')}
-                        className="relative w-full sm:w-auto px-6 py-2 rounded-full uppercase cursor-pointer overflow-hidden group"
+                        className="relative w-full sm:w-auto px-8 py-3 rounded-full uppercase cursor-pointer overflow-hidden group"
                     >
                         <span className="relative z-10">{t('pages.home.hero.navigation.about')}</span>
-                        <div className="absolute inset-0 bg-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                        <div className="absolute inset-0 bg-zinc-700/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                 </motion.div>
             </div>

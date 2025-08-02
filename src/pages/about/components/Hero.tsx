@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { FloatingPaths } from '../../../components/FloatingPaths';
 import { Terminal, Globe2, Code2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -18,28 +17,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative min-h-screen bg-zinc-900 text-white overflow-hidden">
-            {/* Floating Paths Background */}
-            <div className="absolute inset-0">
-                <FloatingPaths position={1} />
-                <FloatingPaths position={-1} />
-            </div>
-
-            {/* Concentric Circles Background */}
-            <div className="absolute inset-0 flex items-center justify-center">
-                {[1, 2, 3, 4, 5].map((index) => (
-                    <div
-                        key={index}
-                        className="absolute rounded-full border border-zinc-800"
-                        style={{
-                            width: `${index * 20}%`,
-                            height: `${index * 20}%`,
-                            opacity: 0.1
-                        }}
-                    />
-                ))}
-            </div>
-
+        <section className="relative min-h-screen text-white overflow-hidden">
             {/* Main Content */}
             <div className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
                 {/* Title */}

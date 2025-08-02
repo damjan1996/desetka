@@ -7,13 +7,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
-const SOURCE_IMAGE = path.join(PUBLIC_DIR, 'logo.png');
+const SOURCE_IMAGE = path.join(PUBLIC_DIR, 'logo.svg');
 
 async function generateIcons() {
   try {
     // Check if source image exists
     if (!fs.existsSync(SOURCE_IMAGE)) {
-      console.error('Source logo.png not found in public directory');
+      console.error('Source logo.svg not found in public directory');
       
       // Create placeholder icons
       const svg = `

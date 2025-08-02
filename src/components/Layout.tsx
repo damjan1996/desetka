@@ -20,6 +20,7 @@ import { Link, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import { useScrollContext } from "./ScrollContext";
 import { PerformanceMonitor } from "./PerformanceMonitor";
+import GlobalBackground from "./GlobalBackground";
 
 interface LayoutProps {
   children: ReactNode;
@@ -122,21 +123,25 @@ const Layout = ({ children }: LayoutProps) => {
   // Render with opacity 0 on initial mount to prevent flicker
   if (!isMounted) {
     return (
-      <div className="min-h-screen bg-zinc-900">
+      <div className="min-h-screen bg-transparent">
+        <GlobalBackground />
         {children}
       </div>
     );
   }
 
   return (
-      <div className="min-h-screen bg-zinc-900 flex flex-col relative">
+      <div className="min-h-screen flex flex-col relative">
+        {/* Global Background */}
+        <GlobalBackground />
+        
         {/* Navigation – oberste Ebene */}
         <nav
             className={`
           fixed w-full z-40 transition-all duration-300
           bg-zinc-800/50 backdrop-blur-sm border-b border-zinc-700/30
           ${scrolled
-                ? "bg-zinc-900/80 backdrop-blur-md shadow-lg shadow-zinc-900/50"
+                ? "bg-zinc-800/70 backdrop-blur-md shadow-lg shadow-zinc-900/30"
                 : ""
             }
         `}
@@ -148,7 +153,7 @@ const Layout = ({ children }: LayoutProps) => {
               {/* Logo */}
               <Link to="/" className="flex items-center space-x-2 group shrink-0">
                 <motion.img
-                    src="/logo.png"
+                    src="/logo.svg"
                     alt=""
                     className="h-8 w-auto"
                     whileHover={{ scale: 1.05 }}
@@ -206,7 +211,7 @@ const Layout = ({ children }: LayoutProps) => {
                     animate={{ x: 0 }}
                     exit={{ x: "100%" }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className="fixed right-0 top-0 h-full w-80 bg-zinc-900 shadow-xl md:hidden z-50 border-l border-zinc-800"
+                    className="fixed right-0 top-0 h-full w-80 bg-zinc-900/95 backdrop-blur-md shadow-xl md:hidden z-50 border-l border-zinc-800"
                 >
                   {/* Sidebar Header mit Close-Button */}
                   <div className="flex items-center justify-between px-4 h-16 border-b border-zinc-800">
@@ -258,7 +263,7 @@ const Layout = ({ children }: LayoutProps) => {
         </AnimatePresence>
 
         {/* Hauptinhalt */}
-        <main className="flex-1 pt-2 relative z-30">{children}</main>
+        <main className="flex-1 pt-2 relative z-10 bg-transparent">{children}</main>
 
         {/* Footer */}
         <Footer />

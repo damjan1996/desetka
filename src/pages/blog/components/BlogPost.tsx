@@ -5,6 +5,7 @@ import { Calendar, ArrowLeft, Tag, Loader2, Folder } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import PageTransition from '../../../components/PageTransition';
 import SEO from '../../../components/SEO';
+import { trackBlogPostView } from '../../../services/gtm';
 
 import { blog as blogDe } from '../../../i18n/locales/de/blog/';
 import { blog as blogEn } from '../../../i18n/locales/en/blog';
@@ -120,6 +121,8 @@ const BlogPost: React.FC = () => {
                             ...postData,
                             slug,
                         });
+                        // Track blog post view
+                        trackBlogPostView(postData.title, postData.category);
                     } else {
                         // Statt eine Exception zu werfen, setzen wir den Fehler direkt.
                         setError(new Error('Post not found'));
@@ -168,7 +171,7 @@ const BlogPost: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -183,7 +186,7 @@ const BlogPost: React.FC = () => {
 
     if (error || !post) {
         return (
-            <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -207,10 +210,43 @@ const BlogPost: React.FC = () => {
         );
     }
 
+    // Article Schema for SEO
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "description": post.excerpt,
+        "datePublished": post.date,
+        "dateModified": post.date,
+        "author": {
+            "@type": "Person",
+            "name": "Damjan Savić",
+            "url": "https://damjan-savic.com"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Damjan Savić",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://damjan-savic.com/logo.svg"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://damjan-savic.com/blog/${post.slug}`
+        },
+        "articleSection": post.category ? blog.categories[post.category] : undefined,
+        "keywords": post.tags?.join(', ')
+    };
+
     return (
         <PageTransition>
             <SEO title={`${post.title} - Blog`} description={post.excerpt} />
-            <main className="min-h-screen bg-zinc-900">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
+            <main className="min-h-screen">
                 <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
                     <motion.div variants={containerVariants} initial="hidden" animate="visible">
                         {/* Back Navigation */}

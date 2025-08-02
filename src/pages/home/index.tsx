@@ -58,13 +58,13 @@ const HomePage = () => {
         'digital marketing automation. Based in Germany, working with clients worldwide.';
 
     return (
-        <PageTransition>
+        <>
             <SEO
                 title="Damjan Savić - Digital Solutions Consultant"
                 description={metaDescription}
                 schema={schema}
             />
-            <main className="min-h-screen bg-zinc-900">
+            <main className="min-h-screen">
                 {/* Hero Section */}
                 <div id="home">
                     <Hero />
@@ -95,7 +95,7 @@ const HomePage = () => {
                     <FAQSection />
                 </div>
             </main>
-        </PageTransition>
+        </>
     );
 };
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ExternalLink, Calendar, Tag } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { trackProjectClick } from '../../../services/gtm';
 
 interface Project {
     id: string;
@@ -33,9 +34,14 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ project }) => {
     // Verwende technologies anstelle von tags wenn verfügbar
     const displayTags = project.technologies || project.tags;
 
+    const handleClick = () => {
+        trackProjectClick(project.title, project.category);
+    };
+
     return (
         <Link
             to={`/portfolio/${project.slug}`}
+            onClick={handleClick}
             className="group relative block overflow-hidden bg-zinc-800/30 border border-zinc-800
                      rounded-lg hover:bg-zinc-800/50 hover:border-zinc-700
                      transition-all duration-300 focus:outline-none focus:ring-2

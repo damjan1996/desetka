@@ -39,7 +39,7 @@ const Workflow = () => {
 
     return (
         <section
-            className="relative w-full bg-zinc-900 py-24 px-4 sm:px-6 lg:px-8"
+            className="relative w-full py-24 px-4 sm:px-6 lg:px-8"
             aria-label={t('pages.about.workflow.aria.workflowSection')}
         >
             {/* Section Title and Description */}

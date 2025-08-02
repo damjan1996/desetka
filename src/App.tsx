@@ -10,11 +10,15 @@ import PageTransition from './components/PageTransition';
 import { ScrollProvider } from './components/ScrollContext';
 import DebugOverlay from './components/DebugOverlay';
 import { logPageView, isCookieCategoryEnabled } from './utils/analytics';
+import { useScrollTracking } from './hooks/useScrollTracking';
 import './styles/scrollbar.css';
 
 // RouteTracker Component für präzises Seiten-Tracking - aber nur mit Zustimmung
 const RouteTracker = () => {
   const location = useLocation();
+  
+  // Scroll tracking aktivieren
+  useScrollTracking();
 
   useEffect(() => {
     // Nur tracken, wenn die Analytics-Cookies akzeptiert wurden

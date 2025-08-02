@@ -9,7 +9,7 @@ const ContactPage = () => {
 
     return (
         <PageTransition>
-            <div className="min-h-screen bg-zinc-900">
+            <div className="min-h-screen">
                 {/* Hero Section */}
                 <div className="py-24 text-center">
                     <motion.h1

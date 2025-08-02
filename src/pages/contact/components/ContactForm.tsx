@@ -14,6 +14,7 @@ import { Label } from '../../../components/Label';
 import { Button } from '../../../components/Button';
 import { Alert, AlertDescription } from '../../../components/Alert';
 import { Loader2, Send, CheckCircle2, Mail } from 'lucide-react';
+import { trackContactFormSubmit } from '../../../services/gtm';
 
 interface FormData {
     name: string;
@@ -72,6 +73,13 @@ const ContactForm = () => {
         setSubmitStatus('idle');
 
         try {
+            // Track form submission
+            trackContactFormSubmit({
+                name: formData.name,
+                email: formData.email,
+                subject: 'Contact Form'
+            });
+            
             // Simuliere einen API-Aufruf
             await new Promise(resolve => setTimeout(resolve, 1500));
             setSubmitStatus('success');

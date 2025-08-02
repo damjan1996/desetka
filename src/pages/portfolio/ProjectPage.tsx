@@ -114,7 +114,7 @@ const TranslatedProjectPage = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -131,7 +131,7 @@ const TranslatedProjectPage = () => {
 
     if (error || !project) {
         return (
-            <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ const TranslatedProjectPage = () => {
     }
 
     return (
-        <main className="min-h-screen bg-zinc-900">
+        <main className="min-h-screen">
             <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
                 {/* Back Navigation */}
                 <div className="mb-8">

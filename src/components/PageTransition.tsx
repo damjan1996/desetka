@@ -28,7 +28,7 @@ const Logo = () => {
         >
             {!imageError ? (
                 <img
-                    src="/logo.png"
+                    src="/logo.svg"
                     alt="Logo"
                     className="w-full h-full object-contain filter brightness-200"
                     onError={() => setImageError(true)}
@@ -123,7 +123,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
                 {isTransitioning && (
                     <motion.div
                         key="transition-overlay"
-                        className="fixed inset-0 bg-zinc-900 flex items-center justify-center page-transition-active"
+                        className="fixed inset-0 bg-zinc-900/95 backdrop-blur-sm flex items-center justify-center page-transition-active"
                         style={{ zIndex: 9999 }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
