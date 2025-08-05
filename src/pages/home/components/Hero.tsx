@@ -85,7 +85,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-white text-base sm:text-lg tracking-wider mb-3"
+                    className="text-white text-sm sm:text-base tracking-wider mb-2"
                 >
                     {t('pages.home.hero.title')}
                 </motion.p>
@@ -93,7 +93,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-5xl sm:text-6xl font-bold mb-10 flex items-center"
+                    className="text-4xl sm:text-5xl font-bold mb-8 flex items-center"
                 >
                     {t('pages.home.hero.name')}<span className="animate-pulse ml-1">|</span>
                 </motion.h1>

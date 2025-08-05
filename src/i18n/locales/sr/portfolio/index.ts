@@ -1,5 +1,8 @@
 // src/i18n/locales/sr/portfolio/index.ts
 import { aiDataReader } from './projects/ai-data-reader';
+import kamenpro from './projects/kamenpro';
+import smartWarehouse from './projects/smart-warehouse';
+import powerPlatformGovernance from './projects/power-platform-governance';
 export const portfolio = {
     // Meta informacije za portfolio stranicu
     seo: {
@@ -24,7 +27,10 @@ export const portfolio = {
             'Data Processing': 'Obrada podataka',
             'Content Production': 'Produkcija sadržaja',
             'Machine Learning': 'Machine Learning',
-            'Automation': 'Automatizacija'
+            'Automation': 'Automatizacija',
+            'Web Development': 'Web razvoj',
+            'AI & Automation': 'AI & Automatizacija',
+            'Enterprise Software': 'Enterprise Software'
         }
     },
     // Opcije sortiranja
@@ -49,5 +55,8 @@ export const portfolio = {
     // Svi projekti
     projects: {
         'ai-data-reader': aiDataReader,
+        'kamenpro': kamenpro,
+        'smart-warehouse': smartWarehouse,
+        'power-platform-governance': powerPlatformGovernance,
     }
 };

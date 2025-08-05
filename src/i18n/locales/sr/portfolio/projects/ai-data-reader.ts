@@ -2,7 +2,7 @@
 export const aiDataReader = {
     meta: {
         slug: 'ai-data-reader',
-        title: "AI održavanje podataka o proizvodima iz PDF fajlova",
+        title: "Veštačka inteligencija za ekstrakciju podataka iz PDF dokumenata",
         description: "Razvoj automatizovanog sistema za ekstrakciju i strukturiranje podataka o proizvodima iz PDF dokumenata",
         excerpt: "Integracija Claude AI za inteligentnu obradu informacija o proizvodima i besprekornu JTL-ERP integraciju.",
         date: "2024-02",

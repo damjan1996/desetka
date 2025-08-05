@@ -11,9 +11,6 @@ const PortfolioPage = () => {
         visible: { opacity: 1, y: 0 }
     };
 
-    // Get categories from translations
-    const categories = Object.entries(t('portfolio.filters.categories', { returnObjects: true }));
-    const sortOptions = Object.entries(t('portfolio.sort', { returnObjects: true }));
 
     return (
         <>
@@ -46,52 +43,6 @@ const PortfolioPage = () => {
                             </p>
                         </motion.div>
 
-                        {/* Filter and Sort Section */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            className="mb-12"
-                        >
-                            <div className="flex flex-wrap justify-center gap-12">
-                                {/* Categories */}
-                                <div className="flex flex-col items-center space-y-4">
-                                    <h2 className="text-sm font-medium text-zinc-400">
-                                        {t('portfolio.sections.filterTitle')}
-                                    </h2>
-                                    <div className="flex flex-wrap justify-center gap-2">
-                                        <button className="px-4 py-2 text-sm text-zinc-400 hover:text-white bg-zinc-800/50 hover:bg-zinc-800 rounded-full transition-colors">
-                                            {t('portfolio.filters.all')}
-                                        </button>
-                                        {categories.map(([key, value]) => (
-                                            <button
-                                                key={key}
-                                                className="px-4 py-2 text-sm text-zinc-400 hover:text-white bg-zinc-800/50 hover:bg-zinc-800 rounded-full transition-colors"
-                                            >
-                                                {value}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Sort Options */}
-                                <div className="flex flex-col items-center space-y-4">
-                                    <h2 className="text-sm font-medium text-zinc-400">
-                                        {t('portfolio.sections.sortTitle')}
-                                    </h2>
-                                    <div className="flex justify-center gap-2">
-                                        {sortOptions.map(([key, value]) => (
-                                            <button
-                                                key={key}
-                                                className="px-4 py-2 text-sm text-zinc-400 hover:text-white bg-zinc-800/50 hover:bg-zinc-800 rounded-full transition-colors"
-                                            >
-                                                {value}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
 
                         {/* Portfolio Grid */}
                         <motion.div

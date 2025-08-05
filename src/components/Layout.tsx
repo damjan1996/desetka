@@ -210,7 +210,15 @@ const Layout = ({ children }: LayoutProps) => {
                     initial={{ x: "100%" }}
                     animate={{ x: 0 }}
                     exit={{ x: "100%" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    transition={{ 
+                        type: "tween",
+                        duration: 0.3,
+                        ease: [0.4, 0, 0.2, 1]
+                    }}
+                    style={{ 
+                        willChange: 'transform',
+                        transform: 'translateZ(0)'
+                    }}
                     className="fixed right-0 top-0 h-full w-80 bg-zinc-900/95 backdrop-blur-md shadow-xl md:hidden z-50 border-l border-zinc-800"
                 >
                   {/* Sidebar Header mit Close-Button */}

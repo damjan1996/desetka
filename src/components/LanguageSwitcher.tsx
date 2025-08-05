@@ -1,5 +1,5 @@
 // C:\Development\Damjan Savic\Portfolio\src\components\LanguageSwitcher.tsx
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = [
@@ -29,9 +30,18 @@ const LanguageSwitcher: React.FC = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
+      window.removeEventListener('resize', checkMobile);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
@@ -56,13 +66,13 @@ const LanguageSwitcher: React.FC = () => {
         <AnimatePresence>
           {isOpen && (
               <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: isMobile ? 10 : -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  exit={{ opacity: 0, y: isMobile ? 10 : -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full right-0 mt-2 w-48 rounded-lg overflow-hidden
+                  className={`absolute ${isMobile ? 'bottom-full mb-2' : 'top-full mt-2'} right-0 w-48 rounded-lg overflow-hidden
                      border border-zinc-800 bg-zinc-900/95 backdrop-blur-sm
-                     shadow-lg"
+                     shadow-lg`}
                   role="listbox"
                   aria-label="Languages"
                   onKeyDown={handleKeyDown}

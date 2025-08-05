@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, ArrowRight, Tag, Folder } from 'lucide-react';
+import { Calendar, ExternalLink, Tag } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { blog as blogDe } from '../../../i18n/locales/de/blog/index';
@@ -47,6 +47,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
             title: blogPost?.title || post.title,
             excerpt: blogPost?.excerpt || post.excerpt,
             category: blogPost?.category || post.category,
+            tags: blogPost?.tags || post.tags,
         };
     };
 
@@ -64,7 +65,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
 
     const itemVariants = {
         hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
+        visible: { opacity: 1, y: 0 }
     };
 
     // Datum formatiert in der aktuellen Sprache
@@ -86,95 +87,109 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
     };
 
     return (
-        <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
-            className="group relative"
+        <Link
+            to={`/blog/${post.slug}`}
+            className="group relative block bg-zinc-900/50 backdrop-blur-sm
+                     rounded-xl shadow-lg hover:shadow-2xl
+                     ring-1 ring-zinc-800 hover:ring-zinc-700
+                     transition-all duration-500 focus:outline-none focus:ring-2
+                     focus:ring-zinc-600 focus:ring-offset-2 focus:ring-offset-zinc-950
+                     transform hover:-translate-y-1"
         >
-            <Link
-                to={`/blog/${post.slug}`}
-                className="block relative bg-zinc-800/30 border border-zinc-800
-                   rounded-lg overflow-hidden hover:bg-zinc-800/50
-                   hover:border-zinc-700 transition-all duration-300"
+            <motion.div
+                variants={itemVariants}
+                transition={{ duration: 0.5 }}
+                className="relative overflow-hidden rounded-xl"
+                style={{
+                    transform: 'translateZ(0)',
+                    willChange: 'opacity, transform'
+                }}
             >
-                {/* Image Container */}
-                <div className="aspect-video relative overflow-hidden">
+                {/* Image Container - same as PortfolioCard */}
+                <div className="aspect-[16/9] w-full relative overflow-hidden bg-zinc-900">
                     <img
                         src={getImagePath(post.coverImage)}
                         alt={translatedPost.title}
-                        className="h-full w-full object-cover transition-transform
-                       duration-500 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700
+                                 group-hover:scale-110"
                         loading="lazy"
+                        style={{ transformOrigin: 'center center' }}
                         onError={(e) => {
                             console.error('Image load error:', e);
                         }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900
-                          via-zinc-900/50 to-transparent opacity-80
-                          group-hover:opacity-70 transition-opacity duration-300" />
-
-                    {/* Category Badge */}
-                    {translatedPost.category && (
-                        <div className="absolute top-4 left-4 flex items-center gap-2">
-                            <div className="flex items-center gap-2 px-3 py-1
-                              bg-zinc-900/80 backdrop-blur-sm border
-                              border-zinc-800 rounded-full">
-                                <Folder className="h-3 w-3 text-zinc-400" />
-                                <span className="text-xs text-zinc-300">
-                  {blog.categories[translatedPost.category as keyof typeof blog.categories] ||
-                      translatedPost.category}
-                </span>
-                            </div>
-                        </div>
-                    )}
+                    {/* Gradient overlay that extends beyond the image */}
+                    <div className="absolute inset-x-0 -bottom-20 top-0 bg-gradient-to-t from-zinc-900 via-zinc-900/70 to-transparent
+                                  opacity-95" />
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                    {/* Metadata */}
-                    <div className="flex items-center gap-4 mb-4">
-                        <time className="flex items-center gap-2 text-sm text-zinc-400">
+                {/* Content - with relative positioning to overlap the gradient */}
+                <div className="relative -mt-2 p-6 bg-zinc-900 z-10">
+                    {/* Post Info */}
+                    <div className="flex items-center gap-4 mb-4 text-zinc-500">
+                        <div className="flex items-center gap-2 text-sm">
                             <Calendar className="h-4 w-4" />
-                            {getFormattedDate(post.date)}
-                        </time>
-                        {post.tags && (
-                            <div className="flex items-center gap-2 text-sm text-zinc-400">
+                            <span>{getFormattedDate(post.date)}</span>
+                        </div>
+                        {translatedPost.tags && translatedPost.tags.length > 0 && (
+                            <div className="flex items-center gap-2 text-sm">
                                 <Tag className="h-4 w-4" />
                                 <span>
-                  {post.tags.length} {blog.ui.tags}
-                </span>
+                                    {blog.ui.tagsCount 
+                                        ? blog.ui.tagsCount.replace('{{count}}', translatedPost.tags.length.toString())
+                                        : `${translatedPost.tags.length} Tags`}
+                                </span>
                             </div>
                         )}
                     </div>
 
-                    {/* Title */}
+                    {/* Title & Description */}
                     <h3 className="text-xl font-semibold text-white mb-3
-                         group-hover:text-zinc-100 transition-colors
-                         duration-300 line-clamp-2">
+                                 group-hover:text-zinc-100 transition-colors duration-300">
                         {translatedPost.title}
                     </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-zinc-400 text-sm line-clamp-3 mb-6
-                        group-hover:text-zinc-300 transition-colors duration-300">
+                    <p className="text-zinc-400 text-sm line-clamp-2 mb-4
+                                group-hover:text-zinc-300 transition-colors duration-300">
                         {translatedPost.excerpt}
                     </p>
 
-                    {/* Read More */}
-                    <div className="flex items-center text-white group/link">
-                        <span className="text-sm font-medium">{blog.ui.readMore}</span>
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform
-                                  group-hover/link:translate-x-1" />
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                        {translatedPost.tags && translatedPost.tags.slice(0, 3).map((tag, index) => (
+                            <span
+                                key={index}
+                                className="px-3 py-1 bg-zinc-800/50
+                                         text-sm text-zinc-400 rounded-full
+                                         ring-1 ring-zinc-700/50 group-hover:ring-zinc-600/50
+                                         group-hover:bg-zinc-800/70 group-hover:text-zinc-300
+                                         transition-all duration-300"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                        {translatedPost.tags && translatedPost.tags.length > 3 && (
+                            <span className="text-sm text-zinc-600">
+                                +{translatedPost.tags.length - 3} {blog.ui.more || 'more'}
+                            </span>
+                        )}
+                    </div>
+
+                    {/* Link Icon - same as PortfolioCard */}
+                    <div className="absolute top-6 right-6 p-2.5 rounded-full
+                                  bg-zinc-800/60 backdrop-blur-sm ring-1 ring-zinc-700/50
+                                  opacity-0 group-hover:opacity-100
+                                  transform translate-y-2 group-hover:translate-y-0
+                                  transition-all duration-300">
+                        <ExternalLink className="h-4 w-4 text-zinc-400" />
                     </div>
                 </div>
 
-                {/* Hover Effect */}
-                <div className="absolute inset-0 bg-white/5 opacity-0
-                        group-hover:opacity-100 pointer-events-none
-                        transition-opacity duration-300" />
-            </Link>
-        </motion.div>
+                {/* Subtle Hover Border */}
+                <div className="absolute inset-0 rounded-xl pointer-events-none
+                              ring-1 ring-zinc-600/0 group-hover:ring-zinc-600/30
+                              transition-all duration-500" />
+            </motion.div>
+        </Link>
     );
 };
 

@@ -35,7 +35,7 @@ const Journey = () => {
     };
 
     return (
-        <section className="py-24 relative bg-zinc-900/50">
+        <section className="py-24 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <motion.div
@@ -148,11 +148,6 @@ const Journey = () => {
                         ))}
                     </motion.div>
                 </div>
-            </div>
-
-            {/* Background Decoration */}
-            <div className="absolute inset-0 -z-10">
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/50 to-transparent" />
             </div>
         </section>
     );

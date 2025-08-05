@@ -1,5 +1,8 @@
 // src/i18n/locales/en/portfolio/index.ts
 import { aiDataReader } from './projects/ai-data-reader';
+import kamenpro from './projects/kamenpro';
+import smartWarehouse from './projects/smart-warehouse';
+import powerPlatformGovernance from './projects/power-platform-governance';
 export const portfolio = {
     // Meta information for the portfolio page
     seo: {
@@ -24,7 +27,10 @@ export const portfolio = {
             'Data Processing': 'Data Processing',
             'Content Production': 'Content Production',
             'Machine Learning': 'Machine Learning',
-            'Automation': 'Automation'
+            'Automation': 'Automation',
+            'Web Development': 'Web Development',
+            'AI & Automation': 'AI & Automation',
+            'Enterprise Software': 'Enterprise Software'
         }
     },
     // Sort options
@@ -49,5 +55,8 @@ export const portfolio = {
     // All projects
     projects: {
         'ai-data-reader': aiDataReader,
+        'kamenpro': kamenpro,
+        'smart-warehouse': smartWarehouse,
+        'power-platform-governance': powerPlatformGovernance,
     }
 };

@@ -9,6 +9,18 @@ import deAiDataReader from '../../i18n/locales/de/portfolio/projects/ai-data-rea
 import enAiDataReader from '../../i18n/locales/en/portfolio/projects/ai-data-reader';
 import srAiDataReader from '../../i18n/locales/sr/portfolio/projects/ai-data-reader';
 
+import deKamenpro from '../../i18n/locales/de/portfolio/projects/kamenpro';
+import enKamenpro from '../../i18n/locales/en/portfolio/projects/kamenpro';
+import srKamenpro from '../../i18n/locales/sr/portfolio/projects/kamenpro';
+
+import deSmartWarehouse from '../../i18n/locales/de/portfolio/projects/smart-warehouse';
+import enSmartWarehouse from '../../i18n/locales/en/portfolio/projects/smart-warehouse';
+import srSmartWarehouse from '../../i18n/locales/sr/portfolio/projects/smart-warehouse';
+
+import dePowerPlatform from '../../i18n/locales/de/portfolio/projects/power-platform-governance';
+import enPowerPlatform from '../../i18n/locales/en/portfolio/projects/power-platform-governance';
+import srPowerPlatform from '../../i18n/locales/sr/portfolio/projects/power-platform-governance';
+
 // Interfaces für den Projektinhalt
 interface ProjectMeta {
     date?: string;
@@ -69,6 +81,21 @@ const projectTranslations: ProjectTranslations = {
         de: deAiDataReader,
         en: enAiDataReader,
         sr: srAiDataReader,
+    },
+    'kamenpro': {
+        de: deKamenpro,
+        en: enKamenpro,
+        sr: srKamenpro,
+    },
+    'smart-warehouse': {
+        de: deSmartWarehouse,
+        en: enSmartWarehouse,
+        sr: srSmartWarehouse,
+    },
+    'power-platform-governance': {
+        de: dePowerPlatform,
+        en: enPowerPlatform,
+        sr: srPowerPlatform,
     },
 };
 
@@ -208,7 +235,7 @@ const TranslatedProjectPage = () => {
                 >
                     <div className="relative aspect-video rounded-lg overflow-hidden bg-zinc-800">
                         <img
-                            src="/images/projects/ai-data-reader/cover.jpg"
+                            src={`/images/projects/${slug}/cover.jpg`}
                             alt={project.meta.title}
                             className="w-full h-full object-cover"
                             loading="lazy"
