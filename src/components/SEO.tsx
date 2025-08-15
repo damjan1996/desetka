@@ -18,8 +18,6 @@ interface SEOProps {
     schema?: object;
     keywords?: string;
     author?: string;
-    datePublished?: string;
-    dateModified?: string;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -30,8 +28,6 @@ const SEO: React.FC<SEOProps> = ({
                                      schema,
                                      keywords,
                                      author = 'Damjan Savić',
-                                     datePublished,
-                                     dateModified,
                                  }) => {
     // Nur i18n wird benötigt – t wurde entfernt, da es nicht genutzt wird.
     const { i18n } = useTranslation();

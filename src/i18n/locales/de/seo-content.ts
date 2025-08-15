@@ -39,7 +39,7 @@ export const seoContent = {
       },
       automation: {
         title: "Business Process Automation von Damjan Savić | RPA & Workflow Optimization",
-        description: "Damjan Savić automatisiert Ihre Geschäftsprozesse intelligent. Mit Python, RPA-Tools und Custom Workflows steigert Damjan Savić Ihre Effizienz, reduziert Fehler und beschleunigt Ihre digitale Transformation."
+        description: "Damjan Savić automatisiert Ihre Geschäftsprozesse intelligent. Mit Python, RPA-Tools und Custom Workflows steigert Damjan Savić Ihre Effizienz, reduziert Fehler und beschleunigt Ihre digitale Transformation.",
         keywords: ["Prozessautomatisierung Python Köln", "Python Automatisierung Entwickler", "RPA Entwicklung Köln", "Workflow Automation", "Business Process Automation", "Task Automation Developer"]
       }
     }

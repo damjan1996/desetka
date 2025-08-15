@@ -1,4 +1,3 @@
-import PageTransition from '../../components/PageTransition';
 import SEO from '../../components/SEO';
 import Hero from './components/Hero';
 import Experience from './components/Experience';
