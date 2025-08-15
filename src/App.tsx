@@ -42,7 +42,7 @@ function App() {
         <ErrorBoundary>
           <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <ScrollProvider>
-              <Suspense fallback={null}>
+              <Suspense fallback={<div />}>
                 <PageTransition>
                   <Layout>
                     <ErrorBoundary>

@@ -28,7 +28,7 @@ const Logo = () => {
         >
             {!imageError ? (
                 <img
-                    src="/logo.svg"
+                    src="/loading-logo.svg"
                     alt="Logo"
                     className="w-full h-full object-contain filter brightness-200"
                     onError={() => setImageError(true)}
