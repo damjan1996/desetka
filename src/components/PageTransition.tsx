@@ -103,13 +103,14 @@ const PageTransition = ({ children }: PageTransitionProps) => {
             }, 1200);
 
             // Store the end timer for cleanup
-            (window as any).__pageTransitionEndTimer = endTimer;
+            (window as unknown as Window & { __pageTransitionEndTimer?: NodeJS.Timeout }).__pageTransitionEndTimer = endTimer;
         }, 10);
 
         return () => {
             clearTimeout(startTimer);
-            if ((window as any).__pageTransitionEndTimer) {
-                clearTimeout((window as any).__pageTransitionEndTimer);
+            const windowWithTimer = window as unknown as Window & { __pageTransitionEndTimer?: NodeJS.Timeout };
+            if (windowWithTimer.__pageTransitionEndTimer) {
+                clearTimeout(windowWithTimer.__pageTransitionEndTimer);
             }
             setIsTransitioning(false);
             setGlobalTransitioning(false);
