@@ -153,8 +153,8 @@ const Layout = ({ children }: LayoutProps) => {
               {/* Logo */}
               <Link to="/" className="flex items-center space-x-2 group shrink-0">
                 <motion.img
-                    src="/logo.svg"
-                    alt=""
+                    src="/header-logo.svg"
+                    alt="Damjan Savić Logo"
                     className="h-8 w-auto"
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
