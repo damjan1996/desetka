@@ -19,7 +19,8 @@
       "Bash(npx tailwindcss:*)",
       "Bash(taskkill:*)",
       "Bash(dir:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": []
   }
