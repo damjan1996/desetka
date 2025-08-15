@@ -81,15 +81,6 @@
       background-color: transparent;
     }
     
-    /* Prevent initial flicker */
-    body {
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-    
-    body.loaded {
-      opacity: 1;
-    }
 
     html {
       overflow-y: scroll;
@@ -148,13 +139,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div id="root"></div>
 <script type="module" src="/src/main.tsx"></script>
-<script>
-  // Add loaded class when DOM is ready
-  window.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      document.body.classList.add('loaded');
-    }, 100);
-  });
-</script>
 </body>
 </html>
