@@ -18,7 +18,8 @@
       "Bash(curl:*)",
       "Bash(npx tailwindcss:*)",
       "Bash(taskkill:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(test:*)"
     ],
     "deny": []
   }

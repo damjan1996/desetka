@@ -1,7 +1,7 @@
 // src/i18n/locales/sr/pages/home/hero.ts
 export const hero = {
-    title: 'СТАРИЈИ ПРОГРАМЕР ПУНОГ СТЕКА',
-    name: 'ДАМЈАН САВИЋ',
+    title: 'SENIOR FULLSTACK DEVELOPER',
+    name: 'DAMJAN SAVIĆ',
     cta: 'KONTAKTIRAJTE ME',
     image: {
         alt: 'Damjan Savić (Дамјан Савић) - Старији програмер пуног стека и консултант за дигитална решења'
