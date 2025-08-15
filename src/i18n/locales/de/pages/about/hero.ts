@@ -1,22 +1,22 @@
 export const hero = {
     // Navigation/Header
-    aboutMe: 'ÜBER MICH',
+    aboutMe: 'FULLSTACK ENTWICKLER KÖLN - DAMJAN SAVIĆ',
     // Main Section
-    title: 'Digital Solutions Experte',
-    description: 'Mit einem Hintergrund in Softwareentwicklung und Expertise in digitaler Transformation helfe ich Unternehmen ihre Prozesse durch innovative Lösungen zu optimieren und zu automatisieren.',
+    title: 'Python Entwickler Köln & React Developer - Damjan Savić',
+    description: 'Als Fullstack Entwickler Köln ist Damjan Savić Ihr Freelance Developer für Python Automatisierung und React Entwicklung. Mit Expertise in OLLAMA KI Integration, ERP System Integration Köln und E-Commerce Entwicklung bietet Software Entwickler Köln Damjan Savić Custom Software Entwicklung für B2B Enterprise Kunden. Von API Entwicklung Python FastAPI bis zu Microservices - Ihr Backend Entwickler Köln.',
     // Expertise Areas
     expertise: {
         processAutomation: {
-            title: 'Prozessautomatisierung',
-            description: 'Entwicklung effizienter automatisierter Workflows'
+            title: 'Python Automatisierung Köln',
+            description: 'Prozessautomatisierung Python für B2B Unternehmen'
         },
         systemIntegration: {
-            title: 'Systemintegration',
-            description: 'Verbindung und Optimierung von Geschäftssystemen'
+            title: 'ERP System Integration Köln',
+            description: 'Enterprise Software Integration & API Entwicklung'
         },
         customDevelopment: {
-            title: 'Individuelle Entwicklung',
-            description: 'Erstellung maßgeschneiderter Softwarelösungen'
+            title: 'Custom Software Entwicklung Köln',
+            description: 'Freelance Developer für individuelle Lösungen'
         }
     },
     // Languages

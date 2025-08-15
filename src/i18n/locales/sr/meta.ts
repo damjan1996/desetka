@@ -1,18 +1,26 @@
 export const meta = {
     site: {
-        name: 'Damjan Savić',
-        title: 'Damjan Savić - Digital Solutions & JTL Integration',
-        subtitle: 'Programer individualnih rešenja za automatizaciju procesa',
-        description: 'Sa iskustvom u razvoju softvera i ekspertizom u digitalnoj transformaciji, podržavam kompanije u optimizaciji i automatizaciji njihovih poslovnih procesa.',
+        name: 'Damjan Savić | Дамјан Савић',
+        title: 'Damjan Savić - Старији програмер пуног стека | Консултант за дигитална решења',
+        subtitle: 'Експерт за софтвер за предузећа и облак архитектуру у Немачкој',
+        description: 'Дамјан Савић - искусни старији програмер пуног стека и консултант за дигитална решења из Келна, Немачка. Специјализован за софтвер за предузећа, облак архитектуру и интеграцију вештачке интелигенције за компаније у Европи.',
         keywords: [
-            'JTL integracija',
-            'E-commerce rešenja',
-            'Automatizacija procesa',
-            'Digitalno savetovanje',
-            'ERP sistemi',
-            'Python razvoj',
-            'Sistemska integracija',
-            'Digitalni marketing'
+            'Damjan Savić',
+            'Дамјан Савић',
+            'Старији програмер пуног стека',
+            'Консултант за дигитална решења',
+            'Софтвер за предузећа',
+            'Облак архитектура',
+            'Интеграција вештачке интелигенције',
+            'JTL интеграција Немачка',
+            'Е-трговина решења Европа',
+            'Аутоматизација процеса',
+            'ERP системи',
+            'Python развој',
+            'React програмирање',
+            'Дигитална трансформација Келн',
+            'Програмер Немачка',
+            'IT консултант Европа'
         ].join(', ')
     },
     company: {
@@ -28,8 +36,8 @@ export const meta = {
         website: 'www.damjan-savic.com'
     },
     author: {
-        name: 'Damjan Savić',
-        role: 'Konsultant za digitalna rešenja',
+        name: 'Damjan Savić | Дамјан Савић',
+        role: 'Старији програмер пуног стека | Консултант за дигитална решења',
         company: 'CoderCond',
         location: 'Oberhausen, Nemačka',
         email: 'info@damjan-savic.com',
@@ -75,12 +83,12 @@ export const meta = {
         og: {
             type: 'website',
             locale: 'sr_RS',
-            siteName: 'Damjan Savić - Digital Solutions',
+            siteName: 'Damjan Savić - Старији програмер пуног стека | Консултант за дигитална решења',
             images: {
                 url: '/images/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Damjan Savić - Digital Solutions & JTL Integration'
+                alt: 'Damjan Savić (Дамјан Савић) - Старији програмер пуног стека и консултант за дигитална решења у Немачкој'
             }
         },
         twitter: {

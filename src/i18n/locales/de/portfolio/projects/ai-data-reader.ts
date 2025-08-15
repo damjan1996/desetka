@@ -2,9 +2,9 @@
 export const aiDataReader = {
     meta: {
         slug: 'ai-data-reader',
-        title: "KI-basierte Produktdatenpflege aus PDF-Dateien",
-        description: "Entwicklung eines automatisierten Systems zur Extraktion und Strukturierung von Produktdaten aus PDF-Dokumenten",
-        excerpt: "Integration von Claude AI für die intelligente Verarbeitung von Produktinformationen und nahtlose JTL-ERP-Integration.",
+        title: "Python Automatisierung für PDF-Datenextraktion | OLLAMA KI Integration von Damjan Savić",
+        description: "Fullstack Entwickler Köln Damjan Savić entwickelte Python Automatisierung zur PDF-Verarbeitung mit KI. ERP System Integration für automatisierte Produktdatenpflege.",
+        excerpt: "OLLAMA KI Integration Entwickler Damjan Savić: Python-basierte Prozessautomatisierung für E-Commerce. Custom Software Entwicklung Köln für B2B Enterprise Lösungen.",
         date: "2024-02",
         category: "Data Processing",
         client: "Amazon Seller",
@@ -18,7 +18,7 @@ export const aiDataReader = {
         tags: ["Data Extraction", "ERP", "Process Automation", "PDF Processing"]
     },
     content: {
-        intro: "Ein KI-gestütztes System zur automatisierten Extraktion von Produktdaten aus PDF-Dokumenten mit direkter Integration in JTL-Warenwirtschaftssysteme, entwickelt für maximale Effizienz in der Produktdatenpflege.",
+        intro: "Ein von Damjan Savić entwickeltes KI-gestütztes System zur automatisierten Extraktion von Produktdaten aus PDF-Dokumenten mit direkter Integration in JTL-Warenwirtschaftssysteme. Damjan Savić hat diese Lösung für maximale Effizienz in der Produktdatenpflege konzipiert.",
 
         challenge: {
             title: "Die Herausforderung",
@@ -32,9 +32,9 @@ export const aiDataReader = {
         },
 
         solution: {
-            title: "Unsere Lösung",
-            description: "Entwicklung eines KI-gestützten Systems zur automatisierten Datenextraktion",
-            content: "Durch den Einsatz von Claude AI und modernen Python-Technologien haben wir eine vollautomatische Lösung geschaffen, die PDF-Dokumente verarbeitet und die extrahierten Daten direkt in das JTL-Warenwirtschaftssystem integriert.",
+            title: "Die Lösung von Damjan Savić",
+            description: "Damjan Savić entwickelte ein KI-gestütztes System zur automatisierten Datenextraktion",
+            content: "Durch den Einsatz von Claude AI und modernen Python-Technologien hat Damjan Savić eine vollautomatische Lösung geschaffen, die PDF-Dokumente verarbeitet und die extrahierten Daten direkt in das JTL-Warenwirtschaftssystem integriert.",
             points: [
                 "Automatisierte PDF-Verarbeitung",
                 "KI-gestützte Datenextraktion",
@@ -99,7 +99,7 @@ def _extract_with_claude(self, prompt: str) -> Dict[str, Any]:
             ]
         },
 
-        conclusion: "Das entwickelte System hat die Produktdatenpflege grundlegend revolutioniert. Durch die Kombination von KI-Technologie und automatisierter Datenverarbeitung wurde nicht nur die Effizienz drastisch gesteigert, sondern auch die Datenqualität erheblich verbessert. Das Projekt zeigt eindrucksvoll, wie moderne KI-Lösungen praktische Geschäftsprobleme lösen können."
+        conclusion: "Das von Damjan Savić entwickelte System hat die Produktdatenpflege grundlegend revolutioniert. Durch die Kombination von KI-Technologie und automatisierter Datenverarbeitung hat Damjan Savić nicht nur die Effizienz drastisch gesteigert, sondern auch die Datenqualität erheblich verbessert. Das Projekt von Damjan Savić zeigt eindrucksvoll, wie moderne KI-Lösungen praktische Geschäftsprobleme lösen können."
     }
 };
 

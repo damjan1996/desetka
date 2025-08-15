@@ -1,12 +1,15 @@
 export const meta = {
     site: {
         name: 'Damjan Savić',
-        title: 'Damjan Savić - Fullstack Developer | Python, JavaScript, AI',
-        subtitle: 'Python, JavaScript & AI Specialist for Modern Web Applications',
-        description: 'Experienced Fullstack Developer specializing in Python, JavaScript, React, Next.js, TypeScript, Electron Desktop Apps, AI/ML with OLLAMA, ERP systems, e-commerce, and process automation.',
+        title: 'Damjan Savić - Senior Fullstack Developer & Digital Solutions Consultant | Cologne, Germany',
+        subtitle: 'Enterprise Software Development, AI Integration & Cloud Architecture by Damjan Savić',
+        description: 'Damjan Savić is a Senior Fullstack Developer and Digital Solutions Consultant based in Cologne, Germany. Specializing in Enterprise Software Development, Cloud-native solutions, and AI integration. Damjan Savić delivers custom solutions using Python, React, TypeScript, OLLAMA, and modern web technologies for digital transformation.',
         keywords: [
             'Damjan Savić',
-            'Fullstack Developer',
+            'Damjan Savic',
+            'Senior Fullstack Developer Cologne',
+            'Digital Solutions Consultant Germany',
+            'Software Architect Cologne',
             'Python Development',
             'JavaScript Development',
             'React.js',
@@ -21,13 +24,26 @@ export const meta = {
             'Backend Development',
             'Frontend Development',
             'Web Development',
-            'Software Engineering'
+            'Software Engineering',
+            'Cloud Native Development',
+            'Microservices Architecture',
+            'DevOps Engineer Germany',
+            'Enterprise Software Solutions',
+            'Digital Transformation Consultant',
+            'SAP Integration Specialist',
+            'E-Commerce Developer Germany',
+            'Machine Learning Engineer',
+            'Large Language Models LLM',
+            'Docker Kubernetes Expert',
+            'AWS Cloud Architect',
+            'Agile Software Development',
+            'Remote Developer Europe'
         ].join(', ')
     },
     company: {
         name: 'Damjan Savić',
         shortName: 'Damjan Savić',
-        description: 'Your partner for modern software development, AI integration, and process automation.',
+        description: 'Damjan Savić and CoderConda - Your partner for Enterprise Software Development, digital transformation, and innovative IT solutions.',
         address: 'Rotdornallee',
         city: 'Köln',
         postalCode: '50999',
@@ -38,7 +54,7 @@ export const meta = {
     },
     author: {
         name: 'Damjan Savić',
-        role: 'Fullstack Developer & AI Specialist',
+        role: 'Senior Fullstack Developer & Digital Solutions Consultant',
         company: 'CoderConda',
         location: 'Cologne, Germany',
         email: 'info@damjan-savic.com',
@@ -59,14 +75,20 @@ export const meta = {
     },
     expertise: {
         areas: [
+            'Enterprise Software Development',
+            'Cloud-native Architecture',
             'Python Backend Development',
             'JavaScript/TypeScript Frontend',
-            'AI/ML Integration with OLLAMA',
-            'Process Automation',
-            'E-Commerce Development',
-            'ERP System Integration',
-            'Electron Desktop Apps',
-            'React & Next.js Applications'
+            'AI/ML Integration with OLLAMA & LLMs',
+            'Business Process Automation',
+            'E-Commerce Platforms',
+            'SAP & ERP System Integration',
+            'Microservices & API Development',
+            'DevOps & CI/CD Pipelines',
+            'Progressive Web Apps (PWA)',
+            'Electron Desktop Applications',
+            'React & Next.js Enterprise Apps',
+            'Digital Transformation Consulting'
         ],
         technologies: [
             'Python',
@@ -94,12 +116,12 @@ export const meta = {
         og: {
             type: 'website',
             locale: 'en_US',
-            siteName: 'Damjan Savić - Fullstack Developer Portfolio',
+            siteName: 'Damjan Savić - Senior Developer & IT Consultant Portfolio',
             images: {
                 url: '/images/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Damjan Savić - Fullstack Developer | Python, JavaScript, AI/OLLAMA'
+                alt: 'Damjan Savić - Senior Fullstack Developer & Digital Solutions Consultant | Enterprise Software, AI Integration, Cloud Architecture'
             }
         },
         twitter: {

@@ -1,46 +1,46 @@
 export const seoContent = {
   hero: {
-    title: "Damjan Savić - Fullstack Entwickler",
-    subtitle: "Python, JavaScript & KI Spezialist",
-    description: "Entwicklung moderner Webanwendungen, Automatisierungslösungen und KI-Integration mit OLLAMA",
+    title: "Damjan Savić - Senior Fullstack Entwickler & Digital Solutions Consultant Köln",
+    subtitle: "Enterprise Software Development & KI-Integration von Damjan Savić",
+    description: "Damjan Savić ist Senior Fullstack Entwickler und Digital Solutions Consultant in Köln. Mit über 10 Jahren Erfahrung entwickelt Damjan Savić Enterprise Software, Cloud-native Lösungen und KI-gestützte Systeme. Spezialist für Python, React, TypeScript, OLLAMA, Microservices und digitale Transformation.",
     cta: {
       primary: "Projekte ansehen",
       secondary: "Kontakt aufnehmen"
     }
   },
   services: {
-    title: "Meine Expertise",
-    subtitle: "Spezialisiert auf moderne Technologien und Lösungen",
+    title: "IT-Dienstleistungen von Damjan Savić - Senior Developer & Consultant Köln",
+    subtitle: "Maßgeschneiderte Enterprise Solutions & Digital Transformation von Damjan Savić",
     items: {
       backend: {
-        title: "Backend Entwicklung mit Python & Node.js",
-        description: "Skalierbare APIs und Microservices mit FastAPI, Django und Express. Fokus auf Performance und Clean Architecture.",
-        keywords: ["Python Backend", "FastAPI", "Django", "Node.js", "REST API", "GraphQL"]
+        title: "Enterprise Backend Development von Damjan Savić | Python & Cloud Architecture",
+        description: "Damjan Savić entwickelt skalierbare Backend-Systeme mit Python, FastAPI und Django. Als erfahrener Cloud Architect implementiert Damjan Savić Microservices, RESTful APIs und Event-Driven Architectures für Enterprise-Anwendungen.",
+        keywords: ["Backend Entwickler Köln", "Python Entwickler Köln", "API Entwicklung Python FastAPI", "Microservices Entwickler", "Django Entwickler Deutschland", "Node.js Entwickler Köln"]
       },
       frontend: {
-        title: "Frontend Development mit React & Next.js",
-        description: "Moderne, responsive Webanwendungen mit React, Next.js und TypeScript. SEO-optimiert und performant.",
-        keywords: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "SPA"]
+        title: "Modern Frontend Development von Damjan Savić | React, TypeScript & Next.js",
+        description: "Damjan Savić erstellt moderne, performante Frontend-Lösungen mit React, TypeScript und Next.js. Spezialisiert auf Enterprise UI/UX, Progressive Web Apps und barrierefreie Webanwendungen entwickelt Damjan Savić zukunftssichere Interfaces.",
+        keywords: ["React Entwickler Köln", "Frontend Entwickler Köln", "Next.js Entwickler Deutschland", "TypeScript React Entwickler", "Progressive Web App Entwicklung", "JavaScript Entwickler Köln"]
       },
       ai: {
-        title: "KI/ML Integration mit OLLAMA",
-        description: "Lokale KI-Lösungen mit OLLAMA für Datenschutz und Kosteneffizienz. Custom LLM-Integration für Ihre Anwendungen.",
-        keywords: ["OLLAMA", "KI Integration", "Machine Learning", "LLM", "AI Development", "NLP"]
+        title: "KI & Machine Learning Integration von Damjan Savić | OLLAMA & LLM Experte",
+        description: "Damjan Savić integriert künstliche Intelligenz in Ihre Geschäftsprozesse. Als KI-Spezialist implementiert Damjan Savić OLLAMA, Large Language Models und Machine Learning Lösungen für Automatisierung, Datenanalyse und intelligente Systeme.",
+        keywords: ["OLLAMA KI Integration Entwickler", "Python KI Entwicklung", "Machine Learning Köln", "LLM Integration", "AI Developer Köln", "NLP Entwicklung"]
       },
       erp: {
-        title: "ERP System Integration & Entwicklung",
-        description: "Nahtlose Integration von ERP-Systemen. Custom-Module und Automatisierung von Geschäftsprozessen.",
-        keywords: ["ERP Integration", "SAP", "Odoo", "Business Automation", "System Integration"]
+        title: "ERP & System Integration von Damjan Savić | SAP, Dynamics & Custom Solutions",
+        description: "Damjan Savić verbindet Ihre Unternehmenssysteme nahtlos. Mit Expertise in SAP, Microsoft Dynamics und Custom ERP-Lösungen optimiert Damjan Savić Ihre Geschäftsprozesse durch intelligente Integration und Automatisierung.",
+        keywords: ["ERP System Integration Köln", "B2B Software Entwicklung", "Enterprise Software Developer", "Business Automation Köln", "System Integration Spezialist", "SAP Integration"]
       },
       ecommerce: {
-        title: "E-Commerce & Onlineshop Lösungen",
-        description: "Entwicklung und Optimierung von E-Commerce-Plattformen. Performance-Optimierung und Conversion-Steigerung.",
-        keywords: ["E-Commerce", "Shopify", "WooCommerce", "Payment Integration", "Shop-Systeme"]
+        title: "E-Commerce Solutions von Damjan Savić | Shopify, WooCommerce & Custom Shops",
+        description: "Damjan Savić entwickelt leistungsstarke E-Commerce-Plattformen. Von Shopify-Anpassungen bis zu maßgeschneiderten Online-Shops realisiert Damjan Savić skalierbare Lösungen mit Payment-Integration, Inventory Management und Multi-Channel-Vertrieb.",
+        keywords: ["E-Commerce Integration Spezialist", "Online Shop Entwicklung Köln", "E-Commerce Developer", "Payment Integration", "Shop-System Entwicklung", "Shopify Developer"]
       },
       automation: {
-        title: "Prozessautomatisierung & Workflow Optimierung",
-        description: "Automatisierung repetitiver Aufgaben mit Python. RPA und Custom-Automation-Tools für Effizienzsteigerung.",
-        keywords: ["Prozessautomatisierung", "Python Automation", "RPA", "Workflow", "Selenium", "Task Automation"]
+        title: "Business Process Automation von Damjan Savić | RPA & Workflow Optimization",
+        description: "Damjan Savić automatisiert Ihre Geschäftsprozesse intelligent. Mit Python, RPA-Tools und Custom Workflows steigert Damjan Savić Ihre Effizienz, reduziert Fehler und beschleunigt Ihre digitale Transformation."
+        keywords: ["Prozessautomatisierung Python Köln", "Python Automatisierung Entwickler", "RPA Entwicklung Köln", "Workflow Automation", "Business Process Automation", "Task Automation Developer"]
       }
     }
   },
@@ -70,24 +70,24 @@ export const seoContent = {
     }
   },
   cta: {
-    title: "Bereit für Ihr nächstes Projekt?",
-    description: "Lassen Sie uns gemeinsam Ihre Ideen in die Realität umsetzen. Von der Konzeption bis zur Implementierung.",
-    button: "Kostenloses Erstgespräch vereinbaren"
+    title: "Bereit für Ihr nächstes Projekt mit Damjan Savić?",
+    description: "Damjan Savić setzt Ihre Ideen in die Realität um. Von der Konzeption bis zur Implementierung begleitet Damjan Savić Ihr Projekt professionell.",
+    button: "Damjan Savić kontaktieren - Kostenloses Erstgespräch"
   },
   testimonials: {
     title: "Was Kunden sagen",
     items: [
       {
-        text: "Damjan hat unsere Python-Skripte in eine moderne Web-App transformiert. Die Automatisierung spart uns täglich 4 Stunden Arbeit.",
+        text: "Damjan Savić hat unsere Python-Skripte in eine moderne Web-App transformiert. Die von Damjan Savić entwickelte Automatisierung spart uns täglich 4 Stunden Arbeit.",
         author: "Michael Schmidt",
         role: "CTO, TechStart GmbH",
-        keywords: ["Python Automatisierung", "Web App Entwicklung"]
+        keywords: ["Damjan Savić Python Automatisierung", "Web App Entwicklung Damjan Savić"]
       },
       {
-        text: "Die OLLAMA-Integration ermöglicht uns KI-Features ohne Cloud-Kosten. Datenschutz und Performance sind erstklassig.",
+        text: "Die von Damjan Savić implementierte OLLAMA-Integration ermöglicht uns KI-Features ohne Cloud-Kosten. Datenschutz und Performance der Lösung von Damjan Savić sind erstklassig.",
         author: "Sarah Weber",
         role: "Product Owner, DataSec AG",
-        keywords: ["OLLAMA Integration", "Datenschutz KI"]
+        keywords: ["Damjan Savić OLLAMA Integration", "Datenschutz KI Damjan Savić"]
       }
     ]
   }

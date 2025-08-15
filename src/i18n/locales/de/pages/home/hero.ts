@@ -1,21 +1,22 @@
 // src/i18n/locales/de/pages/home/hero.ts
 export const hero = {
-    title: 'SOFTWARE ENGINEER',
+    title: 'SENIOR FULLSTACK ENTWICKLER & DIGITAL SOLUTIONS CONSULTANT KÖLN',
     name: 'DAMJAN SAVIĆ',
-    cta: 'KONTAKT AUFNEHMEN',
+    subtitle: 'ENTERPRISE SOFTWARE | KI-INTEGRATION | CLOUD ARCHITECTURE',
+    cta: 'MIT DAMJAN SAVIĆ ZUSAMMENARBEITEN',
     image: {
-        alt: 'Portrait von Damjan Savić'
+        alt: 'Damjan Savić - Senior Fullstack Entwickler & Digital Solutions Consultant Köln | Enterprise Software, KI & Cloud Expert'
     },
     social: {
-        getInTouch: 'Kontaktieren Sie mich',
+        getInTouch: 'Kontaktieren Sie Damjan Savić',
         linkedin: {
-            title: 'Besuchen Sie mein LinkedIn Profil'
+            title: 'LinkedIn Profil von Damjan Savić besuchen'
         },
         github: {
-            title: 'Besuchen Sie mein GitHub Profil'
+            title: 'GitHub Profil von Damjan Savić besuchen'
         },
         email: {
-            title: 'Senden Sie mir eine E-Mail'
+            title: 'E-Mail an Damjan Savić senden'
         }
     },
     navigation: {

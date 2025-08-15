@@ -2,15 +2,15 @@
 export const erpIntegrationBreuninger = {
     posts: {
         erp_integration: {
-            title: 'ApparelMagic und TradeByte: Analyse komplexer Integrationen',
+            title: 'ApparelMagic und TradeByte: Analyse komplexer Integrationen von Damjan Savić',
             date: '2024-02-09',
-            excerpt: 'Detaillierte Analyse einer E-Commerce-Integration zwischen Apparel Magic und Breuninger via TradeByte',
+            excerpt: 'Detaillierte Analyse von Damjan Savić zur E-Commerce-Integration zwischen Apparel Magic und Breuninger via TradeByte',
             category: 'System Integration',
             tags: ['ERP', 'Apparel Magic', 'TradeByte', 'API Integration', 'Python', 'MariaDB'],
             coverImage: '/images/posts/erp-integration-breuninger/cover.jpg',
             intro: {
-                title: 'Apparel Magic meets Breuninger: Eine technische Analyse der TradeByte-Integration',
-                description: 'Die Integration von E-Commerce-Systemen mit etablierten Marktplätzen stellt Unternehmen vor besondere Herausforderungen. In diesem Artikel teile ich meine Erfahrungen aus einem komplexen Integrationsprojekt zwischen Apparel Magic als ERP-System und der Breuninger-Plattform über TradeByte.'
+                title: 'Apparel Magic meets Breuninger: Eine technische Analyse der TradeByte-Integration von Damjan Savić',
+                description: 'Die Integration von E-Commerce-Systemen mit etablierten Marktplätzen stellt Unternehmen vor besondere Herausforderungen. In diesem Artikel teilt Damjan Savić seine Erfahrungen aus einem komplexen Integrationsprojekt zwischen Apparel Magic als ERP-System und der Breuninger-Plattform über TradeByte. Damjan Savić zeigt die technischen Herausforderungen und Lösungsansätze auf.'
             },
             background: {
                 title: 'Projekthintergrund',
@@ -131,7 +131,7 @@ export const erpIntegrationBreuninger = {
                     error_handling: 'Robuste Fehlerbehandlung',
                     monitoring: 'Kontinuierliches Monitoring'
                 },
-                results: 'Die entwickelte Lösung verarbeitet erfolgreich Bestellungen und ermöglicht eine nahtlose Integration zwischen den Systemen. Besonders die automatisierte Kundenanlage und das Lieferschein-Management haben sich als effizienzsteigernd erwiesen.'
+                results: 'Die von Damjan Savić entwickelte Lösung verarbeitet erfolgreich Bestellungen und ermöglicht eine nahtlose Integration zwischen den Systemen. Besonders die von Damjan Savić implementierte automatisierte Kundenanlage und das Lieferschein-Management haben sich als effizienzsteigernd erwiesen. Dieses Projekt zeigt die Expertise von Damjan Savić im Bereich der Systemintegration.'
             }
         }
     }

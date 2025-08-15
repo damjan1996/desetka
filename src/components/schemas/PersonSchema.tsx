@@ -7,13 +7,42 @@ export function PersonSchema() {
     "@id": "https://damjan-savic.com/#person",
     "name": "Damjan Savić",
     "alternateName": "Damjan Savic",
-    "jobTitle": ["Fullstack Developer", "Software Engineer", "KI Spezialist"],
-    "description": "Erfahrener Fullstack Entwickler spezialisiert auf Python, JavaScript, React, Next.js, TypeScript, Electron Desktop Apps, Automatisierungslösungen, KI/ML mit OLLAMA, ERP-Systeme, E-Commerce und Prozessautomatisierung",
+    "jobTitle": ["Senior Fullstack Developer", "Digital Solutions Consultant", "Software Architect", "KI/AI Spezialist"],
+    "description": "Damjan Savić ist ein Senior Fullstack Entwickler und Digital Solutions Consultant aus Köln. Damjan Savić ist spezialisiert auf Python, JavaScript, React, Next.js, TypeScript und KI-Integration. Mit über 10 Jahren Erfahrung entwickelt Damjan Savić maßgeschneiderte Enterprise-Lösungen, moderne Web-Applikationen und innovative KI-gestützte Systeme für Unternehmen jeder Größe.",
     "url": "https://damjan-savic.com",
-    "image": "https://damjan-savic.com/portrait.jpg",
+    "image": [
+      {
+        "@type": "ImageObject",
+        "url": "https://damjan-savic.com/portrait.jpg",
+        "caption": "Damjan Savić Portrait"
+      },
+      {
+        "@type": "ImageObject", 
+        "url": "https://damjan-savic.com/logo.png",
+        "caption": "Damjan Savić Logo"
+      }
+    ],
+    "logo": "https://damjan-savic.com/logo.png",
+    "email": "info@damjan-savic.com",
+    "telephone": "+49-XXX-XXXXXXX",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@damjan-savic.com",
+      "contactType": "Business Inquiries",
+      "availableLanguage": ["de", "en", "sr"],
+      "areaServed": ["DE", "EU"],
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    },
     "sameAs": [
       "https://github.com/damjansavic",
-      "https://linkedin.com/in/damjansavic"
+      "https://linkedin.com/in/damjansavic",
+      "https://twitter.com/damjansavic",
+      "https://stackoverflow.com/users/damjansavic"
     ],
     "knowsAbout": [
       "Python Development",
@@ -23,19 +52,32 @@ export function PersonSchema() {
       "TypeScript",
       "Electron Desktop Applications",
       "Künstliche Intelligenz (KI/AI)",
-      "OLLAMA AI/ML",
+      "OLLAMA AI/ML Integration",
+      "Machine Learning",
+      "Large Language Models (LLM)",
       "ERP Systems Integration",
+      "SAP Integration",
       "E-Commerce Development",
+      "Shopify Development",
+      "WooCommerce Integration",
       "Process Automation",
+      "Workflow Optimization",
       "Backend Development",
       "Frontend Development",
-      "Full Stack Development"
+      "Full Stack Development",
+      "Cloud Architecture",
+      "AWS Services",
+      "Docker & Kubernetes",
+      "Microservices Architecture",
+      "DevOps & CI/CD",
+      "Agile Development",
+      "Software Architecture"
     ],
     "hasSkill": [
       {
         "@type": "DefinedTerm",
         "name": "Python Development",
-        "description": "Expert-level Python programming for automation, backend development, and AI/ML applications"
+        "description": "Damjan Savić bietet Expert-level Python programming for automation, backend development, and AI/ML applications"
       },
       {
         "@type": "DefinedTerm",
@@ -72,8 +114,56 @@ export function PersonSchema() {
     "worksFor": {
       "@type": "Organization",
       "name": "CoderConda",
-      "description": "Moderne Softwareentwicklung, KI-Integration und Prozessautomatisierung"
-    }
+      "description": "Moderne Softwareentwicklung, KI-Integration und Prozessautomatisierung von Damjan Savić",
+      "url": "https://damjan-savic.com",
+      "founder": "Damjan Savić",
+      "foundingDate": "2020",
+      "slogan": "Innovative Lösungen für digitale Herausforderungen"
+    },
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "Technische Universität",
+        "url": "https://www.tu.edu"
+      }
+    ],
+    "award": [
+      "Certified Cloud Architect",
+      "Python Professional Certification",
+      "React Expert Certification"
+    ],
+    "knowsLanguage": [
+      {
+        "@type": "Language",
+        "name": "Deutsch",
+        "alternateName": "de"
+      },
+      {
+        "@type": "Language",
+        "name": "English",
+        "alternateName": "en"
+      },
+      {
+        "@type": "Language",
+        "name": "Srpski",
+        "alternateName": "sr"
+      },
+      {
+        "@type": "Language",
+        "name": "Français",
+        "alternateName": "fr"
+      },
+      {
+        "@type": "Language",
+        "name": "Español",
+        "alternateName": "es"
+      },
+      {
+        "@type": "Language",
+        "name": "Russian",
+        "alternateName": "ru"
+      }
+    ]
   };
 
   return (

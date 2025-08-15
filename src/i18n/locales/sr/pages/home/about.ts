@@ -1,9 +1,9 @@
 // src/i18n/locales/sr/pages/home/about.ts
 export const about = {
     title: 'O Meni',
-    content: 'Kao konsultant u oblasti digitalizacije, pomažem kompanijama da unaprede svoje procese kroz savremeni softver. Razvijam rešenja za povezivanje sistema za upravljanje robom, programe za automatizaciju radnih procesa i RFID aplikacije za bolje praćenje robe. U kompaniji Ritter Digital GmbH radim sa JTL softverom i razvijam individualna programska rešenja. Jedan od projekata je bilo povezivanje Breuninger sistema sa Apparel Magic-om preko TB.One platforme. Moj cilj je da učinim kompanije efikasnijim kroz softver.',
+    content: 'Као старији програмер пуног стека и консултант за дигитална решења, специјализован сам за софтвер за предузећа, облак архитектуру и интеграцију вештачке интелигенције. Са седиштем у Келну, Немачка, помажем компанијама широм Европе да оптимизују своје пословне процесе кроз модерна технолошка решења. Моја експертиза обухвата развој скалабилних система, имплементацију облак архитектуре, као и интеграцију најновијих AI технологија. У компанији Ritter Digital GmbH радим на JTL интеграцијама и развијам прилагођена решења за дигиталну трансформацију. Један од кључних пројеката је била интеграција Breuninger ERP система са Apparel Magic платформом преко TB.One решења. Мој циљ је да омогућим компанијама да постану ефикасније и конкурентније кроз иновативна софтверска решења.',
     image: {
-        alt: 'Portret Damjana Savića'
+        alt: 'Damjan Savić (Дамјан Савић) - Старији програмер пуног стека и консултант за дигитална решења из Келна, Немачка'
     }
 } as const;
 export type AboutTranslations = typeof about;

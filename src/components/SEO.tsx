@@ -4,6 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { HreflangTags } from './HreflangTags';
 import { seoContent as seoContentDe } from '../i18n/locales/de/seo-content';
 import { seoContent as seoContentEn } from '../i18n/locales/en/seo-content';
+import { seoContent as seoContentSr } from '../i18n/locales/sr/seo-content';
+import { meta as metaDe } from '../i18n/locales/de/meta';
+import { meta as metaEn } from '../i18n/locales/en/meta';
+import { meta as metaSr } from '../i18n/locales/sr/meta';
 import { AutoBreadcrumbs } from './schemas/BreadcrumbSchema';
 
 interface SEOProps {
@@ -38,8 +42,14 @@ const SEO: React.FC<SEOProps> = ({
     const currentLanguage = i18n.language;
     
     // SEO-Content basierend auf Sprache auswählen
-    const seoContent = currentLanguage === 'de' ? seoContentDe : seoContentEn;
+    const seoContent = currentLanguage === 'de' ? seoContentDe : 
+                      currentLanguage === 'sr' ? seoContentSr : 
+                      seoContentEn;
+    const meta = currentLanguage === 'de' ? metaDe : 
+                 currentLanguage === 'sr' ? metaSr : 
+                 metaEn;
     const defaultDescription = description || seoContent.hero.description;
+    const defaultKeywords = keywords || meta.site.keywords;
 
     // Default schema für die Website
     const defaultSchema = {
@@ -54,7 +64,11 @@ const SEO: React.FC<SEOProps> = ({
             'https://linkedin.com/in/damjansavic',
             'https://github.com/damjansavic'
         ],
-        jobTitle: ['Fullstack Developer', 'Software Engineer', 'KI Spezialist'],
+        jobTitle: currentLanguage === 'de' ? 
+            ['Senior Fullstack Entwickler', 'Digital Solutions Consultant', 'Software Architekt', 'KI/AI Spezialist'] :
+            currentLanguage === 'sr' ? 
+            ['Старији програмер пуног стека', 'Консултант за дигитална решења', 'Софтверски архитекта'] :
+            ['Senior Fullstack Developer', 'Digital Solutions Consultant', 'Software Architect', 'AI Specialist'],
         worksFor: {
             '@type': 'Organization',
             name: 'CoderConda'
@@ -109,8 +123,10 @@ const SEO: React.FC<SEOProps> = ({
         ? i18n.options.supportedLngs
             .filter((lng: string) => lng !== 'cimode')
             .map((lng: string) => ({
-                hrefLang: lng,
-                href: `${siteUrl}/${lng}${window.location.pathname}`,
+                hrefLang: lng === 'de' ? 'de-DE' : lng === 'sr' ? 'sr-RS' : 'en-US',
+                href: lng === 'de' ? 
+                    `${siteUrl}${window.location.pathname}` : 
+                    `${siteUrl}/${lng}${window.location.pathname}`,
             }))
         : [];
 
@@ -133,7 +149,11 @@ const SEO: React.FC<SEOProps> = ({
             <meta property="og:image" content={image} />
             <meta property="og:type" content={article ? 'article' : 'website'} />
             <meta property="og:site_name" content={siteTitle} />
-            <meta property="og:locale" content={currentLanguage} />
+            <meta property="og:locale" content={
+                currentLanguage === 'de' ? 'de_DE' : 
+                currentLanguage === 'sr' ? 'sr_RS' : 
+                'en_US'
+            } />
             {alternateUrls?.map(
                 ({ hrefLang }: { hrefLang: string; href: string }) => (
                     <meta key={hrefLang} property="og:locale:alternate" content={hrefLang} />
@@ -151,9 +171,9 @@ const SEO: React.FC<SEOProps> = ({
             <meta name="theme-color" content="#000000" />
             <meta
                 name="keywords"
-                content={keywords || "Damjan Savić, Fullstack Developer, Python, JavaScript, React, Next.js, TypeScript, Electron, KI, AI, OLLAMA, ERP, E-Commerce, Prozessautomatisierung, Backend, Frontend, Web Development"}
+                content={defaultKeywords}
             />
-            <meta name="author" content="Damjan Savić" />
+            <meta name="author" content={author} />
 
             {/* Schema.org markup */}
             <script type="application/ld+json">

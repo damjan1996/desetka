@@ -1,10 +1,10 @@
 // src/i18n/locales/sr/pages/home/hero.ts
 export const hero = {
-    title: 'SOFTWARE ENGINEER',
-    name: 'DAMJAN SAVIĆ',
+    title: 'СТАРИЈИ ПРОГРАМЕР ПУНОГ СТЕКА',
+    name: 'ДАМЈАН САВИЋ',
     cta: 'KONTAKTIRAJTE ME',
     image: {
-        alt: 'Portret Damjana Savića'
+        alt: 'Damjan Savić (Дамјан Савић) - Старији програмер пуног стека и консултант за дигитална решења'
     },
     social: {
         getInTouch: 'Kontaktirajte me',

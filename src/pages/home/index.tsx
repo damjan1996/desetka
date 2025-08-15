@@ -6,20 +6,24 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import About from './components/About';
 import { FAQSection } from '../../components/FAQSection';
+import { LocalizedWebsiteSchema, LocalizedPersonSchema } from '../../components/schemas/LocalizedSchemas';
+import { LocalBusinessSchema } from '../../components/schemas/LocalBusinessSchema';
+import { ServiceSchema } from '../../components/schemas/ServiceSchema';
 
 const HomePage = () => {
     const schema = {
         '@context': 'https://schema.org',
         '@type': 'ProfilePage',
-        name: 'Damjan Savić - Digital Solutions Consultant',
+        '@id': 'https://damjan-savic.com/#profilepage',
+        name: 'Damjan Savić - Senior Fullstack Entwickler & Digital Solutions Consultant',
         description:
-            'Expert in JTL integration, e-commerce solutions, and process automation. Helping businesses optimize their digital operations.',
+            'Damjan Savić ist Senior Fullstack Entwickler und Digital Solutions Consultant in Köln. Spezialisiert auf Enterprise Software Development, KI-Integration, Cloud Architecture und digitale Transformation.',
         mainEntity: {
             '@type': 'Person',
             name: 'Damjan Savić',
-            jobTitle: 'Digital Solutions Consultant',
+            jobTitle: ['Senior Fullstack Developer', 'Digital Solutions Consultant', 'Software Architect'],
             description:
-                'Software Developer & Digital Solutions Consultant specializing in ERP systems, e-commerce integration, and process automation.',
+                'Damjan Savić ist Senior Fullstack Entwickler und Digital Solutions Consultant mit über 10 Jahren Erfahrung in Enterprise Software Development, Cloud-native Lösungen und KI-Integration.',
             knowsLanguage: [
                 'English',
                 'German',
@@ -30,40 +34,56 @@ const HomePage = () => {
             ],
             hasOccupation: {
                 '@type': 'Occupation',
-                name: 'Digital Solutions Consultant',
+                name: 'Senior Fullstack Developer & Digital Solutions Consultant',
                 skills: [
-                    'JTL-Wawi',
+                    'Enterprise Software Development',
+                    'Cloud Architecture (AWS, Azure)',
                     'Python Development',
-                    'E-commerce Integration',
-                    'Process Automation',
-                    'System Integration',
-                    'Digital Marketing'
+                    'React & TypeScript',
+                    'KI/ML Integration (OLLAMA, LLMs)',
+                    'Microservices Architecture',
+                    'SAP & ERP Integration',
+                    'E-commerce Solutions',
+                    'DevOps & CI/CD',
+                    'Digital Transformation Consulting'
                 ]
             },
             alumniOf: {
                 '@type': 'CollegeOrUniversity',
-                name: 'Middlesex University London'
+                name: 'Technische Universität'
             },
             worksFor: {
                 '@type': 'Organization',
-                name: 'RITTER Digital GmbH',
-                location: 'Oberhausen, Germany'
+                name: 'CoderConda',
+                description: 'IT-Beratung und Software Development von Damjan Savić',
+                founder: 'Damjan Savić',
+                location: 'Köln, Deutschland'
+            },
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Köln',
+                addressRegion: 'Nordrhein-Westfalen',
+                addressCountry: 'Deutschland'
             }
         }
     };
 
     const metaDescription =
-        'Digital Solutions Consultant specializing in JTL integration, e-commerce solutions, ' +
-        'and process automation. Expertise in Python development, system integration, and ' +
-        'digital marketing automation. Based in Germany, working with clients worldwide.';
+        'Damjan Savić - Senior Fullstack Entwickler & Digital Solutions Consultant in Köln. Spezialisiert auf Enterprise Software Development, ' +
+        'Cloud Architecture, KI-Integration mit OLLAMA, Microservices und digitale Transformation. Damjan Savić entwickelt maßgeschneiderte ' +
+        'Lösungen mit Python, React, TypeScript für E-Commerce, ERP-Integration und Business Process Automation. Kontaktieren Sie Damjan Savić.';
 
     return (
         <>
             <SEO
-                title="Damjan Savić - Digital Solutions Consultant"
+                title="Damjan Savić - Senior Fullstack Entwickler & Digital Solutions Consultant Köln | Enterprise Software & KI-Experte"
                 description={metaDescription}
                 schema={schema}
             />
+            <LocalizedWebsiteSchema />
+            <LocalizedPersonSchema />
+            <LocalBusinessSchema />
+            <ServiceSchema />
             <main className="min-h-screen">
                 {/* Hero Section */}
                 <div id="home">

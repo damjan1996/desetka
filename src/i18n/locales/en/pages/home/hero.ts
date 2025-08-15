@@ -1,10 +1,11 @@
 // src/i18n/locales/en/pages/home/hero.ts
 export const hero = {
-    title: 'SOFTWARE ENGINEER',
+    title: 'SENIOR FULLSTACK DEVELOPER & DIGITAL SOLUTIONS CONSULTANT',
     name: 'DAMJAN SAVIĆ',
-    cta: 'GET IN TOUCH',
+    subtitle: 'ENTERPRISE SOFTWARE | AI INTEGRATION | CLOUD ARCHITECTURE',
+    cta: 'WORK WITH DAMJAN SAVIĆ',
     image: {
-        alt: 'Portrait of Damjan Savić'
+        alt: 'Damjan Savić - Senior Fullstack Developer & Digital Solutions Consultant | Enterprise Software Expert'
     },
     social: {
         getInTouch: 'Get in touch',

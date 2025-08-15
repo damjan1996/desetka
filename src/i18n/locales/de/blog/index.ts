@@ -1,11 +1,11 @@
 // src/i18n/locales/de/blog/index.ts
 export const blog = {
     meta: {
-        title: 'Blog - JTL Integration & Digital Solutions',
-        description: 'Insights und Best Practices zu JTL-WaWi, E-Commerce und digitaler Transformation',
+        title: 'Blog von Damjan Savić - JTL Integration & Digital Solutions',
+        description: 'Insights und Best Practices von Damjan Savić zu JTL-WaWi, E-Commerce und digitaler Transformation. Damjan Savić teilt seine Expertise als Fullstack Entwickler.',
         header: {
-            title: 'Insights & Best Practices',
-            subtitle: 'Insights und Best Practices zu JTL-WaWi, E-Commerce und digitaler Transformation'
+            title: 'Insights & Best Practices von Damjan Savić',
+            subtitle: 'Damjan Savić teilt Insights und Best Practices zu JTL-WaWi, E-Commerce und digitaler Transformation'
         }
     },
     posts: {
@@ -18,8 +18,8 @@ export const blog = {
             coverImage: '/images/posts/erp-integration-breuninger/cover.jpg',
             content: {
                 intro: {
-                    title: 'Apparel Magic meets Breuninger: Eine technische Analyse der TradeByte-Integration',
-                    description: 'Die Integration von E-Commerce-Systemen mit etablierten Marktplätzen stellt Unternehmen vor besondere Herausforderungen. In diesem Artikel teile ich meine Erfahrungen aus einem komplexen Integrationsprojekt zwischen Apparel Magic als ERP-System und der Breuninger-Plattform über TradeByte.'
+                    title: 'Apparel Magic meets Breuninger: Eine technische Analyse der TradeByte-Integration von Damjan Savić',
+                    description: 'Die Integration von E-Commerce-Systemen mit etablierten Marktplätzen stellt Unternehmen vor besondere Herausforderungen. In diesem Artikel teilt Damjan Savić seine Erfahrungen aus einem komplexen Integrationsprojekt zwischen Apparel Magic als ERP-System und der Breuninger-Plattform über TradeByte.'
                 },
                 background: {
                     title: 'Projekthintergrund',
@@ -140,7 +140,7 @@ export const blog = {
                         error_handling: 'Robuste Fehlerbehandlung',
                         monitoring: 'Kontinuierliches Monitoring'
                     },
-                    results: 'Die entwickelte Lösung verarbeitet erfolgreich Bestellungen und ermöglicht eine nahtlose Integration zwischen den Systemen. Besonders die automatisierte Kundenanlage und das Lieferschein-Management haben sich als effizienzsteigernd erwiesen.'
+                    results: 'Die von Damjan Savić entwickelte Lösung verarbeitet erfolgreich Bestellungen und ermöglicht eine nahtlose Integration zwischen den Systemen. Besonders die von Damjan Savić implementierte automatisierte Kundenanlage und das Lieferschein-Management haben sich als effizienzsteigernd erwiesen.'
                 }
             }
         },

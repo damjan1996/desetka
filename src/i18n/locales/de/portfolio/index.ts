@@ -6,13 +6,13 @@ import powerPlatformGovernance from './projects/power-platform-governance';
 export const portfolio = {
     // Meta-Informationen für die Portfolio-Seite
     seo: {
-        title: 'Portfolio - Damjan Savić',
-        description: 'Entdecken Sie meine Projekte im Bereich JTL-Integration, E-Commerce und digitale Transformation.'
+        title: 'Portfolio - Fullstack Entwickler Köln Damjan Savić | Python & React Projekte',
+        description: 'Portfolio von Freelance Developer Köln Damjan Savić: Python Automatisierung, OLLAMA KI Integration, ERP System Integration, E-Commerce Entwicklung. Custom Software Entwicklung Köln für B2B Enterprise.'
     },
     // Portfolio-Überschriften und Filter
     sections: {
-        title: 'Portfolio',
-        subtitle: 'Ausgewählte Projekte und Referenzen',
+        title: 'Software Entwickler Köln - Portfolio Damjan Savić',
+        subtitle: 'Python Entwickler Köln & React Developer - Erfolgreiche Projekte',
         filterTitle: 'Kategorien',
         sortTitle: 'Sortierung'
     },

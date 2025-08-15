@@ -17,7 +17,8 @@
       "Bash(pnpm approve-builds:*)",
       "Bash(curl:*)",
       "Bash(npx tailwindcss:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(dir:*)"
     ],
     "deny": []
   }
