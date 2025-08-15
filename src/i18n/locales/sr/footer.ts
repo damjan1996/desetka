@@ -31,7 +31,8 @@ const footer = {
         copyright: "Sva prava zadržana",
         links: {
             privacy: "Zaštita podataka",
-            terms: "Impresum"
+            imprint: "Impresum",
+            terms: "Uslovi korišćenja"
         }
     }
 } as const;

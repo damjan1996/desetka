@@ -31,7 +31,8 @@ const footer = {
         copyright: "Alle Rechte vorbehalten",
         links: {
             privacy: "Datenschutz",
-            terms: "Impressum"
+            imprint: "Impressum",
+            terms: "AGB"
         }
     }
 } as const;

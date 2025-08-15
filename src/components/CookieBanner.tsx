@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { initGA, logPageView, initFBPixel, initFunctionalCookies } from '../utils/analytics';
+import { loadGoogleTagManager } from '../services/gtm';
 
 // Feste Übersetzungen direkt in der Komponente
 const translations = {
@@ -146,6 +147,7 @@ const blockGoogleAnalytics = () => {
 const CookieBanner = () => {
     const { i18n } = useTranslation();
     const [currentLang, setCurrentLang] = useState<'de' | 'en' | 'sr'>('de');
+    const [showBanner, setShowBanner] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [cookieSettings, setCookieSettings] = useState<CookieSettings>({
         necessary: true, // Always true and disabled
@@ -172,6 +174,7 @@ const CookieBanner = () => {
         // Marketing-Dienste nur mit Zustimmung
         if (settings.marketing) {
             initFBPixel();
+            loadGoogleTagManager();
         }
 
         // Funktionale Dienste nur mit Zustimmung
@@ -206,26 +209,35 @@ const CookieBanner = () => {
     useEffect(() => {
         try {
             const storedSettings = localStorage.getItem('cookieSettings');
-            if (storedSettings) {
+            const hasConsent = localStorage.getItem('cookieConsent');
+            
+            if (storedSettings && hasConsent) {
                 const parsedSettings = JSON.parse(storedSettings) as CookieSettings;
                 setCookieSettings(parsedSettings);
 
                 // Lade die entsprechenden Dienste basierend auf den Einstellungen
                 initializeServices(parsedSettings);
+                setShowBanner(false);
+            } else {
+                // Zeige Banner wenn keine Zustimmung vorhanden ist
+                setShowBanner(true);
             }
         } catch (error) {
             console.error('Error loading cookie settings:', error);
+            setShowBanner(true);
         }
     }, [initializeServices]);
 
     const handleSaveSettings = () => {
         localStorage.setItem('cookieSettings', JSON.stringify(cookieSettings));
-        localStorage.setItem('cookieConsent', cookieSettings.analytics || cookieSettings.marketing || cookieSettings.functional ? 'true' : 'false');
+        localStorage.setItem('cookieConsent', 'true');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
 
         // Initialisiere Dienste basierend auf den ausgewählten Einstellungen
         initializeServices(cookieSettings);
 
         setShowSettings(false);
+        setShowBanner(false);
     };
 
     const handleAcceptAll = () => {
@@ -238,12 +250,14 @@ const CookieBanner = () => {
 
         localStorage.setItem('cookieSettings', JSON.stringify(allSettings));
         localStorage.setItem('cookieConsent', 'true');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
         setCookieSettings(allSettings);
 
         // Initialisiere alle Dienste
         initializeServices(allSettings);
 
         setShowSettings(false);
+        setShowBanner(false);
     };
 
     const handleDeclineAll = () => {
@@ -255,13 +269,15 @@ const CookieBanner = () => {
         };
 
         localStorage.setItem('cookieSettings', JSON.stringify(minimalSettings));
-        localStorage.setItem('cookieConsent', 'false');
+        localStorage.setItem('cookieConsent', 'true');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
         setCookieSettings(minimalSettings);
 
         // Block all non-essential services
         initializeServices(minimalSettings);
 
         setShowSettings(false);
+        setShowBanner(false);
     };
 
     const toggleSetting = (setting: keyof Omit<CookieSettings, 'necessary'>) => {
@@ -271,8 +287,8 @@ const CookieBanner = () => {
         });
     };
 
-    // If consent already given, don't show banner
-    if (localStorage.getItem('cookieConsent')) {
+    // If banner should not be shown, return null
+    if (!showBanner) {
         return null;
     }
 
@@ -449,12 +465,18 @@ const CookieBanner = () => {
                                 </button>
                             </div>
 
-                            <div className="mt-4 text-center">
+                            <div className="mt-4 text-center space-x-4">
                                 <a
-                                    href="/privacy-policy"
+                                    href="/privacy"
                                     className="text-xs text-white/70 hover:text-white underline"
                                 >
-                                    {getText('learnMore')}
+                                    Datenschutzerklärung
+                                </a>
+                                <a
+                                    href="/imprint"
+                                    className="text-xs text-white/70 hover:text-white underline"
+                                >
+                                    Impressum
                                 </a>
                             </div>
                         </div>

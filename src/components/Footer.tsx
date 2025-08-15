@@ -106,6 +106,12 @@ const Footer = () => {
                                     {t('footer.legal.links.privacy')}
                                 </Link>
                                 <Link
+                                    to="/imprint"
+                                    className="text-zinc-400 hover:text-white text-xs transition-colors !p-0 !min-h-0 !min-w-0"
+                                >
+                                    {t('footer.legal.links.imprint')}
+                                </Link>
+                                <Link
                                     to="/terms"
                                     className="text-zinc-400 hover:text-white text-xs transition-colors !p-0 !min-h-0 !min-w-0"
                                 >

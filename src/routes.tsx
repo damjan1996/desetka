@@ -16,6 +16,7 @@ const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const DashboardPage = React.lazy(() => import('./pages/DashboardPage'));
 const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsPage = React.lazy(() => import('./pages/TermsPage'));
+const ImprintPage = React.lazy(() => import('./pages/ImprintPage'));
 
 const AppRoutes = () => {
     return (
@@ -137,6 +138,17 @@ const AppRoutes = () => {
                     <PageContainer>
                         <Suspense fallback={null}>
                             <TermsPage />
+                        </Suspense>
+                    </PageContainer>
+                }
+                errorElement={<RouteErrorBoundary />}
+            />
+            <Route
+                path="/imprint"
+                element={
+                    <PageContainer>
+                        <Suspense fallback={null}>
+                            <ImprintPage />
                         </Suspense>
                     </PageContainer>
                 }
