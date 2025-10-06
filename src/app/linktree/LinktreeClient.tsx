@@ -15,24 +15,24 @@ export default function LinktreeClient() {
     ];
 
     return (
-        <section className="min-h-screen py-8 sm:py-16 md:py-20 flex items-start justify-center">
-            <div className="max-w-md mx-auto px-4 w-full pt-8 sm:pt-0">
+        <section className="h-[calc(100vh-4rem)] flex flex-col justify-start pt-16 overflow-hidden">
+            <div className="max-w-md mx-auto px-4 w-full">
                 {/* Header */}
-                <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold text-zinc-900 mb-2 tracking-tight">{t.linktree.title}</h1>
-                    <p className="text-zinc-600">{t.linktree.subtitle}</p>
-                    <div className="h-1 w-16 bg-primary rounded-full mx-auto mt-4" />
+                <div className="text-center mb-6">
+                    <h1 className="text-3xl font-bold text-zinc-900 mb-1 tracking-tight">{t.linktree.title}</h1>
+                    <p className="text-zinc-600 text-sm">{t.linktree.subtitle}</p>
+                    <div className="h-1 w-16 bg-primary rounded-full mx-auto mt-3" />
                 </div>
 
                 {/* Link Buttons */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                     {links.map((link) => (
                         <Link
                             key={link.url}
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-center p-4 bg-white border border-zinc-200 hover:border-primary/40 rounded-xl text-center transition-all shadow-sm hover:shadow-md group"
+                            className="flex items-center justify-center p-3 bg-white border border-zinc-200 hover:border-primary/40 rounded-xl text-center transition-all shadow-sm hover:shadow-md group"
                         >
                             <span className="text-2xl mr-3">{link.icon}</span>
                             <span className="text-zinc-900 font-medium group-hover:text-primary transition-colors">
