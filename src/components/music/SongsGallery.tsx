@@ -1,28 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { songs } from '@/lib/data/songs';
 import SongCard from './SongCard';
 import AudioPlayer from './AudioPlayer';
 import { useTranslations } from '@/contexts/LanguageContext';
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 export default function SongsGallery() {
     const t = useTranslations();
-    const [currentSongId, setCurrentSongId] = useState<string | null>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const { currentSong, isPlaying, togglePlayPause } = useAudioPlayer();
 
-    const currentSong = songs.find((song) => song.id === currentSongId);
-
-    const handlePlaySong = (songId: string) => {
-        if (currentSongId === songId) setIsPlaying(!isPlaying);
-        else {
-            setCurrentSongId(songId);
-            setIsPlaying(true);
-        }
-    };
-
-    const handlePlayPause = () => setIsPlaying(!isPlaying);
 
     return (
         <section className="min-h-screen py-20 sm:py-24">
@@ -45,8 +33,6 @@ export default function SongsGallery() {
                         <SongCard
                             key={song.id}
                             song={song}
-                            onPlay={() => handlePlaySong(song.id)}
-                            isPlaying={isPlaying && currentSongId === song.id}
                         />
                     ))}
                 </div>
@@ -75,7 +61,7 @@ export default function SongsGallery() {
                                 <AudioPlayer
                                     audioUrl={currentSong.audioUrl}
                                     isPlaying={isPlaying}
-                                    onPlayPause={handlePlayPause}
+                                    onPlayPause={togglePlayPause}
                                 />
                             </div>
                         </div>

@@ -49,6 +49,10 @@ export interface TranslationKeys {
     tracks: string;
     budget: string;
     views_per_euro: string;
+    months_working: string;
+    months_working_label: string;
+    total_viewers: string;
+    total_viewers_label: string;
     learn_more: string;
   };
   
@@ -222,6 +226,8 @@ export const translations: Record<Language, TranslationKeys> = {
       views: 'Views',
       followers: 'Followers',
       tracks: 'Tracks',
+      budget: '€5K',
+      views_per_euro: '50K',
       months_working: '2',
       months_working_label: 'Months Working',
       total_viewers: '250K',
@@ -411,6 +417,8 @@ export const translations: Record<Language, TranslationKeys> = {
       views: 'Views',
       followers: 'Followers',
       tracks: 'Tracks',
+      budget: '€5K',
+      views_per_euro: '50K',
       months_working: '2',
       months_working_label: 'Monate Arbeit',
       total_viewers: '250K',
@@ -600,6 +608,8 @@ export const translations: Record<Language, TranslationKeys> = {
       views: 'Pregledi',
       followers: 'Pratioci',
       tracks: 'Pesme',
+      budget: '€5K',
+      views_per_euro: '50K',
       months_working: '2',
       months_working_label: 'Meseca rada',
       total_viewers: '250K',
@@ -687,8 +697,8 @@ export const translations: Record<Language, TranslationKeys> = {
     aboutPage: {
       hero: {
         story: 'Priča',
-        description1: 'Muzički projekat sa Balkana koji spaja prošlost i budućnost – broj 10 simbolizuje ravnotežu i savršenstvo.',
         description1: 'Desetka je muzički projekat sa Balkana koji povezuje nostalgiju prošlih vremena sa modernim zvukom – broj 10 kao simbol savršene ravnoteže.',
+        description2: 'Rođen iz čežnje za 90-ima, hranjen Synthwave-om 80-ih. Svaki trag je vremenska kapsula, svaka melodija uspomena, svaki bit otkucaj nostalgije.',
         stats: {
           start: 'Početak',
           tracks: 'Pesme',

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Pause, SkipForward, SkipBack } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -193,9 +193,9 @@ export default function Music() {
                             <div className="pt-6 border-t border-gray-200">
                                 <p className="text-gray-500 text-sm mb-3">Slušaj na</p>
                                 <div className="flex flex-wrap gap-3">
-                                    {songs[currentSong]?.streamingLinks?.soundcloud && (
+                                    {songs[currentSongIndex]?.streamingLinks?.soundcloud && (
                                         <a
-                                            href={songs[currentSong].streamingLinks.soundcloud}
+                                            href={songs[currentSongIndex].streamingLinks.soundcloud}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium"
