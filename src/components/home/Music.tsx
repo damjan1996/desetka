@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Pause, SkipForward, SkipBack, Volume2 } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards, Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
@@ -10,48 +10,54 @@ import Image from 'next/image';
 import { getFeaturedSongs } from '@/lib/data/songs';
 import Link from 'next/link';
 import { useTranslations } from '@/contexts/LanguageContext';
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 
 export default function Music() {
-    const [currentSong, setCurrentSong] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-    const audioRef = useRef<HTMLAudioElement>(null);
+    const { currentSong, isPlaying, playSong } = useAudioPlayer();
     const t = useTranslations();
 
     const songs = getFeaturedSongs();
 
-    useEffect(() => {
-        if (audioRef.current) {
-            if (isPlaying) {
-                audioRef.current.play();
-            } else {
-                audioRef.current.pause();
-            }
-        }
-    }, [isPlaying, currentSong]);
-
     const togglePlay = () => {
-        setIsPlaying(!isPlaying);
+        const song = songs[currentSongIndex];
+        if (song) {
+            playSong(song);
+        }
     };
 
     const nextSong = () => {
         if (swiperInstance) {
-            swiperInstance.slideNext();
+            const nextIndex = currentSongIndex >= songs.length - 1 ? 0 : currentSongIndex + 1;
+            swiperInstance.slideTo(nextIndex);
+            const song = songs[nextIndex];
+            if (song) {
+                playSong(song);
+            }
         }
     };
 
     const prevSong = () => {
         if (swiperInstance) {
-            swiperInstance.slidePrev();
+            const prevIndex = currentSongIndex <= 0 ? songs.length - 1 : currentSongIndex - 1;
+            swiperInstance.slideTo(prevIndex);
+            const song = songs[prevIndex];
+            if (song) {
+                playSong(song);
+            }
         }
     };
 
     const handleSlideChange = (swiper: SwiperType) => {
-        setCurrentSong(swiper.activeIndex);
-        setIsPlaying(false);
+        setCurrentSongIndex(swiper.activeIndex);
+        const song = songs[swiper.activeIndex];
+        if (song) {
+            playSong(song);
+        }
     };
 
     return (
@@ -135,17 +141,17 @@ export default function Music() {
                             {/* Current Song Info */}
                             <div className="space-y-3">
                                 <h3 className="text-3xl font-bold text-gray-900">
-                                    {songs[currentSong]?.title}
+                                    {songs[currentSongIndex]?.title}
                                 </h3>
                                 <p className="text-gray-600 text-lg">
-                                    {songs[currentSong]?.artist}
+                                    {songs[currentSongIndex]?.artist}
                                 </p>
                                 <div className="flex gap-3">
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">
-                    {songs[currentSong]?.genre}
+                    {songs[currentSongIndex]?.genre}
                   </span>
                                     <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">
-                    {songs[currentSong]?.duration}
+                    {songs[currentSongIndex]?.duration}
                   </span>
                                 </div>
                             </div>
@@ -162,14 +168,16 @@ export default function Music() {
 
                                 <button
                                     onClick={togglePlay}
-                                    className="p-6 bg-gray-900 rounded-full text-white hover:bg-gray-800 transition-all hover:scale-105 shadow-lg"
-                                    aria-label={isPlaying ? t.music.pause : t.music.play}
+                                    className="p-6 bg-gray-900 rounded-full text-white hover:bg-gray-800 transition-all duration-200 shadow-lg"
+                                    aria-label={currentSong?.id === songs[currentSongIndex]?.id && isPlaying ? t.music.pause : t.music.play}
                                 >
-                                    {isPlaying ? (
-                                        <Pause className="w-8 h-8" />
-                                    ) : (
-                                        <Play className="w-8 h-8 ml-1" />
-                                    )}
+                                    <div className="transition-all duration-200">
+                                        {currentSong?.id === songs[currentSongIndex]?.id && isPlaying ? (
+                                            <Pause className="w-8 h-8 transition-all duration-200" />
+                                        ) : (
+                                            <Play className="w-8 h-8 translate-x-0.5 transition-all duration-200" />
+                                        )}
+                                    </div>
                                 </button>
 
                                 <button
@@ -183,28 +191,8 @@ export default function Music() {
 
                             {/* Streaming Links */}
                             <div className="pt-6 border-t border-gray-200">
-                                <p className="text-gray-500 text-sm mb-3">{t.music.stream_on}</p>
+                                <p className="text-gray-500 text-sm mb-3">Slušaj na</p>
                                 <div className="flex flex-wrap gap-3">
-                                    {songs[currentSong]?.streamingLinks?.spotify && (
-                                        <a
-                                            href={songs[currentSong].streamingLinks.spotify}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
-                                        >
-                                            {t.music.spotify}
-                                        </a>
-                                    )}
-                                    {songs[currentSong]?.streamingLinks?.youtube && (
-                                        <a
-                                            href={songs[currentSong].streamingLinks.youtube}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
-                                        >
-                                            {t.music.youtube}
-                                        </a>
-                                    )}
                                     {songs[currentSong]?.streamingLinks?.soundcloud && (
                                         <a
                                             href={songs[currentSong].streamingLinks.soundcloud}
@@ -212,7 +200,7 @@ export default function Music() {
                                             rel="noopener noreferrer"
                                             className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium"
                                         >
-                                            {t.music.soundcloud}
+                                            Soundcloud
                                         </a>
                                     )}
                                 </div>
@@ -232,12 +220,6 @@ export default function Music() {
                     </div>
                 </motion.div>
 
-                {/* Hidden Audio Element */}
-                <audio
-                    ref={audioRef}
-                    src={songs[currentSong]?.audioUrl}
-                    onEnded={() => setIsPlaying(false)}
-                />
             </div>
         </section>
     );

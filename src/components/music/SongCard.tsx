@@ -5,14 +5,14 @@ import Image from 'next/image';
 import { Play, Pause } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Song } from '@/types';
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 interface SongCardProps {
     song: Song;
-    onPlay?: () => void;
-    isPlaying: boolean;
 }
 
-export default function SongCard({ song, onPlay, isPlaying }: SongCardProps) {
+export default function SongCard({ song }: SongCardProps) {
+    const { currentSong, isPlaying, playSong } = useAudioPlayer();
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -35,14 +35,20 @@ export default function SongCard({ song, onPlay, isPlaying }: SongCardProps) {
 
                 <div
                     className={`absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${
-                        isHovered || isPlaying ? 'opacity-100' : 'opacity-0'
+                        isHovered || (currentSong?.id === song.id && isPlaying) ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
                     <button
-                        onClick={() => onPlay?.()}
-                        className="w-16 h-16 flex items-center justify-center bg-primary rounded-full text-white hover:bg-primary/90 transition-all hover:scale-110"
+                        onClick={() => playSong(song)}
+                        className="w-16 h-16 flex items-center justify-center bg-gray-900 rounded-full text-white hover:bg-gray-800 transition-all duration-200"
                     >
-                        {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
+                        <div className="transition-all duration-200">
+                            {currentSong?.id === song.id && isPlaying ? (
+                                <Pause className="w-8 h-8 transition-all duration-200" />
+                            ) : (
+                                <Play className="w-8 h-8 translate-x-0.5 transition-all duration-200" />
+                            )}
+                        </div>
                     </button>
                 </div>
             </div>
@@ -60,10 +66,6 @@ export default function SongCard({ song, onPlay, isPlaying }: SongCardProps) {
                     <span className="px-2 py-1 bg-zinc-100 text-zinc-600 rounded text-xs">{song.duration}</span>
                 </div>
 
-                {/* Description */}
-                {song.description && (
-                    <p className="text-zinc-500 text-xs line-clamp-2 pt-2">{song.description}</p>
-                )}
             </div>
         </motion.div>
     );

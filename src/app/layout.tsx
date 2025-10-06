@@ -5,6 +5,8 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import GlobalBackground from '@/components/layout/GlobalBackground';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
+import GlobalAudioPlayer from '@/components/audio/GlobalAudioPlayer';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -57,12 +59,15 @@ export default function RootLayout({
         <html lang="en" className={inter.variable}>
         <body className="antialiased">
         <LanguageProvider>
-            <GlobalBackground />
-            <Header />
-            <main className="pt-16 overflow-x-hidden">
-                {children}
-            </main>
-            <Footer />
+            <AudioPlayerProvider>
+                <GlobalBackground />
+                <Header />
+                <main className="pt-16 overflow-x-hidden">
+                    {children}
+                </main>
+                <Footer />
+                <GlobalAudioPlayer />
+            </AudioPlayerProvider>
         </LanguageProvider>
         </body>
         </html>

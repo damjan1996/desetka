@@ -4,145 +4,189 @@ import { Language } from '../i18n/config';
 export const blogPosts: BlogPost[] = [
     {
         id: '1',
-        slug: 'die-reise-von-desetka',
-        title: 'The Journey of Desetka: From 0 to 100',
-        excerpt: 'How a mysterious masked persona revolutionizes Balkan Synthwave.',
+        slug: 'der-werdegang',
+        title: 'The Journey: Creating Music for the Soul',
+        excerpt: 'How a personal quest for authentic music became a creative movement.',
         content: `
-# The Journey of Desetka: From 0 to 100
+# The Journey: Creating Music for the Soul
 
-The story begins with a vision: 80s Synthwave meets 90s Balkan nostalgia...
+It all started with a simple desire: creating the kind of music I wanted to hear while driving through the night.
 
 ## The Beginning
 
-It was 2024 when the idea was born. The longing for the 90s, combined with the fascination for Synthwave culture, led to the birth of Desetka.
+The music project began with a very personal motivation. I wanted to create music for myself that I would enjoy listening to in the car - with a certain sound, rhythm, and melody that sounds beautiful, harmonious, and represents high-quality music.
 
-### The Inspiration
+## The Creative Process
 
-The 90s in the Balkans were a special time. An era full of contrasts, emotions and unforgettable music. These memories should not fade, but be cast into a new form.
+### Own Lyrics and Melodies
+I started with my own lyrics that I wrote and my own melodies that I developed. Through the implementation of AI solutions, especially Suno, it became possible to develop matching vocals based on my own ideas, covering very different musical styles as you can see in the songs on the website.
 
-## The Music
+### Daily Production
+Within one month, I produced at least one song every day, sometimes up to five. I first published these on SoundCloud to get a feel for what people like to hear.
 
-Every track tells a story. From "Svetla Severa" to "Retro Snovi" - every melody is a time capsule that takes you back to a time that never really ends.
+## Distribution Strategy
 
-### The Process
+### Multi-Platform Approach
+I then added videos to these tracks and published them on TikTok, YouTube Music, and Spotify. The goal is essentially to see how I can achieve maximum reach.
 
-1. **Creation**: AI-powered music production with Suno
-2. **Production**: Manual post-production for perfect sound
-3. **Distribution**: Multi-platform release
-4. **Promotion**: Community building through TikTok, Instagram, YouTube
+### TikTok Success
+This works particularly well on TikTok because people like the music, but also because the videos get reposted. This entire mix leads to the streaming numbers increasing accordingly.
 
-## The Future
+## AI Integration
 
-The journey has just begun. From 549K views to millions, from small clubs to big festivals - Desetka is ready to revolutionize the Synthwave scene.
+### Music Production
+AI is used for music creation, while I maintain creative control over lyrics, melodies, and overall direction.
+
+### Visual Content
+Additionally, AI tools like Midjourney and Gemini are used for images and videos. This entire combination allows me as a one-man show to deliver a tremendous amount of content and build something that people enjoy.
+
+## The Goal
+
+The goal is simply to release good music over time, with good videos, and also to explore the possibilities and limitations of AI use. This entire mixture ensures that I can deliver a lot of content as a one-man show and build something that people like.
+
+It's about creating authentic, quality music that connects with listeners on an emotional level while pushing the boundaries of what's possible with modern technology.
     `,
         coverImage: '/images/blog/desetka-journey.jpg',
         author: 'Desetka',
         publishedAt: '2025-01-15',
         category: 'Story',
-        tags: ['Synthwave', 'Balkan', 'Music', 'Nostalgia'],
-        readingTime: '5 min',
+        tags: ['Music Production', 'AI', 'Creative Process', 'Authenticity'],
+        readingTime: '6 min',
         translations: {
             de: {
-                title: 'Die Reise von Desetka: Von 0 auf 100',
-                excerpt: 'Wie eine mysteriöse Masken-Persona den Balkan-Synthwave revolutioniert.',
+                title: 'Der Werdegang',
+                excerpt: 'Wie die persönliche Suche nach authentischer Musik zu einer Bewegung wurde.',
                 content: `
-# Die Reise von Desetka: Von 0 auf 100
+# Der Werdegang
 
-Die Geschichte beginnt mit einer Vision: 80er Synthwave trifft auf 90er Balkan-Nostalgie...
+Alles begann mit einem einfachen Wunsch: Musik zu schaffen, die ich gerne beim nächtlichen Autofahren hören würde.
 
 ## Der Anfang
 
-Es war 2024, als die Idee geboren wurde. Die Sehnsucht nach den 90ern, kombiniert mit der Faszination für Synthwave-Kultur, führte zur Geburt von Desetka.
+Das Musikprojekt begann mit einer sehr persönlichen Motivation. Ich wollte Musik für mich selber machen, die ich gerne im Auto hören würde, mit einem gewissen Klang, einer gewissen Rhythmik und einer gewissen Melodie, die schön ist, harmonisch klingt und im Endeffekt qualitativ hochwertige Musik darstellt.
 
-### Die Inspiration
+## Der kreative Prozess
 
-Die 90er Jahre auf dem Balkan waren eine besondere Zeit. Eine Ära voller Kontraste, Emotionen und unvergesslicher Musik. Diese Erinnerungen sollten nicht verblassen, sondern in eine neue Form gegossen werden.
+### Eigene Texte und Melodien
+Ich habe dann angefangen, erstmal mit eigenen Texten, die ich geschrieben habe, eigene Melodien, die ich entwickelt habe, und durch die Implementierung von KI-Lösungen, vor allen Dingen Suno, war es dann auch möglich, passende Vocals zu entwickeln, auf Basis von meinen eigenen, und damit sehr unterschiedliche Stilrichtungen abzudecken, wie man bei den Songs auf der Website auch erkennen kann.
 
-## Die Musik
+### Tägliche Produktion
+Innerhalb von einem Monat habe ich jeden Tag mindestens einen Song produziert, teilweise auch bis zu fünf. Diese dann erstmal auf Soundcloud veröffentlicht, um ein Gefühl dafür zu entwickeln, was Leute gerne hören möchten.
 
-Jeder Track erzählt eine Geschichte. Von "Svetla Severa" bis "Retro Snovi" - jede Melodie ist eine Zeitkapsel, die dich zurück in eine Zeit bringt, die nie wirklich endet.
+## Vertriebsstrategie
 
-### Der Prozess
+### Multi-Plattform-Ansatz
+Daraufhin habe ich diese dann mit Videos unterlegt und auf TikTok, YouTube Music und Spotify veröffentlicht. Im Endeffekt geht es darum, zu schauen, wie ich maximale Reichweite erzielen kann.
 
-1. **Kreation**: AI-gestützte Musikproduktion mit Suno
-2. **Produktion**: Manuelle Post-Production für den perfekten Sound
-3. **Distribution**: Multi-Plattform Release
-4. **Promotion**: Community-Building durch TikTok, Instagram, YouTube
+### TikTok-Erfolg
+Das funktioniert besonders gut auf TikTok, weil den Leuten, unter anderem, die Musik gefällt, aber auch die Videos repostet werden. Dieser gesamte Mix führt dazu, dass die Streaming-Zahlen auch entsprechend ansteigen.
 
-## Die Zukunft
+## KI-Integration
 
-Die Reise hat gerade erst begonnen. Von 549K Views zu Millionen, von kleinen Clubs zu großen Festivals - Desetka ist bereit, die Synthwave-Szene zu revolutionieren.
+### Musikproduktion
+KI wird im Sinne von Musik genutzt, während ich die kreative Kontrolle über Texte, Melodien und die Gesamtrichtung behalte.
+
+### Visueller Content
+Andererseits auch KI, wie beispielsweise durch Midjourney und Gemini, für Bilder und auch für Videos. Diese gesamte Mischung sorgt dafür, dass ich als One-Man-Show sehr, sehr, sehr viel Content liefern kann und auch etwas bauen kann, was den Leuten gefällt.
+
+## Das Ziel
+
+Das Ziel ist, einfach mit der Zeit gute Musik zu veröffentlichen, mit guten Videos und auch zu schauen, wo die Möglichkeiten und Limitierungen von KI-Einsatz liegen. Diese gesamte Mischung sorgt dafür, dass ich als One-Man-Show sehr viel Content liefern kann und etwas bauen kann, was den Leuten gefällt.
+
+Es geht darum, authentische, qualitativ hochwertige Musik zu schaffen, die eine emotionale Verbindung zu den Hörern herstellt und gleichzeitig die Grenzen dessen auslotet, was mit moderner Technologie möglich ist.
     `,
                 category: 'Story',
-                tags: ['Synthwave', 'Balkan', 'Musik', 'Nostalgie']
+                tags: ['Musikproduktion', 'KI', 'Kreativer Prozess', 'Authentizität']
             },
             en: {
-                title: 'The Journey of Desetka: From 0 to 100',
-                excerpt: 'How a mysterious masked persona revolutionizes Balkan Synthwave.',
+                title: 'The Journey: Creating Music for the Soul',
+                excerpt: 'How a personal quest for authentic music became a creative movement.',
                 content: `
-# The Journey of Desetka: From 0 to 100
+# The Journey: Creating Music for the Soul
 
-The story begins with a vision: 80s Synthwave meets 90s Balkan nostalgia...
+It all started with a simple desire: creating the kind of music I wanted to hear while driving through the night.
 
 ## The Beginning
 
-It was 2024 when the idea was born. The longing for the 90s, combined with the fascination for Synthwave culture, led to the birth of Desetka.
+The music project began with a very personal motivation. I wanted to create music for myself that I would enjoy listening to in the car - with a certain sound, rhythm, and melody that sounds beautiful, harmonious, and represents high-quality music.
 
-### The Inspiration
+## The Creative Process
 
-The 90s in the Balkans were a special time. An era full of contrasts, emotions and unforgettable music. These memories should not fade, but be cast into a new form.
+### Own Lyrics and Melodies
+I started with my own lyrics that I wrote and my own melodies that I developed. Through the implementation of AI solutions, especially Suno, it became possible to develop matching vocals based on my own ideas, covering very different musical styles as you can see in the songs on the website.
 
-## The Music
+### Daily Production
+Within one month, I produced at least one song every day, sometimes up to five. I first published these on SoundCloud to get a feel for what people like to hear.
 
-Every track tells a story. From "Svetla Severa" to "Retro Snovi" - every melody is a time capsule that takes you back to a time that never really ends.
+## Distribution Strategy
 
-### The Process
+### Multi-Platform Approach
+I then added videos to these tracks and published them on TikTok, YouTube Music, and Spotify. The goal is essentially to see how I can achieve maximum reach.
 
-1. **Creation**: AI-powered music production with Suno
-2. **Production**: Manual post-production for perfect sound
-3. **Distribution**: Multi-platform release
-4. **Promotion**: Community building through TikTok, Instagram, YouTube
+### TikTok Success
+This works particularly well on TikTok because people like the music, but also because the videos get reposted. This entire mix leads to the streaming numbers increasing accordingly.
 
-## The Future
+## AI Integration
 
-The journey has just begun. From 549K views to millions, from small clubs to big festivals - Desetka is ready to revolutionize the Synthwave scene.
+### Music Production
+AI is used for music creation, while I maintain creative control over lyrics, melodies, and overall direction.
+
+### Visual Content
+Additionally, AI tools like Midjourney and Gemini are used for images and videos. This entire combination allows me as a one-man show to deliver a tremendous amount of content and build something that people enjoy.
+
+## The Goal
+
+The goal is simply to release good music over time, with good videos, and also to explore the possibilities and limitations of AI use. This entire mixture ensures that I can deliver a lot of content as a one-man show and build something that people like.
+
+It's about creating authentic, quality music that connects with listeners on an emotional level while pushing the boundaries of what's possible with modern technology.
     `,
                 category: 'Story',
-                tags: ['Synthwave', 'Balkan', 'Music', 'Nostalgia']
+                tags: ['Music Production', 'AI', 'Creative Process', 'Authenticity']
             },
             sr: {
-                title: 'Put Desetka: Od 0 do 100',
-                excerpt: 'Kako misteriozna ličnost sa maskom revolucioniše balkanski Synthwave.',
+                title: 'Put: Stvaranje muzike za dušu',
+                excerpt: 'Kako je lična potraga za autentičnom muzikom postala kreativni pokret.',
                 content: `
-# Put Desetka: Od 0 do 100
+# Put: Stvaranje muzike za dušu
 
-Priča počinje sa vizijom: 80-ih Synthwave sreće 90-ih balkansku nostalgiju...
+Sve je počelo jednostavnom željom: stvaranje one vrste muzike koju sam želeo da čujem tokom noćne vožnje.
 
 ## Početak
 
-Bila je 2024. kada je ideja rođena. Čežnja za 90-ima, kombinovana sa fascincijom Synthwave kulturom, dovela je do rođenja Desetka.
+Muzički projekat je počeo sa vrlo ličnom motivacijom. Želeo sam da napravim muziku za sebe, koju bih voleo da slušam u kolima - sa određenim zvukom, ritmom i melodijom koja zvuči lepo, harmonično i u osnovi predstavlja kvalitetnu muziku.
 
-### Inspiracija
+## Kreativni proces
 
-90-e na Balkanu su bile posebno vreme. Era puna kontrasta, emocija i nezaboravne muzike. Ove uspomene ne treba da blede, već da budu ulite u novi oblik.
+### Vlastiti tekstovi i melodije
+Počeo sam sa vlastitim tekstovima koje sam napisao i vlastitim melodijama koje sam razvio. Kroz implementaciju AI rešenja, posebno Suno, postalo je moguće razviti odgovarajuće vokale na osnovu mojih ideja, pokrivajući vrlo različite muzičke stilove kako možete videti u pesmama na sajtu.
 
-## Muzika
+### Dnevna produkcija
+Tokom jednog meseca sam producirao najmanje jednu pesmu dnevno, ponekad čak do pet. Prvo sam ih objavio na SoundCloud-u da razvjem osećaj za to šta ljudi vole da čuju.
 
-Svaka pesma priča priču. Od "Svetla Severa" do "Retro Snovi" - svaka melodija je vremenska kapsula koja te vraća u vreme koje nikad zaista ne završava.
+## Strategija distribucije
 
-### Proces
+### Multi-platformski pristup
+Zatim sam dodao video sadržaj ovim pesmama i objavio ih na TikTok-u, YouTube Music-u i Spotify-ju. Cilj je u suštini da vidim kako mogu postići maksimalni domet.
 
-1. **Kreacija**: AI-bazirana muzička produkcija sa Suno
-2. **Produkcija**: Ručna post-produkcija za savršen zvuk
-3. **Distribucija**: Multi-platformsko izdanje
-4. **Promocija**: Izgradnja zajednice kroz TikTok, Instagram, YouTube
+### Uspeh na TikTok-u
+Ovo funkcioniše posebno dobro na TikTok-u jer se ljudima sviđa muzika, ali takođe jer se videoi repostuju. Ceo ovaj miks dovodi do odgovarajućeg rasta brojeva strimovanja.
 
-## Budućnost
+## AI integracija
 
-Putovanje je tek počelo. Od 549K pregleda do miliona, od malih klubova do velikih festivala - Desetka je spremna da revolucioniše Synthwave scenu.
+### Muzička produkcija
+AI se koristi za kreiranje muzike, dok ja zadržavam kreativnu kontrolu nad tekstovima, melodijama i ukupnim pravcem.
+
+### Vizuelni sadržaj
+Takođe, AI alati poput Midjourney i Gemini se koriste za slike i videoe. Cela ova kombinacija mi omogućava da kao one-man show isporučim ogromnu količinu sadržaja i izgradim nešto što se ljudima sviđa.
+
+## Cilj
+
+Cilj je jednostavno da kroz vreme objavljujem dobru muziku, sa dobrim videoima, a takođe i da istražim mogućnosti i ograničenja korišćenja AI. Cela ova mešavina omogućava mi da kao one-man show mogu da isporučim dosta sadržaja i izgradim nešto što se ljudima sviđa.
+
+Radi se o stvaranju autentične, kvalitetne muzike koja stvara emocionalnu vezu sa slušaocima dok istovremeno pomera granice onoga što je moguće sa modernom tehnologijom.
     `,
                 category: 'Priča',
-                tags: ['Synthwave', 'Balkan', 'Muzika', 'Nostalgija']
+                tags: ['Muzička produkcija', 'AI', 'Kreativni proces', 'Autentičnost']
             }
         }
     },
@@ -208,7 +252,7 @@ The magic lies in the details. Every track needs time, love and attention.
         readingTime: '8 min',
         translations: {
             de: {
-                title: 'Synthwave Production: Mein Workflow',
+                title: 'Mein Workflow',
                 excerpt: 'Ein Blick hinter die Kulissen: Wie ich Synthwave-Tracks produziere.',
                 content: `
 # Synthwave Production: Mein Workflow
@@ -430,7 +474,7 @@ The 90s in the Balkans weren't perfect, but they were OUR time. And this time de
         readingTime: '6 min',
         translations: {
             de: {
-                title: '90er Nostalgie: Das Balkan-Gefühl',
+                title: '90er Nostalgie',
                 excerpt: 'Warum die 90er auf dem Balkan so eine besondere Zeit waren.',
                 content: `
 # 90er Nostalgie: Das Balkan-Gefühl

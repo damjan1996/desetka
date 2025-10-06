@@ -69,13 +69,14 @@ export default function About() {
                             <div className="h-1 w-20 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full mb-6" />
                         </div>
 
-                        <p className="text-gray-700 text-lg leading-relaxed">
-                            {t.about.description1}
-                        </p>
-
-                        <p className="text-gray-700 text-lg leading-relaxed">
-                            {t.about.description2}
-                        </p>
+                        <div className="text-gray-700 text-lg leading-relaxed space-y-4">
+                            <p>
+                                {t.about.description1}
+                            </p>
+                            <p>
+                                {t.about.description2}
+                            </p>
+                        </div>
 
                         {/* Stats Grid */}
                         <div className="grid grid-cols-3 gap-4 pt-6">
@@ -84,12 +85,12 @@ export default function About() {
                                 <p className="text-gray-500 text-sm">{t.about.tracks}</p>
                             </div>
                             <div className="p-4 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-colors shadow-sm">
-                                <p className="text-2xl font-bold text-gray-900 mb-1">{t.about.budget}</p>
-                                <p className="text-gray-500 text-sm">Budget</p>
+                                <p className="text-2xl font-bold text-gray-900 mb-1">{t.about.months_working}</p>
+                                <p className="text-gray-500 text-sm">{t.about.months_working_label}</p>
                             </div>
                             <div className="p-4 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-colors shadow-sm">
-                                <p className="text-2xl font-bold text-gray-900 mb-1">3K+</p>
-                                <p className="text-gray-500 text-sm">{t.about.views_per_euro}</p>
+                                <p className="text-2xl font-bold text-gray-900 mb-1">{t.about.total_viewers}</p>
+                                <p className="text-gray-500 text-sm">{t.about.total_viewers_label}</p>
                             </div>
                         </div>
 

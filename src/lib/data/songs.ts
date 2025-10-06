@@ -18,38 +18,6 @@ export const songs = [
         },
     },
     {
-        id: '2',
-        title: 'Rijana',
-        artist: 'Desetka',
-        duration: '3:30',
-        coverImage: '/images/covers/rijana.png',
-        audioUrl: '/songs/rijana.mp3',
-        genre: 'Pop',
-        releaseDate: '2025-01-05',
-        description: 'Ein eingängiger Song mit sommerlicher Leichtigkeit und Balkan-Charme.',
-        streamingLinks: {
-            spotify: 'https://open.spotify.com/track/rijana',
-            youtube: 'https://www.youtube.com/watch?v=rijana',
-            soundcloud: 'https://soundcloud.com/desetka/rijana',
-        },
-    },
-    {
-        id: '3',
-        title: 'Ruže',
-        artist: 'Desetka',
-        duration: '4:02',
-        coverImage: '/images/covers/ruže.png',
-        audioUrl: '/songs/ruže.mp3',
-        genre: 'Pop',
-        releaseDate: '2025-01-10',
-        description: 'Ein gefühlvoller Track mit sanften Melodien und emotionalem Tiefgang.',
-        streamingLinks: {
-            spotify: 'https://open.spotify.com/track/ruze',
-            youtube: 'https://www.youtube.com/watch?v=ruze',
-            soundcloud: 'https://soundcloud.com/desetka/ruze',
-        },
-    },
-    {
         id: '4',
         title: 'Holivud',
         artist: 'Desetka',
@@ -79,6 +47,38 @@ export const songs = [
             spotify: 'https://open.spotify.com/track/sunseeker',
             youtube: 'https://www.youtube.com/watch?v=sunseeker',
             soundcloud: 'https://soundcloud.com/desetka/sunseeker',
+        },
+    },
+    {
+        id: '2',
+        title: 'Rijana',
+        artist: 'Desetka',
+        duration: '3:30',
+        coverImage: '/images/covers/rijana.png',
+        audioUrl: '/songs/rijana.mp3',
+        genre: 'Pop',
+        releaseDate: '2025-01-05',
+        description: 'Ein eingängiger Song mit sommerlicher Leichtigkeit und Balkan-Charme.',
+        streamingLinks: {
+            spotify: 'https://open.spotify.com/track/rijana',
+            youtube: 'https://www.youtube.com/watch?v=rijana',
+            soundcloud: 'https://soundcloud.com/desetka/rijana',
+        },
+    },
+    {
+        id: '3',
+        title: 'Ruže',
+        artist: 'Desetka',
+        duration: '4:02',
+        coverImage: '/images/covers/ruže.png',
+        audioUrl: '/songs/ruže.mp3',
+        genre: 'Pop',
+        releaseDate: '2025-01-10',
+        description: 'Ein gefühlvoller Track mit sanften Melodien und emotionalem Tiefgang.',
+        streamingLinks: {
+            spotify: 'https://open.spotify.com/track/ruze',
+            youtube: 'https://www.youtube.com/watch?v=ruze',
+            soundcloud: 'https://soundcloud.com/desetka/ruze',
         },
     },
     {
@@ -260,7 +260,8 @@ export const songs = [
 ];
 
 export const getFeaturedSongs = (): Song[] => {
-    return songs.slice(0, 3);
+    const featuredOrder = ['Mohave', 'Holivud', 'Sunseeker', 'Rijana', 'Ruže'];
+    return featuredOrder.map(title => songs.find(song => song.title === title)!);
 };
 
 export const getSongById = (id: string): Song | undefined => {

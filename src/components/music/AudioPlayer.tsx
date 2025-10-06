@@ -1,86 +1,121 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { Play, Pause } from 'lucide-react';
 import { useTranslations } from '@/contexts/LanguageContext';
 
 interface AudioPlayerProps {
     audioUrl: string;
     isPlaying: boolean;
     onPlayPause?: () => void;
+    onEnded?: () => void;
 }
 
-export default function AudioPlayer({ audioUrl, isPlaying, onPlayPause }: AudioPlayerProps) {
+export default function AudioPlayer({ audioUrl, isPlaying, onPlayPause, onEnded }: AudioPlayerProps) {
     const t = useTranslations();
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [volume, setVolume] = useState(1);
-    const [isMuted, setIsMuted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const audioRef = useRef<HTMLAudioElement>(null);
 
+    // Handle play/pause with proper error handling
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        if (isPlaying) audio.play();
-        else audio.pause();
-    }, [isPlaying]);
+        const playAudio = async () => {
+            try {
+                setIsLoading(true);
+                if (isPlaying) {
+                    await audio.play();
+                } else {
+                    audio.pause();
+                }
+            } catch (error) {
+                console.error('Audio play error:', error);
+                onPlayPause?.();
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
+        playAudio();
+    }, [isPlaying, onPlayPause]);
+
+    // Handle audio source changes
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
-        const handleLoadedMetadata = () => setDuration(audio.duration);
-        const handleEnded = () => onPlayPause?.();
+        setCurrentTime(0);
+        setDuration(0);
+        setIsLoading(false);
+    }, [audioUrl]);
+
+    // Audio event listeners
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        const handleTimeUpdate = () => {
+            if (!isNaN(audio.currentTime)) {
+                setCurrentTime(audio.currentTime);
+            }
+        };
+
+        const handleLoadedMetadata = () => {
+            if (!isNaN(audio.duration)) {
+                setDuration(audio.duration);
+            }
+        };
+
+        const handleEnded = () => {
+            setCurrentTime(0);
+            onEnded?.();
+            onPlayPause?.();
+        };
+
+        const handleLoadStart = () => setIsLoading(true);
+        const handleCanPlay = () => setIsLoading(false);
+        const handleError = () => {
+            setIsLoading(false);
+            console.error('Audio loading error');
+        };
 
         audio.addEventListener('timeupdate', handleTimeUpdate);
         audio.addEventListener('loadedmetadata', handleLoadedMetadata);
         audio.addEventListener('ended', handleEnded);
+        audio.addEventListener('loadstart', handleLoadStart);
+        audio.addEventListener('canplay', handleCanPlay);
+        audio.addEventListener('error', handleError);
 
         return () => {
             audio.removeEventListener('timeupdate', handleTimeUpdate);
             audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
             audio.removeEventListener('ended', handleEnded);
+            audio.removeEventListener('loadstart', handleLoadStart);
+            audio.removeEventListener('canplay', handleCanPlay);
+            audio.removeEventListener('error', handleError);
         };
-    }, [onPlayPause]);
+    }, [onPlayPause, onEnded]);
 
-    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const audio = audioRef.current;
-        if (audio) {
-            audio.currentTime = Number(e.target.value);
-            setCurrentTime(Number(e.target.value));
+        const newTime = Number(e.target.value);
+        
+        if (audio && !isNaN(newTime)) {
+            audio.currentTime = newTime;
+            setCurrentTime(newTime);
         }
-    };
+    }, []);
 
-    const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const audio = audioRef.current;
-        const newVolume = Number(e.target.value);
-        if (audio) {
-            audio.volume = newVolume;
-            setVolume(newVolume);
-            setIsMuted(newVolume === 0);
-        }
-    };
 
-    const toggleMute = () => {
-        const audio = audioRef.current;
-        if (audio) {
-            if (isMuted) {
-                audio.volume = volume || 0.5;
-                setIsMuted(false);
-            } else {
-                audio.volume = 0;
-                setIsMuted(true);
-            }
-        }
-    };
-
-    const formatTime = (time: number) => {
+    const formatTime = useCallback((time: number) => {
+        if (isNaN(time)) return '0:00';
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    };
+    }, []);
 
     return (
         <div className="space-y-3">
@@ -88,10 +123,17 @@ export default function AudioPlayer({ audioUrl, isPlaying, onPlayPause }: AudioP
             <div className="flex items-center gap-4">
                 <button
                     onClick={onPlayPause}
-                    className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white hover:bg-primary/90 transition-all hover:scale-105 shadow-md"
+                    disabled={isLoading}
+                    className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-900 rounded-full text-white hover:bg-gray-800 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label={isPlaying ? t.music.pause : t.music.play}
                 >
-                    {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+                    {isLoading ? (
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    ) : isPlaying ? (
+                        <Pause className="w-5 h-5" />
+                    ) : (
+                        <Play className="w-5 h-5 translate-x-0.5" />
+                    )}
                 </button>
 
                 {/* Progress Bar */}
@@ -102,53 +144,51 @@ export default function AudioPlayer({ audioUrl, isPlaying, onPlayPause }: AudioP
                         max={duration || 0}
                         value={currentTime}
                         onChange={handleSeek}
-                        className="w-full h-1 bg-zinc-300 rounded-lg appearance-none cursor-pointer slider"
+                        disabled={!duration}
+                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider disabled:cursor-not-allowed"
                     />
-                    <div className="flex justify-between text-xs text-zinc-600">
+                    <div className="flex justify-between text-xs text-gray-600">
                         <span>{formatTime(currentTime)}</span>
                         <span>{formatTime(duration)}</span>
                     </div>
                 </div>
             </div>
 
-            {/* Volume Control */}
-            <div className="flex items-center gap-3">
-                <button
-                    onClick={toggleMute}
-                    className="text-zinc-600 hover:text-primary transition-colors"
-                    aria-label={isMuted ? t.music.unmute : t.music.mute}
-                >
-                    {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-                </button>
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={isMuted ? 0 : volume}
-                    onChange={handleVolumeChange}
-                    className="w-24 h-1 bg-zinc-300 rounded-lg appearance-none cursor-pointer slider"
-                />
-            </div>
 
-            <audio ref={audioRef} src={audioUrl} />
+            <audio 
+                ref={audioRef} 
+                src={audioUrl}
+                preload="metadata"
+                crossOrigin="anonymous"
+            />
 
             <style jsx>{`
                 .slider::-webkit-slider-thumb {
                     appearance: none;
-                    width: 12px;
-                    height: 12px;
+                    width: 16px;
+                    height: 16px;
                     border-radius: 50%;
-                    background: #16a34a;
+                    background: #111827;
                     cursor: pointer;
+                    border: 2px solid white;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
                 }
                 .slider::-moz-range-thumb {
-                    width: 12px;
-                    height: 12px;
+                    width: 16px;
+                    height: 16px;
                     border-radius: 50%;
-                    background: #16a34a;
+                    background: #111827;
                     cursor: pointer;
-                    border: none;
+                    border: 2px solid white;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                }
+                .slider:disabled::-webkit-slider-thumb {
+                    background: #9ca3af;
+                    cursor: not-allowed;
+                }
+                .slider:disabled::-moz-range-thumb {
+                    background: #9ca3af;
+                    cursor: not-allowed;
                 }
             `}</style>
         </div>

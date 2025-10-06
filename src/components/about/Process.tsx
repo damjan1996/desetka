@@ -85,19 +85,19 @@ export default function Process() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div className="text-center">
                             <p className="text-zinc-600 mb-2">{t.aboutPage.process.techStack.aiProduction}</p>
-                            <p className="text-zinc-900 font-semibold">Suno AI</p>
+                            <p className="text-zinc-900 font-semibold">Suno</p>
                         </div>
                         <div className="text-center">
                             <p className="text-zinc-600 mb-2">{t.aboutPage.process.techStack.postProduction}</p>
-                            <p className="text-zinc-900 font-semibold">Audacity</p>
+                            <p className="text-zinc-900 font-semibold">Reaper</p>
                         </div>
                         <div className="text-center">
                             <p className="text-zinc-600 mb-2">{t.aboutPage.process.techStack.videoEditing}</p>
-                            <p className="text-zinc-900 font-semibold">CapCut</p>
+                            <p className="text-zinc-900 font-semibold">Premiere Pro</p>
                         </div>
                         <div className="text-center">
                             <p className="text-zinc-600 mb-2">{t.aboutPage.process.techStack.distribution}</p>
-                            <p className="text-zinc-900 font-semibold">DistroKid</p>
+                            <p className="text-zinc-900 font-semibold">TuneCore</p>
                         </div>
                     </div>
                 </motion.div>
