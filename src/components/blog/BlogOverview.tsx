@@ -13,14 +13,14 @@ export default function BlogOverview() {
     const localizedPosts = blogPosts.map(post => getLocalizedPost(post, language));
     
     return (
-        <section className="min-h-screen py-20 sm:py-24">
+        <section className="min-h-screen pt-6 pb-12 sm:pt-8 sm:pb-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-12 sm:mb-16"
+                    className="text-center mb-12"
                 >
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 mb-4">
                         {t.blog.title}

@@ -411,7 +411,7 @@ export const translations: Record<Language, TranslationKeys> = {
       all_songs_subtitle: 'Entdecke die komplette Synthwave-Kollektion von Desetka'
     },
     about: {
-      title: 'Timeless Frequencies',
+      title: 'Zeitlose Frequenzen',
       description1: 'Desetka ist eine Klangreise durch Raum und Zeit – ein Sound, in dem 80er-Synthwave, 90er-Balkan-Vibes und moderner Trap miteinander verschmelzen. Roh, melancholisch und zugleich futuristisch.',
       description2: 'Desetka ist kein Genre – es ist ein Gefühl. Ein Mix aus Retro-Seele und urbanem Puls, der Grenzen sprengt und Generationen verbindet.',
       views: 'Views',
@@ -602,7 +602,7 @@ export const translations: Record<Language, TranslationKeys> = {
       all_songs_subtitle: 'Otkrijte kompletnu Synthwave kolekciju od Desetka'
     },
     about: {
-      title: 'Timeless Frequencies',
+      title: 'Bezvremenske Frekvencije',
       description1: 'Desetka je zvučno putovanje kroz prostor i vreme – zvuk u kome se spajaju 80-ih Synthwave, 90-ih balkanski vajbovi i moderni Trap. Sirov, melanholičan i ipak futuristički.',
       description2: 'Desetka nije žanr – to je osećaj. Mešavina retro duše i urbanog pulsa koja ruši granice i povezuje generacije.',
       views: 'Pregledi',

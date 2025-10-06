@@ -1,4 +1,5 @@
 // src/app/about/page.tsx
+import AboutPageHero from '@/components/about/AboutPageHero';
 import AboutHero from '@/components/about/AboutHero';
 import About from '@/components/home/About';
 import Process from '@/components/about/Process';
@@ -11,6 +12,7 @@ export const metadata = {
 export default function AboutPage() {
     return (
         <>
+            <AboutPageHero />
             <AboutHero />
             <About />
             <Process />
