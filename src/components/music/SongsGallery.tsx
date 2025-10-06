@@ -3,13 +3,10 @@
 import { motion } from 'framer-motion';
 import { songs } from '@/lib/data/songs';
 import SongCard from './SongCard';
-import AudioPlayer from './AudioPlayer';
 import { useTranslations } from '@/contexts/LanguageContext';
-import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 export default function SongsGallery() {
     const t = useTranslations();
-    const { currentSong, isPlaying, togglePlayPause } = useAudioPlayer();
 
 
     return (
@@ -37,36 +34,6 @@ export default function SongsGallery() {
                     ))}
                 </div>
 
-                {currentSong && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 100 }}
-                        className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-zinc-200 shadow-md z-40"
-                    >
-                        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                            <div className="flex items-center gap-4 flex-1 min-w-0">
-                                <img
-                                    src={currentSong.coverImage}
-                                    alt={currentSong.title}
-                                    className="w-16 h-16 rounded-lg object-cover"
-                                />
-                                <div className="min-w-0">
-                                    <h4 className="text-zinc-900 font-semibold truncate">{currentSong.title}</h4>
-                                    <p className="text-zinc-600 text-sm truncate">{currentSong.artist}</p>
-                                </div>
-                            </div>
-
-                            <div className="flex-1 max-w-2xl">
-                                <AudioPlayer
-                                    audioUrl={currentSong.audioUrl}
-                                    isPlaying={isPlaying}
-                                    onPlayPause={togglePlayPause}
-                                />
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
             </div>
         </section>
     );

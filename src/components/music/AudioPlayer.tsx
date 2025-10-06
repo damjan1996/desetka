@@ -118,38 +118,40 @@ export default function AudioPlayer({ audioUrl, isPlaying, onPlayPause, onEnded 
     }, []);
 
     return (
-        <div className="space-y-3">
+        <div className="space-y-3 sm:space-y-3">
             {/* Play Button & Progress */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
                 <button
                     onClick={onPlayPause}
                     disabled={isLoading}
-                    className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-900 rounded-full text-white hover:bg-gray-800 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-shrink-0 w-14 h-14 sm:w-12 sm:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white hover:bg-gray-800 active:bg-gray-700 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                     aria-label={isPlaying ? t.music.pause : t.music.play}
                 >
                     {isLoading ? (
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <div className="w-5 h-5 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     ) : isPlaying ? (
-                        <Pause className="w-5 h-5" />
+                        <Pause className="w-6 h-6 sm:w-5 sm:h-5" />
                     ) : (
-                        <Play className="w-5 h-5 translate-x-0.5" />
+                        <Play className="w-6 h-6 sm:w-5 sm:h-5 translate-x-0.5" />
                     )}
                 </button>
 
                 {/* Progress Bar */}
-                <div className="flex-1 space-y-1">
-                    <input
-                        type="range"
-                        min="0"
-                        max={duration || 0}
-                        value={currentTime}
-                        onChange={handleSeek}
-                        disabled={!duration}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider disabled:cursor-not-allowed"
-                    />
-                    <div className="flex justify-between text-xs text-gray-600">
-                        <span>{formatTime(currentTime)}</span>
-                        <span>{formatTime(duration)}</span>
+                <div className="flex-1 space-y-2 sm:space-y-1">
+                    <div className="relative">
+                        <input
+                            type="range"
+                            min="0"
+                            max={duration || 0}
+                            value={currentTime}
+                            onChange={handleSeek}
+                            disabled={!duration}
+                            className="w-full h-3 sm:h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider disabled:cursor-not-allowed touch-manipulation"
+                        />
+                    </div>
+                    <div className="flex justify-between text-sm sm:text-xs text-gray-600">
+                        <span className="font-mono">{formatTime(currentTime)}</span>
+                        <span className="font-mono">{formatTime(duration)}</span>
                     </div>
                 </div>
             </div>
@@ -165,30 +167,62 @@ export default function AudioPlayer({ audioUrl, isPlaying, onPlayPause, onEnded 
             <style jsx>{`
                 .slider::-webkit-slider-thumb {
                     appearance: none;
-                    width: 16px;
-                    height: 16px;
+                    width: 20px;
+                    height: 20px;
                     border-radius: 50%;
                     background: #111827;
                     cursor: pointer;
-                    border: 2px solid white;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                    border: 3px solid white;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                    transition: all 0.2s ease;
+                }
+                .slider::-webkit-slider-thumb:hover {
+                    transform: scale(1.1);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+                }
+                .slider::-webkit-slider-thumb:active {
+                    transform: scale(1.2);
                 }
                 .slider::-moz-range-thumb {
-                    width: 16px;
-                    height: 16px;
+                    width: 20px;
+                    height: 20px;
                     border-radius: 50%;
                     background: #111827;
                     cursor: pointer;
-                    border: 2px solid white;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                    border: 3px solid white;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                    transition: all 0.2s ease;
+                }
+                .slider::-moz-range-thumb:hover {
+                    transform: scale(1.1);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+                }
+                .slider::-moz-range-thumb:active {
+                    transform: scale(1.2);
                 }
                 .slider:disabled::-webkit-slider-thumb {
                     background: #9ca3af;
                     cursor: not-allowed;
+                    transform: none;
                 }
                 .slider:disabled::-moz-range-thumb {
                     background: #9ca3af;
                     cursor: not-allowed;
+                    transform: none;
+                }
+                
+                /* Mobile optimizations */
+                @media (max-width: 640px) {
+                    .slider::-webkit-slider-thumb {
+                        width: 24px;
+                        height: 24px;
+                        border-width: 4px;
+                    }
+                    .slider::-moz-range-thumb {
+                        width: 24px;
+                        height: 24px;
+                        border-width: 4px;
+                    }
                 }
             `}</style>
         </div>

@@ -135,24 +135,41 @@ export function AudioPlayerProvider({ children }: { children: React.ReactNode })
             return;
         }
 
-        // Smooth transition for new song
+        // Smooth transition for new song - preserve progress bar visually
         setState(prev => ({
             ...prev,
             currentSong: song,
             isVisible: true,
-            currentTime: 0,
-            duration: 0,
             isLoading: true,
-            // Keep current playing state during transition to avoid flicker
+            isPlaying: false,  // Set to false initially to avoid flicker
+            // Don't reset currentTime/duration immediately for smoother visual transition
         }));
 
         // Load new song
         audio.src = song.audioUrl;
         
-        // Set playing state after a brief delay to ensure smooth transition
-        setTimeout(() => {
-            setState(prev => ({ ...prev, isPlaying: true }));
-        }, 50);
+        // Reset progress after audio starts loading
+        const handleLoadStart = () => {
+            setState(prev => ({ 
+                ...prev, 
+                currentTime: 0,
+                duration: 0
+            }));
+        };
+
+        // Auto-play when ready
+        const handleCanPlay = () => {
+            setState(prev => ({ 
+                ...prev, 
+                isPlaying: true,
+                isLoading: false 
+            }));
+        };
+
+        // Add temporary listeners for this song load
+        audio.addEventListener('loadstart', handleLoadStart, { once: true });
+        audio.addEventListener('canplay', handleCanPlay, { once: true });
+        
     }, [state.currentSong]);
 
     const togglePlayPause = useCallback(() => {
