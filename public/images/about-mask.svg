@@ -1,0 +1,18 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="vhsGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#c8ff00;stop-opacity:0.1" />
+      <stop offset="70%" style="stop-color:#ff0000;stop-opacity:0.05" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:0.8" />
+    </radialGradient>
+    <pattern id="scanlines" x="0" y="0" width="2" height="2" patternUnits="userSpaceOnUse">
+      <rect width="2" height="1" fill="#000" opacity="0.1"/>
+      <rect width="2" height="1" y="1" fill="transparent"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="#0a0a0a"/>
+  <rect width="800" height="600" fill="url(#vhsGradient)"/>
+  <rect width="800" height="600" fill="url(#scanlines)"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#c8ff00" opacity="0.3">10</text>
+  <text x="400" y="340" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#ffffff" opacity="0.5">Synthwave × Balkan Nostalgie</text>
+</svg>
