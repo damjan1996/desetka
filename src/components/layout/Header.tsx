@@ -89,7 +89,7 @@ export default function Header() {
                         {/* Logo */}
                         <Link href="/" className="flex items-center gap-3 group" aria-label="Desetka – Startseite">
               <span className="relative block w-8 h-8">
-                <Image src="/images/favicon.png" alt="" fill className="object-contain" priority />
+                <Image src="/images/favicon.webp" alt="" fill className="object-contain" priority />
               </span>
                             <span className="font-semibold tracking-tight text-zinc-900 text-lg">DESETKA</span>
                         </Link>
@@ -178,7 +178,7 @@ export default function Header() {
                                 <div className="flex items-center justify-between">
                                     <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
                     <span className="relative block w-8 h-8">
-                      <Image src="/images/favicon.png" alt="" fill className="object-contain" />
+                      <Image src="/images/favicon.webp" alt="" fill className="object-contain" />
                     </span>
                                         <span className="font-semibold tracking-tight text-zinc-900">DESETKA</span>
                                     </Link>

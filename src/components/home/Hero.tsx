@@ -61,7 +61,7 @@ export default function Hero() {
                     style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                 >
                     <Image
-                        src="/images/desetka.png"
+                        src="/images/desetka.webp"
                         alt="Desetka Mask"
                         width={160}
                         height={160}

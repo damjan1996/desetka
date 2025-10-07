@@ -91,7 +91,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                                 >
                                     <div className="relative w-12 h-12">
                                         <Image
-                                            src="/images/favicon.png"
+                                            src="/images/favicon.webp"
                                             alt="10KA Logo"
                                             fill
                                             className="object-contain group-hover:scale-110 transition-transform"

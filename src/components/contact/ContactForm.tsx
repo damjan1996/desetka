@@ -114,7 +114,7 @@ export default function ContactForm() {
                                 <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
                                     <div className="w-6 h-6 relative">
                                         <Image
-                                            src="/images/soundcloud.png"
+                                            src="/images/soundcloud.webp"
                                             alt="SoundCloud"
                                             fill
                                             className="object-contain"

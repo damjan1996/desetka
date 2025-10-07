@@ -20,7 +20,7 @@ export default function AboutHero() {
                     >
                         <div className="relative aspect-square rounded-3xl overflow-hidden">
                             <Image
-                                src="/images/desetka2.png"
+                                src="/images/desetka2.webp"
                                 alt="Desetka Mask"
                                 fill
                                 className="object-cover"

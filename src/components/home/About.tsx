@@ -23,7 +23,7 @@ export default function About() {
                     >
                         <div className="relative aspect-square rounded-3xl overflow-hidden bg-gray-100">
                             <Image
-                                src="/images/desetka.png"
+                                src="/images/desetka.webp"
                                 alt="Desetka Mask"
                                 fill
                                 className="object-cover"
