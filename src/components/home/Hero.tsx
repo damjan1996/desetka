@@ -51,7 +51,7 @@ export default function Hero() {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col items-center justify-start min-h-screen px-4 pt-20 relative" style={{ zIndex: 30 }}>
+            <main id="main" className="flex flex-col items-center justify-start min-h-screen px-4 pt-20 relative" style={{ zIndex: 30 }}>
                 {/* Mask/Logo Image */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -119,7 +119,7 @@ export default function Hero() {
                         <div className="absolute inset-0 bg-gray-200/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     </button>
                 </motion.div>
-            </div>
+            </main>
 
         </section>
     );
